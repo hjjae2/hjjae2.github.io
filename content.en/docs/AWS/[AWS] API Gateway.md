@@ -1,10 +1,17 @@
 ---
+type: 'docs'
+title: "API Gateway"
+bookFlatSection: true
+bookCollapseSection: false
+bookHidden: false
+bookToC: false
+bookComments: false
+bookSearchExclude: false
 weight: 1
 bookFlatSection: true
-title: "Example Site"
 ---
 
-### What is Amazon API Gateway?
+## What is Amazon API Gateway?
 
 > Amazon API Gateway is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale.
 >
@@ -13,9 +20,9 @@ title: "Example Site"
 > As an API Gateway API developer, you can create APIs for use in your own client applications. 
 > Or you can make your APIs available to third-party app developers.
 
-<br><br>
+<br>
 
-### Custom Domain Names
+## Custom Domain Names
 
 API Gateway 는 기본적으로 아래 형태와 같은 HOSTNAME 을 갖는다.
 ```sh
@@ -36,9 +43,9 @@ https://api-id.execute-api.region.amazonaws.com/stage
 >
 > *If you don't set any base mapping under a custom domain name, the resulting API's base URL is the same as the custom domain (for example, https://api.example.com). In this case, the custom domain name can't support more than one API.*
 
-<br><br>
+<br>
 
-### With AWS Lambda
+## With AWS Lambda
 
 > https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html
 
@@ -46,7 +53,7 @@ AWS Lambda Function을 호출하는 형태로 사용할 수도 있다.
 
 > *You can create a web API with an HTTP endpoint for your Lambda function by using Amazon API Gateway.*
 
-### 참고
+## 참고
 
 - https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html
 - https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html
