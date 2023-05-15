@@ -18,7 +18,7 @@ Entity(User, Group, Role)에 Policy를 적용해서 AWS 리소스(EC2, S3, RDS, 
 
 > Keyword : User, Group, Role, Policy
 
-<br><br>
+<br>
 
 ## Terms
 
@@ -42,8 +42,6 @@ authentication(인증)을 위해 사용하는 IAM resource object
 (AWS 리소스 사용을 위해) user(+ root user), role 를 사용하는 주체(person, application)
 - ex: federated users, assumed roles, ...
 
-
-
 ### IAM Role
 
 하나의 `IAM role` 은 하나의 `IAM user` 와 유사하다.
@@ -54,7 +52,7 @@ authentication(인증)을 위해 사용하는 IAM resource object
 
 <br>
 
-### [Roles terms and concepts](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html)
+## [Roles terms and concepts](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html)
 
 **Roles**
 

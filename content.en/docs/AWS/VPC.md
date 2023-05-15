@@ -16,8 +16,7 @@ bookFlatSection: true
 
 AWS에서는 AWS계정을 생성할 때 리전 별로 기본 VPC를 함께 생성해준다. 즉, 내 계정의 기본 VPC이다. 리소스를 생성할 때 VPC를 설정하지 않으면 이 기본 VPC가 설정된다.
 
-![](/static/images/[AWS]%20VPC_34.png)
-> 출처 : https://www.44bits.io/ko/post/understanding_aws_vpc
+![](/images/[AWS]%20VPC_34.png)
 
 <br>
 

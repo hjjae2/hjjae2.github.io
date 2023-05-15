@@ -1,6 +1,6 @@
 ---
 type: 'docs'
-title: "5xx Error & ScaleUp 기준"
+title: "5xx Error & Scaling 기준"
 bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
@@ -61,7 +61,7 @@ To avoid issues, monitor the FreeStorageSpace metric in the OpenSearch Service c
 
 <br>
 
-### 참고
+## 참고
 
 1. [Why is the SysMemoryUtilization so high on my Amazon OpenSearch Service cluster?](https://aws.amazon.com/ko/premiumsupport/knowledge-center/opensearch-high-sysmemoryutilization/?nc1=h_ls)
 2. [Recommended CloudWatch alarms for Amazon OpenSearch Service](https://docs.aws.amazon.com/opensearch-service/latest/developerguide/cloudwatch-alarms.html)
