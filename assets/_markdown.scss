@@ -59,12 +59,12 @@
       text-decoration: underline;
     }
     &:visited {
-      color: var(--color-visited-link);
+      // color: var(--color-visited-link);
     }
   }
 
   img {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
   }
 
