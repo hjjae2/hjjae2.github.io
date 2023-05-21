@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "03. HTTP"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

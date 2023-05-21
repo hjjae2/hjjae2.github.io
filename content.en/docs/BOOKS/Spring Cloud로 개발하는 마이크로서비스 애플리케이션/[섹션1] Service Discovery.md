@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "섹션1. Service Discovery"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "섹션3. Spring Configuration Service"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true
@@ -21,7 +20,7 @@ weight: 1
 
 저장소로부터 Spring Cloud Config Server가 config 파일(값)을 가져와 각각의 service 에 전달해줄 수 있다.
 
-### Config Server
+## Config Server
 
 ```java
 @SpringBootApplication
@@ -52,7 +51,7 @@ spring:
 
 <br>
 
-### Config Client
+## Config Client
 
 Dependencies 추가
 

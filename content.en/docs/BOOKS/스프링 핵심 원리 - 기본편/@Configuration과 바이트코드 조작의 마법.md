@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "@Configuration과 바이트코드 조작의 마법"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

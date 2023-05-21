@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "02. URI"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

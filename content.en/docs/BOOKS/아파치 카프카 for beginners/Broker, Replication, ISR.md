@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "Broker, Replication, ISR"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

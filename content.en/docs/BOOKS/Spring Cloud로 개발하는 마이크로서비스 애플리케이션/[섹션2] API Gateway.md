@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "섹션2. API Gateway"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true
@@ -23,7 +22,7 @@ API Gateway 는 인증, 인가, LB, Routing, Logging, CircuitBreaker 의 역할�
 
 <br>
 
-### Netflix Ribbon
+## Netflix Ribbon
 
 Spring Cloud 에서 MSA 간 통신이 필요하다.
 
@@ -38,7 +37,7 @@ Ribbon : Client-Side Load Balancer
 
 <br>
 
-### Netflix Zuul
+## Netflix Zuul
 
 API Gateway library(fraemwork) 이다.
 

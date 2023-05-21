@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "@ComponentScan"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

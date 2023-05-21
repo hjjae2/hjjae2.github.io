@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "컨슈머 랙(Consumer Lag)"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true

@@ -1,7 +1,6 @@
 ---
 type: 'docs'
 title: "Mock Roles, not Objects"
-bookFlatSection: true
 bookCollapseSection: false
 bookHidden: false
 bookToC: true
