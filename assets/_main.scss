@@ -103,6 +103,7 @@ ul.pagination {
   .book-menu-content {
     width: $menu-width;
     padding: $padding-16;
+    background: transparent;
     background: var(--body-background);
 
     @include fixed;
