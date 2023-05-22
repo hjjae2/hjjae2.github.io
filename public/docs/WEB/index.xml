@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WEB on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/WEB/</link>
+    <description>Recent content in WEB on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/WEB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-Apache-vs-Nginx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-Apache-vs-Nginx/</guid>
+      <description>Apache # Apache 는 MPM(Multi Process Module) 방식으로 동작한다.
+MPM 은 다시 아래와 같은 방식이 있다.
+Prefork MPM Worker MPM Event MPM Prefork MPM # 각각의 요청을 각각의 프로세스(1 therad) 가 처리한다.
+프로세스 별로 처리하기 때문에 안정적이다. (= 메모리 영역을 공유하지 않는다, 메모리 공간이 독립적이다)
+자원의 사용량이 크다.
+default 개수만큼 apache 자식 프로세스를 생성해놓는다. 프로세스는 client 요청을 처리하고, 요청이 많을 경우 Process를 새로 생성하여 처리한다.
+Worker MPM # Prefork와 같이 Default로 Apache 자식 프로세스를 생성해놓는다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-CSRF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-CSRF/</guid>
+      <description>CSRF # Cross Site Request Forgery
+웹 애플리케이션 취약점 중 하나이다.
+자신의 의지와는 무관하게 공격자가 의도한 행위(수정, 삭제, 등록 등)를 특정 웹사이트에 요청하게 하는 공격이다.
+피해자(희생자)의 권한을 도용하여 공격자가 웹사이트에 특정 요청을 하는 것이다.
+대상이 될 서비스(웹 애플리케이션)에 피해자가 로그인 한 상태이다. 이때, 정상적인 쿠키 등을 발급받는다. 피해자가 공격자의 피싱 사이트에 접속 방어 기법 # 일반적으로 CSRF 방어 기법은 조회성 메소드(GET) 에는 적용하지 않고, POST, PUT, PATCH, DELETE 메소드에 중점적으로 적용한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-DOM/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-DOM/</guid>
+      <description>DOM 이란?
+DOM(Document Object Model, 문서 객체 모델) 이란? # XML이나 HTML과 같은 문서에 접근(조작)하기 위한 인터페이스 문서 내의 모든 요소(예를 들어, 태그)를 정의하고 (그 요소들에)접근하는 방법을 제공 W3C의 표준 객체 모델 (위의 말을 조금 쉽게 풀어쓰면) 우리는 DOM 덕분에 아래와 같은 작업을 할 수 있다.
+(JS) 새로운 HTML 요소 추가/수정/삭제 (JS) 새로운 HTML Event 추가 (JS) CSS 변경 등 DOM은 아래와 같이 노드 트리 형태로 나타난다고 한다.
+출처: 위키백과: 문서 객체 모델</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-HTTP-Header/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-HTTP-Header/</guid>
+      <description>커스텀 등록 헤더는 &amp;lsquo;X-&amp;rsquo; 라고 붙이곤 했었는데 RFC 6648(2012.06)에 의해 폐기
+분류 (by Context) # General Header
+request/response 공통(모두) 적용 body에 전송되는 데이터와는 관련이 없음 (예를 들면, Content-Type 등을 의미하는 건가?) Request Header
+클라이언트 정보 Response Header
+서버 정보 (이름, 버전 등) Entity Header
+Entity Body 정보 (Content-Length, MIME 타입 등) 프록시 처리 방법에 따라 분류할 수도 있다.
+End-to-end headers, Hop-by-hop headers
+General Header # request / response 모두에서 사용되는 공통 헤더</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-OAuth-2.0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-OAuth-2.0/</guid>
+      <description>Grant Type # 방식 사용자 인증 과정 개입 설명 authorization_code O * 인증 과정에서 Authorization Code 교환 후 access token 을 받고, 사용한다. implicit O * 인증 과정에서 Authorization Code 의 교환 없이, 즉시 access token 을 받고, 사용한다. client_credentials X * 인증 과정에서 client credential 정보(ex : client id, client secret)를 통해 access token 을 받고, 사용한다. password (Resource Owner Password Credentials, Password Credentials) X * 인증 과정에서 client credential 정보(ex : client id, client secret, id, password)를 통해 access token 을 받고, 사용한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-Restful-API/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-Restful-API/</guid>
+      <description>REST(Representational State Transfer) # 정의 1. (자원을 정의한 후) 자원(혹은 자원의 이름, 표현)으로 구분하여 자원의 상태(정보)를 주고 받는 모든 것
+정의 2. Resource(자원, URI), Method(행위), Representation of Resource(자원의 형태/표현)를 사용하는 것
+REST 구성 요소 # 자원(Resource, URI)
+자원의 고유한 식별 값 (&amp;lsquo;모든 자원에는 고유한 ID가 존재한다&amp;rsquo;라는 전제) 행위(Method)
+(자원에 대해서) 하고자 하는 행위 e.g. (HTTP 프로토콜에서) GET, POST, PUT, DELETE 등 자원의 형태/표현(Representation of Resource)
+Client, Server가 주고 받는 자원의 형태/표현 e.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/WEB/WEB-SSL-Handshake/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/WEB/WEB-SSL-Handshake/</guid>
+      <description>SSL Handshake 동작 원리 / 과정 # SSL Handshake의 목표
+신뢰할 수 있는 서버(연결)인지 확인합니다. 통신 시 사용할 암호화 알고리즘을 결정합니다. 자세한 설명/그림은 여기를 참고합니다.
+1. [Client 측] Client Hello
+Client -&amp;gt; Server 로 연결을 시도합니다. 이때, 아래의 내용을 포함합니다.
+사용할 수 있는 암호화 알고리즘 (즉, 어떤 암호화 알고리즘을 사용할 수 있는지) SSL Protocol version 등등 2. [Server 측] Server Hello / Certificate
+Server -&amp;gt; Client 로 응답합니다. 이때, 아래의 내용을 포함합니다.</description>
+    </item>
+    
+  </channel>
+</rss>

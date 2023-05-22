@@ -1,0 +1,5133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="트리거 vs Application Logic 비교해보기
+인터넷들의 글/댓글들을 읽어 종합해본 내용입니다.
+Trigger # 개발자 입장에서 유지보수가 어렵다.
+(반대로) 예전 글(2010년대 초반)을 보면 Trigger 가 유지보수가 더 쉽다는 의견/글들이 있는 것 같다.
+빌드/배포 시간에 제약이 없다.
+Application -&gt; DB call 횟수가 줄어든다.
+성능(처리율, 속도) 우수하다.
+(Application Logic 반대 의견) (한 액션 시 여러 개의 DB Table 에 삽입/수정 등이 이뤄질 때) Application Logic 으로 관리하면 Exception, Transaction 등을 신경써줘야 한다.
+Application Logic # 개발자 입장에서 유지보수가 쉽다.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="트리거 vs Application Logic 비교해보기
+인터넷들의 글/댓글들을 읽어 종합해본 내용입니다.
+Trigger # 개발자 입장에서 유지보수가 어렵다.
+(반대로) 예전 글(2010년대 초반)을 보면 Trigger 가 유지보수가 더 쉽다는 의견/글들이 있는 것 같다.
+빌드/배포 시간에 제약이 없다.
+Application -&gt; DB call 횟수가 줄어든다.
+성능(처리율, 속도) 우수하다.
+(Application Logic 반대 의견) (한 액션 시 여러 개의 DB Table 에 삽입/수정 등이 이뤄질 때) Application Logic 으로 관리하면 Exception, Transaction 등을 신경써줘야 한다.
+Application Logic # 개발자 입장에서 유지보수가 쉽다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hjjae2.github.io/docs/ETC/14.-Trigger-vs-ApplicationBusiness-Logic/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2023-05-22T00:33:13+09:00" />
+<title>14. Trigger vs Application(Business) Logic | thisandthat</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.e445341171724705139aa04714dd8476488be2501fd643c3da5b13e1069f17b7.css" integrity="sha256-5EU0EXFyRwUTmqBHFN2EdkiL4lAf1kPD2lsT4QafF7c=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.174ed7393cf719b821420ec991c1a56c4bdc8bc768bef5f161f2be043e51f96a.js" integrity="sha256-F07XOTz3GbghQg7JkcGlbEvci8dovvXxYfK&#43;BD5R&#43;Wo=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>thisandthat</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fc737caa1681790d3823abdf5db61974" class="toggle"  />
+    <label for="section-fc737caa1681790d3823abdf5db61974" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;AWS&nbsp;(10)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/01.-API-Gateway/" class="">
+      📃&nbsp;01. API Gateway</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/02.-Batch/" class="">
+      📃&nbsp;02. Batch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/03.-Cloud-Formation/" class="">
+      📃&nbsp;03. Cloud Formation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/04.-Elastic-Beanstalk/" class="">
+      📃&nbsp;04. Elastic Beanstalk</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/05.-Glue/" class="">
+      📃&nbsp;05. Glue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/06.-IAM/" class="">
+      📃&nbsp;06. IAM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/07.-VPC/" class="">
+      📃&nbsp;07. VPC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-136b25850e9e92201a6980aea5823b9b" class="toggle"  />
+    <label for="section-136b25850e9e92201a6980aea5823b9b" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;08. Opensearch&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/OpenSearch/01.-%EA%B0%9C%EC%9A%94/" class="">
+      📃&nbsp;01. 개요</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/OpenSearch/02.-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/" class="">
+      📃&nbsp;02. 내부 구조, 성능 최적화 그리고 스케일링</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/OpenSearch/03.-5xx-Error-with-Scaling/" class="">
+      📃&nbsp;03. 5xx Error (With Scaling)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f42f7225344636e8189436d82f8a192a" class="toggle"  />
+    <label for="section-f42f7225344636e8189436d82f8a192a" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;BOOKS&nbsp;(105)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/PAPER-Mock-Roles-not-Objects/" class="">
+      📃&nbsp;Mock Roles, not Objects</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a35e9e89fce8cdfc1295724e762bcdaa" class="toggle"  />
+    <label for="section-a35e9e89fce8cdfc1295724e762bcdaa" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;IOS, Android 앱 개발을 위한 실전 React Native - Basic&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EA%B8%B0%EB%B3%B8/" class="">
+      📃&nbsp;기본</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EC%8A%A4%ED%83%80%EC%9D%BC-1/" class="">
+      📃&nbsp;스타일 (1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-910ca7f10d85070f199aea04d0873cf6" class="toggle"  />
+    <label for="section-910ca7f10d85070f199aea04d0873cf6" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;Real Mysql 8.0&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Real-Mysql-8.0/03_%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%B0%8F-%EA%B6%8C%ED%95%9C/" class="">
+      📃&nbsp;03. 사용자 및 권한</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Real-Mysql-8.0/04_%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/" class="">
+      📃&nbsp;04. 아키텍처</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1d3f54a0c666e5779f2b8969af077915" class="toggle"  />
+    <label for="section-1d3f54a0c666e5779f2b8969af077915" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;Spring Cloud로 개발하는 마이크로서비스 애플리케이션&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Spring-Cloud%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%84%B9%EC%85%981-Service-Discovery/" class="">
+      📃&nbsp;섹션1. Service Discovery</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Spring-Cloud%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%84%B9%EC%85%982-API-Gateway/" class="">
+      📃&nbsp;섹션2. API Gateway</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Spring-Cloud%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%84%B9%EC%85%983-Spring-Configuration-Service/" class="">
+      📃&nbsp;섹션3. Spring Configuration Service</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3a397ecab4a261ae076e95a1953805da" class="toggle"  />
+    <label for="section-3a397ecab4a261ae076e95a1953805da" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;가상 면접 사례로 배우는 대규모 시스템 설계 기초&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/01_%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%88%98%EC%97%90-%EB%94%B0%EB%A5%B8-%EA%B7%9C%EB%AA%A8-%ED%99%95%EC%9E%A5%EC%84%B1/" class="">
+      📃&nbsp;01. 사용자 수에 따른 규모 확장성</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/02_%EA%B0%9C%EB%9E%B5%EC%A0%81%EC%9D%B8-%EA%B7%9C%EB%AA%A8-%EC%B6%94%EC%A0%95/" class="">
+      📃&nbsp;02. 개략적인 규모 추정</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/06_Key-Value-Store-%EC%84%A4%EA%B3%84/" class="">
+      📃&nbsp;03. Key-Value Store 설계</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/10_%EC%95%8C%EB%A6%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84/" class="">
+      📃&nbsp;10. 알림 시스템 설계</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b593263db66ae346fb8390214e6fe136" class="toggle"  />
+    <label for="section-b593263db66ae346fb8390214e6fe136" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;대규모 서비스를 지탱하는 기술&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EC%A7%80%ED%83%B1%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0/5%EC%9E%A5_%EB%8C%80%EA%B7%9C%EB%AA%A8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC%EC%9D%98-%EC%96%B4%EB%A0%A4%EC%9A%B4-%EC%A0%90-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%99%80-%EB%94%94%EC%8A%A4%ED%81%AC/" class="">
+      📃&nbsp;5장. 대규모 데이터 처리의 어려운 점 (메모리와 디스크)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EC%A7%80%ED%83%B1%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0/6%EC%9E%A5_%EA%B7%9C%EB%AA%A8-%EC%A1%B0%EC%A0%95%EC%9D%98-%EC%9A%94%EC%86%8C/" class="">
+      📃&nbsp;6장. 규모 조정의 요소</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EC%A7%80%ED%83%B1%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0/7%EC%9E%A5_%EB%8C%80%EA%B7%9C%EB%AA%A8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-%EC%9C%84%ED%95%9C-%EA%B8%B0%EC%B4%88_%EC%A7%80%EC%8B%9D/" class="">
+      📃&nbsp;7장. 대규모 데이터를 다루기 위한 기초 지식</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef447d8651038f7fd25fab94af25afe1" class="toggle"  />
+    <label for="section-ef447d8651038f7fd25fab94af25afe1" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;만들면서 배우는 클린 아키텍처&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%A7%8C%EB%93%A4%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/01.-%EA%B3%84%EC%B8%B5%ED%98%95-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C/" class="">
+      📃&nbsp;01. 계층형 아키텍처의 문제는 무엇일까?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%A7%8C%EB%93%A4%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/02.-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%97%AD%EC%A0%84%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;02. 의존성 역전하기</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ccd854ef23d7e15292a92cf172361a2b" class="toggle"  />
+    <label for="section-ccd854ef23d7e15292a92cf172361a2b" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;모던 자바 인 액션&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/1%EC%9E%A5-%EC%9E%90%EB%B0%94-891011-%EB%AC%B4%EC%8A%A8-%EC%9D%BC%EC%9D%B4-%EC%9D%BC%EC%96%B4%EB%82%98%EA%B3%A0-%EC%9E%88%EB%8A%94%EA%B0%80/" class="">
+      📃&nbsp;1장. 자바 8,9,10,11 무슨 일이 일어나고 있는가?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/2%EC%9E%A5-%EB%8F%99%EC%9E%91-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%ED%99%94-%EC%BD%94%EB%93%9C-%EC%A0%84%EB%8B%AC%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;2장. 동작 파라미터화 코드 전달하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/3%EC%9E%A5-%EB%9E%8C%EB%8B%A4%ED%91%9C%ED%98%84%EC%8B%9D/" class="">
+      📃&nbsp;3장. 람다표현식</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/4%EC%9E%A5-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%86%8C%EA%B0%9C/" class="">
+      📃&nbsp;4장. 스트림 소개</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1974f97cac2664bb09dc1c5c1e4f4eac" class="toggle"  />
+    <label for="section-1974f97cac2664bb09dc1c5c1e4f4eac" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;모든 개발자를 위한 HTTP 웹 기본 지식&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/01_%EC%9D%B8%ED%84%B0%EB%84%B7%ED%86%B5%EC%8B%A0/" class="">
+      📃&nbsp;01. 인터넷 통신</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/02_URI/" class="">
+      📃&nbsp;02. URI</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/03_HTTP/" class="">
+      📃&nbsp;03. HTTP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-282a6a887e5b6b3f5a1982afcfbdbb35" class="toggle"  />
+    <label for="section-282a6a887e5b6b3f5a1982afcfbdbb35" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;스프링 5 레시피&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-5-%EB%A0%88%EC%8B%9C%ED%94%BC/1%EC%9E%A5.%EC%8A%A4%ED%94%84%EB%A7%81-%EC%BD%94%EC%96%B4/" class="">
+      📃&nbsp;01. 스프링 코어</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-5-%EB%A0%88%EC%8B%9C%ED%94%BC/2%EC%9E%A5.-%EC%8A%A4%ED%94%84%EB%A7%81-MVC/" class="">
+      📃&nbsp;02. 스프링 MVC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3f7fe8f855e743b7e1ba575f1b4dc438" class="toggle"  />
+    <label for="section-3f7fe8f855e743b7e1ba575f1b4dc438" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;스프링 입문을 위한 자바 객체 지향의 원리와 이해&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%B0%94-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%9D%98-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%9D%B4%ED%95%B4/5%EC%9E%A5.-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-5%EC%9B%90%EC%B9%99-SOLID/" class="">
+      📃&nbsp;5장. 객체 지향 설계 5원칙 (SOLID)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%B0%94-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%9D%98-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%9D%B4%ED%95%B4/6%EC%9E%A5.-%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%B4-%EC%82%AC%EB%9E%91%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/" class="">
+      📃&nbsp;6장. 스프링이 사랑한 디자인 패턴</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%B0%94-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%9D%98-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%9D%B4%ED%95%B4/7%EC%9E%A5.-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%82%BC%EA%B0%81%ED%98%95%EA%B3%BC-%EC%84%A4%EC%A0%95-%EC%A0%95%EB%B3%B4/" class="">
+      📃&nbsp;7장. 스프링 삼각형과 설정 정보</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5c6ded3850a698035d0c71bd15f4a25e" class="toggle"  />
+    <label for="section-5c6ded3850a698035d0c71bd15f4a25e" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;스프링 핵심 원리 (기본편)&nbsp;(5)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/@ComponentScan/" class="">
+      📃&nbsp;@ComponentScan</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/@Configuration%EA%B3%BC-%EB%B0%94%EC%9D%B4%ED%8A%B8%EC%BD%94%EB%93%9C-%EC%A1%B0%EC%9E%91%EC%9D%98-%EB%A7%88%EB%B2%95/" class="">
+      📃&nbsp;@Configuration과 바이트코드 조작의 마법</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EB%B9%88-%EC%83%9D%EB%AA%85-%EC%A3%BC%EA%B8%B0/" class="">
+      📃&nbsp;빈 생명 주기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EB%B9%88-%EC%8A%A4%EC%BD%94%ED%94%84/" class="">
+      📃&nbsp;빈 스코프</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85/" class="">
+      📃&nbsp;의존관계 주입</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-16cda8d474737b81ab1b70aec4bf8aa0" class="toggle"  />
+    <label for="section-16cda8d474737b81ab1b70aec4bf8aa0" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;실무로 배우는 시스템 성능 최적화&nbsp;(1)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8B%A4%EB%AC%B4%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94/1-01.-%EC%84%B1%EB%8A%A5%EC%9D%B4%EB%9E%80/" class="">
+      📃&nbsp;1-01. 성능이란?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e0c823f71c8bb91b9ce34a487b6e6290" class="toggle"  />
+    <label for="section-e0c823f71c8bb91b9ce34a487b6e6290" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;아파치 카프카 for beginners&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/Broker-Replication-ISR/" class="">
+      📃&nbsp;Broker, Replication, ISR</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/%EC%BB%A8%EC%8A%88%EB%A8%B8-%EB%9E%99Consumer-Lag/" class="">
+      📃&nbsp;컨슈머 랙(Consumer Lag)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/%ED%86%A0%ED%94%BD/" class="">
+      📃&nbsp;토픽</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/%ED%8C%8C%ED%8B%B0%EC%85%94%EB%84%88/" class="">
+      📃&nbsp;파티셔너</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ab0f5d302d29a0dda0e4a921532e6f7d" class="toggle"  />
+    <label for="section-ab0f5d302d29a0dda0e4a921532e6f7d" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;오브젝트&nbsp;(1)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/1%EC%9E%A5-%EA%B0%9D%EC%B2%B4-%EC%84%A4%EA%B3%84/" class="">
+      📃&nbsp;1장 객체, 설계</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-891b4cb33e5b783079063ff0841f1103" class="toggle"  />
+    <label for="section-891b4cb33e5b783079063ff0841f1103" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;이펙티브 코틀린&nbsp;(30)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-01.-%EA%B0%80%EB%B3%80%EC%84%B1%EC%9D%84-%EC%A0%9C%ED%95%9C%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 01. 가변성을 제한하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-02.-%EB%B3%80%EC%88%98%EC%9D%98-%EC%8A%A4%EC%BD%94%ED%94%84%EB%A5%BC-%EC%B5%9C%EC%86%8C%ED%95%98%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 02. 변수의 스코프를 최소하하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-03.-%EC%B5%9C%EB%8C%80%ED%95%9C-%ED%94%8C%EB%9E%AB%ED%8F%BC-%ED%83%80%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 03. 최대한 플랫폼 타입을 사용하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-04.-inferred-%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C-%EB%A6%AC%ED%84%B4%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 04. Inferred 타입으로 리턴하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-05.-%EC%98%88%EC%99%B8%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%B4-%EC%BD%94%EB%93%9C%EC%97%90-%EC%A0%9C%ED%95%9C%EC%9D%84-%EA%B1%B8%EC%96%B4%EB%9D%BC/" class="">
+      📃&nbsp;아이템 05. 예외를 활용해 코드에 제한을 걸어라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-06.-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EC%98%A4%EB%A5%98%EB%B3%B4%EB%8B%A4%EB%8A%94-%ED%91%9C%EC%A4%80-%EC%98%A4%EB%A5%98%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 06. 사용자 정의 오류보다는 표준 오류를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-07.-%EA%B2%B0%EA%B3%BC-%EB%B6%80%EC%A1%B1%EC%9D%B4-%EB%B0%9C%EC%83%9D%ED%95%A0-%EA%B2%BD%EC%9A%B0-null%EA%B3%BC-Failure%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 07. 결과 부족이 발생할 경우 Null과 Failure를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-08.-%EC%A0%81%EC%A0%88%ED%95%98%EA%B2%8C-null%EC%9D%84-%EC%B2%98%EB%A6%AC%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 08. 적절하게 Null을 처리하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-09.-use%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4%EB%A5%BC-%EB%8B%AB%EC%95%84%EB%9D%BC/" class="">
+      📃&nbsp;아이템 09. Use를 사용하여 리소스를 닫아라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-10.-%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%9D%BC/" class="">
+      📃&nbsp;아이템 10. 단위 테스트를 만들어라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-11.-%EA%B0%80%EB%8F%85%EC%84%B1%EC%9D%84-%EB%AA%A9%ED%91%9C%EB%A1%9C-%EC%84%A4%EA%B3%84%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 11. 가독성을 목표로 설계하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-12.-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C%EB%A5%BC-%ED%95%A0-%EB%95%8C%EB%8A%94-%EC%9D%98%EB%AF%B8%EC%97%90-%EB%A7%9E%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 12. 연산자 오버로드를 할 때는 의미에 맞게 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-13.-Unit%EC%9D%84-%EB%A6%AC%ED%84%B4%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 13. Unit?을 리턴하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-14.-%EB%B3%80%EC%88%98-%ED%83%80%EC%9E%85%EC%9D%B4-%EB%AA%85%ED%99%95%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-%EA%B2%BD%EC%9A%B0-%ED%99%95%EC%8B%A4%ED%95%98%EA%B2%8C-%EC%A7%80%EC%A0%95%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 14. 변수 타입이 명확하지 않은 경우 확실하게 지정하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-15.-%EB%A6%AC%EC%8B%9C%EB%B2%84%EB%A5%BC-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-%EC%B0%B8%EC%A1%B0%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 15. 리시버를 명시적으로 참조하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-16.-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0%EB%8A%94-%EB%8F%99%EC%9E%91%EC%9D%B4-%EC%95%84%EB%8B%88%EB%9D%BC-%EC%83%81%ED%83%9C%EB%A5%BC-%EB%82%98%ED%83%80%EB%82%B4%EC%95%BC-%ED%95%9C%EB%8B%A4/" class="">
+      📃&nbsp;아이템 16. 프로퍼티는 동작이 아니라 상태를 나타내야 한다</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-17.-%EC%9D%B4%EB%A6%84-%EC%9E%88%EB%8A%94-%EC%95%84%EA%B7%9C%EB%A8%BC%ED%8A%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 17. 이름 있는 아규먼트를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-18.-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98%EC%9D%84-%EC%A7%80%EC%BC%9C%EB%9D%BC/" class="">
+      📃&nbsp;아이템 18. 코딩 컨벤션을 지켜라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-19.-knowledge%EB%A5%BC-%EB%B0%98%EB%B3%B5%ED%95%98%EC%97%AC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 19. Knowledge를 반복하여 사용하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-20.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EB%B0%98%EB%B3%B5%ED%95%B4%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 20. 일반적인 알고리즘을 반복해서 구현하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-21.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%ED%8C%A8%ED%84%B4%EC%9D%80-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%9C%84%EC%9E%84%EC%9C%BC%EB%A1%9C-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%9D%BC/" class="">
+      📃&nbsp;아이템 21. 일반적인 프로퍼티 패턴은 프로퍼티 위임으로 만들어라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-22.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%A0-%EB%95%8C-%EC%A0%9C%EB%84%A4%EB%A6%AD%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 22. 일반적인 알고리즘을 구현할 때 제네릭을 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-23.-%ED%83%80%EC%9E%85-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%EC%9D%98-%EC%84%80%EB%8F%84%EC%9E%89%EC%9D%84-%ED%94%BC%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 23. 타입 파라미터의 섀도잉을 피하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-24.-%EC%A0%9C%EB%84%A4%EB%A6%AD-%ED%83%80%EC%9E%85%EA%B3%BC-variance-%ED%95%9C%EC%A0%95%EC%9E%90%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 24. 제네릭 타입과 Variance 한정자를 활용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-25.-%EA%B3%B5%ED%86%B5-%EB%AA%A8%EB%93%88%EC%9D%84-%EC%B6%94%EC%B6%9C%ED%95%B4%EC%84%9C-%EC%97%AC%EB%9F%AC-%ED%94%8C%EB%9E%AB%ED%8F%BC%EC%97%90%EC%84%9C-%EC%9E%AC%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 25. 공통 모듈을 추출해서 여러 플랫폼에서 재사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-26.-%ED%95%A8%EC%88%98-%EB%82%B4%EB%B6%80%EC%9D%98-%EC%B6%94%EC%83%81%ED%99%94-%EB%A0%88%EB%B2%A8%EC%9D%84-%ED%86%B5%EC%9D%BC%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 26. 함수 내부의 추상화 레벨을 통일하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-27.-%EB%B3%80%ED%99%94%EB%A1%9C%EB%B6%80%ED%84%B0-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%B3%B4%ED%98%B8%ED%95%98%EB%A0%A4%EB%A9%B4-%EC%B6%94%EC%83%81%ED%99%94%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 27. 변화로부터 코드를 보호하려면 추상화를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-28.-API-%EC%95%88%EC%A0%84%EC%84%B1%EC%9D%84-%ED%99%95%EC%9D%B8%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 28. API 안전성을 확인하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-29.-%EC%99%B8%EB%B6%80-API%EB%A5%BC-%EB%9E%A9wrap%ED%95%B4%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 29. 외부 API를 랩(wrap)해서 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-50.-%EC%BB%AC%EB%A0%89%EC%85%98-%EC%B2%98%EB%A6%AC-%EB%8B%A8%EA%B3%84-%EC%88%98%EB%A5%BC-%EC%A0%9C%ED%95%9C%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 50. 컬렉션 처리 단계 수를 제한하라</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-54b5008ec09b432f44de7159ae457b86" class="toggle"  />
+    <label for="section-54b5008ec09b432f44de7159ae457b86" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;이펙티브 타입스크립트&nbsp;(27)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-01.-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%99%80-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EA%B4%80%EA%B3%84-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 01. 타입스크립트와 자바스크립트의 관계 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-02.-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%84%A4%EC%A0%95-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 02. 타입스크립트 설정 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-03.-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1%EA%B3%BC-%ED%83%80%EC%9E%85%EC%9D%B4-%EA%B4%80%EA%B3%84%EC%97%86%EC%9D%8C%EC%9D%84-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 03. 코드 생성과 타입이 관계없음을 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-04.-%EA%B5%AC%EC%A1%B0%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91%EC%97%90-%EC%9D%B5%EC%88%99%ED%95%B4%EC%A7%80%EA%B8%B0/" class="">
+      📃&nbsp;아이템 04. 구조적 타이핑에 익숙해지기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-05.-any-%ED%83%80%EC%9E%85-%EC%A7%80%EC%96%91%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 05. Any 타입 지양하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-06.-%ED%8E%B8%EC%A7%91%EA%B8%B0%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%ED%83%80%EC%9E%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%83%90%EC%83%89%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 06. 편집기를 사용하여 타입 시스템 탐색하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-07.-%ED%83%80%EC%9E%85%EC%9D%B4-%EA%B0%92%EB%93%A4%EC%9D%98-%EC%A7%91%ED%95%A9%EC%9D%B4%EB%9D%BC%EA%B3%A0-%EC%83%9D%EA%B0%81%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 07. 타입이 값들의 집합이라고 생각하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-08.-%ED%83%80%EC%9E%85-%EA%B3%B5%EA%B0%84%EA%B3%BC-%EA%B0%92-%EA%B3%B5%EA%B0%84%EC%9D%98-%EC%8B%AC%EB%B2%8C-%EA%B5%AC%EB%B6%84%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 08. 타입 공간과 값 공간의 심벌 구분하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-09.-%ED%83%80%EC%9E%85-%EB%8B%A8%EC%96%B8%EB%B3%B4%EB%8B%A4%EB%8A%94-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 09. 타입 단언보다는 타입 선언을 사용하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-10.-%EA%B0%9D%EC%B2%B4-%EB%9E%98%ED%8D%BC-%ED%83%80%EC%9E%85-%ED%94%BC%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 10. 객체 래퍼 타입 피하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-11.-%EC%9E%89%EC%97%AC-%EC%86%8D%EC%84%B1-%EC%B2%B4%ED%81%AC%EC%9D%98-%ED%95%9C%EA%B3%84-%EC%9D%B8%EC%A7%80%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 11. 잉여 속성 체크의 한계 인지하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-14.-%ED%83%80%EC%9E%85-%EC%97%B0%EC%82%B0%EA%B3%BC-%EC%A0%9C%EB%84%88%EB%A6%AD-%EC%82%AC%EC%9A%A9%EC%9C%BC%EB%A1%9C-%EB%B0%98%EB%B3%B5-%EC%A4%84%EC%9D%B4%EA%B8%B0/" class="">
+      📃&nbsp;아이템 14. 타입 연산과 제너릭 사용으로 반복 줄이기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-15.-%EB%8F%99%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B2%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 15. 동적 데이터에 인덱스 시그니처 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-16.-number-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B2%98%EB%B3%B4%EB%8B%A4%EB%8A%94-Array-%ED%8A%9C%ED%94%8C-ArrayLike%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 16. Number 인덱스 시그니처보다는 Array, 튜플, ArrayLike를 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-19.-%EC%B6%94%EB%A1%A0-%EA%B0%80%EB%8A%A5%ED%95%9C-%ED%83%80%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-%EC%9E%A5%ED%99%A9%ED%95%9C-%EC%BD%94%EB%93%9C-%EB%B0%A9%EC%A7%80%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 19. 추론 가능한 타입을 사용해 장황한 코드 방지하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-20.-%EB%8B%A4%EB%A5%B8-%ED%83%80%EC%9E%85%EC%97%90%EB%8A%94-%EB%8B%A4%EB%A5%B8-%EB%B3%80%EC%88%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 20. 다른 타입에는 다른 변수 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-21.-%ED%83%80%EC%9E%85-%EB%84%93%ED%9E%88%EA%B8%B0/" class="">
+      📃&nbsp;아이템 21. 타입 넓히기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-23.-%ED%95%9C%EA%BA%BC%EB%B2%88%EC%97%90-%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 23. 한꺼번에 객체 생성하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-24.-%EC%9D%BC%EA%B4%80%EC%84%B1-%EC%9E%88%EB%8A%94-%EB%B3%84%EC%B9%AD-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 24. 일관성 있는 별칭 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-25.-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%BD%94%EB%93%9C%EC%97%90%EB%8A%94-%EC%BD%9C%EB%B0%B1-%EB%8C%80%EC%8B%A0-async-%ED%95%A8%EC%88%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 25. 비동기 코드에는 콜백 대신 Async 함수 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-26.-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0%EC%97%90-%EB%AC%B8%EB%A7%A5%EC%9D%B4-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%82%AC%EC%9A%A9%EB%90%98%EB%8A%94%EC%A7%80-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 26. 타입 추론에 문맥이 어떻게 사용되는지 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-27.-%ED%95%A8%EC%88%98%ED%98%95-%EA%B8%B0%EB%B2%95%EA%B3%BC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%A1%9C-%ED%83%80%EC%9E%85-%ED%9D%90%EB%A6%84-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 27. 함수형 기법과 라이브러리로 타입 흐름 유지하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-28.-%EC%9C%A0%ED%9A%A8%ED%95%9C-%EC%83%81%ED%83%9C%EB%A7%8C-%ED%91%9C%ED%98%84%ED%95%98%EB%8A%94-%ED%83%80%EC%9E%85%EC%9D%84-%EC%A7%80%ED%96%A5%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 28. 유효한 상태만 표현하는 타입을 지향하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-29.-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%95%8C%EB%8A%94-%EB%84%88%EA%B7%B8%EB%9F%BD%EA%B2%8C-%EC%83%9D%EC%84%B1%ED%95%A0-%EB%95%8C%EB%8A%94-%EC%97%84%EA%B2%A9%ED%95%98%EA%B2%8C/" class="">
+      📃&nbsp;아이템 29. 사용할 때는 너그럽게, 생성할 때는 엄격하게</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-30.-%EB%AC%B8%EC%84%9C%EC%97%90-%ED%83%80%EC%9E%85-%EC%A0%95%EB%B3%B4%EB%A5%BC-%EC%93%B0%EC%A7%80-%EC%95%8A%EA%B8%B0/" class="">
+      📃&nbsp;아이템 30. 문서에 타입 정보를 쓰지 않기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-31.-%ED%83%80%EC%9E%85-%EC%A3%BC%EB%B3%80%EC%97%90-null-%EA%B0%92-%EB%B0%B0%EC%B9%98%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 31. 타입 주변에 Null 값 배치하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-33.-string-%ED%83%80%EC%9E%85%EB%B3%B4%EB%8B%A4-%EB%8D%94-%EA%B5%AC%EC%B2%B4%EC%A0%81%EC%9D%B8-%ED%83%80%EC%9E%85-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 33. String 타입보다 더 구체적인 타입 사용하기</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4697fbced11885aa030c59400f40a300" class="toggle"  />
+    <label for="section-4697fbced11885aa030c59400f40a300" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;자바 ORM 표준 JPA 프로그래밍&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/03%EC%9E%A5_%EC%98%81%EC%86%8D%EC%84%B1%EA%B4%80%EB%A6%AC/" class="">
+      📃&nbsp;03장_영속성관리</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/04%EC%9E%A5_%EC%97%94%ED%8B%B0%ED%8B%B0%EB%A7%A4%ED%95%91/" class="">
+      📃&nbsp;04장_엔티티매핑</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/13%EC%9E%A5_%EC%9B%B9-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EA%B3%BC-%EC%98%81%EC%86%8D%EC%84%B1-%EA%B4%80%EB%A6%AC/" class="">
+      📃&nbsp;13장_웹 애플리케이션과 영속성 관리</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/16%EC%9E%A5_%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD-2%EC%B0%A8%EC%BA%90%EC%8B%9C/" class="">
+      📃&nbsp;16장_트랜잭션과 락, 2차캐시</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec0f936c0b41df3ee505e6b185255de8" class="toggle"  />
+    <label for="section-ec0f936c0b41df3ee505e6b185255de8" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;코틀린 인 액션&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/2%EC%9E%A5.-%EC%BD%94%ED%8B%80%EB%A6%B0-%EA%B8%B0%EC%B4%88/" class="">
+      📃&nbsp;2장. 코틀린 기초</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/3%EC%9E%A5.-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98%EC%99%80-%ED%98%B8%EC%B6%9C/" class="">
+      📃&nbsp;3장. 함수 정의와 호출</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/4%EC%9E%A5.-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B0%9D%EC%B2%B4-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4/" class="">
+      📃&nbsp;4장. 클래스, 객체, 인터페이스</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/5%EC%9E%A5.-%EB%9E%8C%EB%8B%A4%EB%A1%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" class="">
+      📃&nbsp;5장. 람다로 프로그래밍</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-48bf30cc405ff68ed91894477e567c2a" class="toggle"  />
+    <label for="section-48bf30cc405ff68ed91894477e567c2a" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;DB&nbsp;(10)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/01.-Mysql-%EC%84%9C%EB%B2%84-Mysql%EC%97%94%EC%A7%84-&#43;-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%97%94%EC%A7%84/" class="">
+      📃&nbsp;01. Mysql 서버 (Mysql엔진 &#43; 스토리지 엔진)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/02.-Mysql-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0/" class="">
+      📃&nbsp;02. Mysql 메모리 구조</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/03.-Mysql-%EC%93%B0%EB%A0%88%EB%93%9C/" class="">
+      📃&nbsp;03. Mysql 쓰레드</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/04.-Replication/" class="">
+      📃&nbsp;04. Replication</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/05.-%EC%9D%B8%EB%8D%B1%EC%8A%A4Index/" class="">
+      📃&nbsp;05. 인덱스(Index)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/06.-%EC%BF%BC%EB%A6%AC-%EC%8B%A4%ED%96%89-%EC%88%9C%EC%84%9C-%EB%B0%8F-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD/" class="">
+      📃&nbsp;06. 쿼리 실행 순서 및 주의사항</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/07.-Lock-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81-%EB%9D%BD/" class="">
+      📃&nbsp;07. Lock (낙관적 락, 비관적 락)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/08.-Charset-Collation/" class="">
+      📃&nbsp;08. Charset &amp; Collation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/09.-GTID/" class="">
+      📃&nbsp;09. GTID</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/10.-InnoDB-auto_increment-%EC%B4%88%EA%B8%B0%ED%99%94-%EB%B0%A9%EC%8B%9D/" class="">
+      📃&nbsp;10. InnoDB Auto_increment 초기화 방식</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0b42f369d34ca222e1944f91e7a39783" class="toggle"  />
+    <label for="section-0b42f369d34ca222e1944f91e7a39783" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;DEV&nbsp;(25)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/int%EB%8A%94-%EB%AA%87-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EC%9D%B8%EA%B0%80%EC%9A%94/" class="">
+      📃&nbsp;Int는 몇 바이트 인가요</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/NGINX-%EA%B8%B0%EC%88%A0-%EB%B6%80%EC%B1%84%EA%B0%80-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9C%BC%EB%A0%A4%EB%A9%B4/" class="">
+      📃&nbsp;NGINX, 기술 부채가 되지 않으려면</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/Reactive-Programming/" class="">
+      📃&nbsp;Reactive Programming</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/The-NIST-Model-for-Role-Based-Access-Control-Towards-A-Unified-Standard/" class="">
+      📃&nbsp;The NIST Model for Role-Based Access Control: Towards a Unified Standard</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/Top-10-Architecture-Characteristics/" class="">
+      📃&nbsp;Top 10 Architecture Characteristics</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/Woowa-course-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0/" class="">
+      📃&nbsp;Woowa-Course 코드리뷰</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EB%B8%94%EB%9E%99%EC%9E%AD-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-%EA%B8%80%EC%9D%84-%EC%9D%BD%EA%B3%A0/" class="">
+      📃&nbsp;블랙잭 코드리뷰 글을 읽고</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%A0%84%EB%9E%B5/" class="">
+      📃&nbsp;예외 처리 전략</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%96%B4%EB%94%94-%EA%B0%80%EC%84%9C-%EC%BD%94%ED%94%84%EB%A7%81-%EB%A7%A4%EC%9A%B0-%EC%95%8C%EC%9D%80-%EC%B2%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;우아한 테크 세미나 : 어디 가서 코프링 매우 알은 체하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C-Redis-2019/" class="">
+      📃&nbsp;우아한 테크 세미나 : 우아한 Redis 2019</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-2019/" class="">
+      📃&nbsp;우아한 테크 세미나 : 우아한객체지향 2019</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EC%8A%A4%ED%94%84%EB%A7%81%EB%B0%B0%EC%B9%98-2019/" class="">
+      📃&nbsp;우아한 테크 세미나 : 우아한스프링배치 2019</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%BD%94%EC%8A%A4-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EB%82%B4%EC%97%90-%EC%99%B8%EB%B6%80-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EC%9A%94%EC%B2%AD%EC%9D%B4-%EB%8B%B4%EA%B8%B0%EA%B2%8C-%EB%90%98%EB%A9%B4-%EC%96%B4%EB%96%A4-%EB%AC%B8%EC%A0%9C%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%A0%EA%B9%8C/" class="">
+      📃&nbsp;우아한 테크 코스 : 트랜잭션 내에 외부 리소스 요청이 담기게 되면 어떤 문제가 발생할까?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-Java-App-Server-Refactoring-%ED%9B%84%EA%B8%B0/" class="">
+      📃&nbsp;카카오톡 Java App Server Refactoring 후기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%BA%90%EC%8B%B1-%EC%A0%84%EB%9E%B5/" class="">
+      📃&nbsp;캐싱 전략</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-64afeb7d484a9c3ba5762a956a1ee9e3" class="toggle"  />
+    <label for="section-64afeb7d484a9c3ba5762a956a1ee9e3" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;AWS Community Day 2022&nbsp;(7)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/Amazon-CloudFront%EC%99%80-AWS-Lambda@Edge%EB%A1%9C-SPA%EC%97%90%EC%84%9C-%EB%8F%99%EC%A0%81-SEO-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;Amazon CloudFront와 AWS Lambda@Edge로 SPA에서 동적 SEO 구현하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/AWS-Lambda-Container%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%84%9C%EB%B2%84%EB%A6%AC%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81/" class="">
+      📃&nbsp;AWS Lambda Container를 활용한 서버리스 아키텍처 배포 및 성능 향상</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/AWS%EC%97%90%EC%84%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%B4%EC%98%81%ED%95%98%EA%B8%B0.-%EA%B7%B8%EB%A6%AC%EA%B3%A0-ROSA/" class="">
+      📃&nbsp;AWS에서 컨테이너 운영하기. 그리고 ROSA</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/CDK-for-Terraform%EC%9C%BC%EB%A1%9C-%EB%82%98%EB%A7%8C%EC%9D%98-AWS-Resource-%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;CDK for Terraform으로 나만의 AWS Resource 정의하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/%EA%B4%91%EA%B3%A0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EA%B5%AC%EC%B6%95/" class="">
+      📃&nbsp;광고 데이터 수집을 위한 인프라 구축</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/%EC%98%A4%ED%94%88-%EC%86%8C%EC%8A%A4-Karpenter%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Amazon-EKS-%ED%99%95%EC%9E%A5-%EC%9A%B4%EC%98%81-%EC%A0%84%EB%9E%B5/" class="">
+      📃&nbsp;오픈 소스 Karpenter를 활용한 Amazon EKS 확장 운영 전략</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aa09e19263019fe4f1ab9d17d097c564" class="toggle"  />
+    <label for="section-aa09e19263019fe4f1ab9d17d097c564" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;If Kakao 2022&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/ifkakaodev-2022/Batch-Performance-%EA%B7%B9%ED%95%9C%EC%9C%BC%EB%A1%9C-%EB%81%8C%EC%96%B4%EC%98%AC%EB%A6%AC%EA%B8%B0/" class="">
+      📃&nbsp;Batch Performance 극한으로 끌어올리기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/ifkakaodev-2022/JVM-warm-up/" class="">
+      📃&nbsp;JVM Warm Up</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/ifkakaodev-2022/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EB%A9%94%EC%8B%9C%EC%A7%95-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%9E%AC%EA%B1%B4%EC%B6%95-%EC%9D%B4%EC%95%BC%EA%B8%B0/" class="">
+      📃&nbsp;카카오톡 메시징 시스템 재건축 이야기</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1137695ea9c7d018c35d138dead01ec3" class="toggle" checked />
+    <label for="section-1137695ea9c7d018c35d138dead01ec3" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;ETC&nbsp;(32)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/01.-AB-%ED%85%8C%EC%8A%A4%ED%8A%B8/" class="">
+      📃&nbsp;01. AB 테스트</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/02.-Blocking-NonBlocking-Sync-Async/" class="">
+      📃&nbsp;02. Blocking, NonBlocking, Sync, Async</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/03.-DB-Trigger/" class="">
+      📃&nbsp;03. DB Trigger</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/04.-Docker-multi-arch/" class="">
+      📃&nbsp;04. Docker (Multi Arch)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/05.-FTP-active-vs-passive/" class="">
+      📃&nbsp;05. FTP Active vs Passive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/06.-Lettuce-ReadFrom/" class="">
+      📃&nbsp;06. Lettuce ReadFrom</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/07.-LocalDate-OpenJDK-Suggestion/" class="">
+      📃&nbsp;07. LocalDate (OpenJDK Suggestion)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/08.-Locale-vs-TimeZone/" class="">
+      📃&nbsp;08. Locale vs TimeZone</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/09.-MQTT/" class="">
+      📃&nbsp;09. MQTT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/10.-non_blocking_vs_blocking/" class="">
+      📃&nbsp;10. Non_blocking_vs_blocking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/11.-OKR/" class="">
+      📃&nbsp;11. OKR</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/12.-Pinpoint/" class="">
+      📃&nbsp;12. Pinpoint</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/13.-PR-%ED%9B%84%EA%B8%B0-Admin2-Free-Admin-Template/" class="">
+      📃&nbsp;13. PR 후기 : Admin2 Free Admin Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/14.-Trigger-vs-ApplicationBusiness-Logic/" class="active">
+      📃&nbsp;14. Trigger vs Application(Business) Logic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/15.-Useful-Tips-for-naming-variables/" class="">
+      📃&nbsp;15. Useful Tips for Naming (Variables)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/16.-UTF/" class="">
+      📃&nbsp;16. UTF</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/17.-UTF8-4byte-%EB%AC%B8%EC%9E%90-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;17. UTF8 4byte 문자 체크하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/18.-WebSocket%EA%B3%BC-Socket.io/" class="">
+      📃&nbsp;18. WebSocket과 Socket.io</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/19.-%EB%AC%B4%EC%96%B4%EC%9D%98-%EB%B2%95%EC%B9%99/" class="">
+      📃&nbsp;19. 무어의 법칙</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/20.-%EC%82%AC%EB%82%B4%EC%97%90%EC%84%9C-%EC%82%AC%EC%84%A4-%EC%9D%B8%EC%A6%9D%EC%84%9C%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/" class="">
+      📃&nbsp;20. 사내에서 사설 인증서를 사용하는 이유</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/21.-%EC%95%94%EB%8B%AC%EC%9D%98-%EB%B2%95%EC%B9%99/" class="">
+      📃&nbsp;21. 암달의 법칙</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/22.-%EC%95%95%EC%B6%95Compression/" class="">
+      📃&nbsp;22. 압축(Compression)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/23.-%EC%9C%A0%EB%8B%89%EC%8A%A4-%EC%8B%9C%EA%B0%84/" class="">
+      📃&nbsp;23. 유닉스 시간</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/24.-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%A0%95%EA%B7%9C%ED%99%94/" class="">
+      📃&nbsp;24. 인코딩-정규화</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/25.-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A1%9C%EB%94%A9-%EC%86%8D%EB%8F%84-%EA%B0%9C%EC%84%A0/" class="">
+      📃&nbsp;25. 페이지 로딩 속도 개선</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/26.-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B0%94%EC%9D%B4%EC%A0%80/" class="">
+      📃&nbsp;26. 하이퍼바이저</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/27.-netty-resolver-dns-native-macos/" class="">
+      📃&nbsp;27. Netty-Resolver-Dns-Native-Macos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/28.-serverless-framework/" class="">
+      📃&nbsp;28. Serverless Framework</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/29.-terraform/" class="">
+      📃&nbsp;29. Terraform</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/30.-Prometheus-PromQL/" class="">
+      📃&nbsp;30. Prometheus PromQL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/31.-Prometheus/" class="">
+      📃&nbsp;31. Prometheus</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/99.-%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%A4/" class="">
+      📃&nbsp;99. 그레이들</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c6319cc001b226aa5291a812ecfe5374" class="toggle"  />
+    <label for="section-c6319cc001b226aa5291a812ecfe5374" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;KAFKA&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/KAFKA/KAFKA-Kafka-Connect-Intro/" class="">
+      📃&nbsp;[KAFKA] Kafka Connect (Intro)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/KAFKA/KAFKA-Schema-Registry/" class="">
+      📃&nbsp;[KAFKA] Schema Registry</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a9ab61a4d6306485342ee29671cdf78f" class="toggle"  />
+    <label for="section-a9ab61a4d6306485342ee29671cdf78f" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;LANGUAGES&nbsp;(33)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-56f7364b2d7fec36aee0fa285191b7f3" class="toggle"  />
+    <label for="section-56f7364b2d7fec36aee0fa285191b7f3" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;CPP&nbsp;(1)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/CPP/99.-unordered_map-vs-map/" class="">
+      📃&nbsp;99. Unordered_map vs Map</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fd12f8958f0835463384bf0a08a42b10" class="toggle"  />
+    <label for="section-fd12f8958f0835463384bf0a08a42b10" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;JAVA&nbsp;(24)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Acquire-a-Lock-by-a-Key-in-Java/" class="">
+      📃&nbsp;[JAVA] Acquire a Lock by a Key in Java</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Callable-vs-Runnable/" class="">
+      📃&nbsp;[JAVA] Callable vs Runnable</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Future/" class="">
+      📃&nbsp;[JAVA] Future</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Garbage-Collection-%EA%B8%B0%EB%B3%B8/" class="">
+      📃&nbsp;[JAVA] Garbage Collection (기본)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Garbage-Collection-%EC%A2%85%EB%A5%98/" class="">
+      📃&nbsp;[JAVA] Garbage Collection (종류)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Interface-default-method/" class="">
+      📃&nbsp;[JAVA] Interface Default Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Java-ClassPath/" class="">
+      📃&nbsp;[JAVA] Java ClassPath</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Java-Stream/" class="">
+      📃&nbsp;[JAVA] Java Stream</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Java-String-Pool/" class="">
+      📃&nbsp;[JAVA] Java String Pool</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-JVM-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%A0%81%EC%9A%A9/" class="">
+      📃&nbsp;[JAVA] JVM 인증서 적용</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/Java-JVM/" class="">
+      📃&nbsp;[Java] JVM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Lock/" class="">
+      📃&nbsp;[JAVA] Lock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Map/" class="">
+      📃&nbsp;[JAVA] Map</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-MDC/" class="">
+      📃&nbsp;[JAVA] MDC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Multi-Threading/" class="">
+      📃&nbsp;[JAVA] Multi-Threading</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Netty/" class="">
+      📃&nbsp;[JAVA] Netty</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Open-JDK/" class="">
+      📃&nbsp;[JAVA] Open JDK</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Optional-orElse-vs-orElseGet/" class="">
+      📃&nbsp;[JAVA] Optional OrElse vs OrElseGet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Reflection/" class="">
+      📃&nbsp;[JAVA] Reflection</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Stack/" class="">
+      📃&nbsp;[JAVA] Stack</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Static-method-Overriding-Hiding/" class="">
+      📃&nbsp;[JAVA] Static Method Overriding (Hiding)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/Java-String/" class="">
+      📃&nbsp;[Java] String</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Throwable-Error-Exception/" class="">
+      📃&nbsp;[JAVA] Throwable (Error, Exception)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Valve-Tomcat/" class="">
+      📃&nbsp;[JAVA] Valve (Tomcat)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d76c550680ce0e499b23b1d899f69b9e" class="toggle"  />
+    <label for="section-d76c550680ce0e499b23b1d899f69b9e" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;KOTLIN&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Companion-object-&#43;-static/" class="">
+      📃&nbsp;[KOTLIN] Companion Object (&#43; Static)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Naming-Convetion/" class="">
+      📃&nbsp;[KOTLIN] Naming Convetion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Nullable-types-and-non-null-types/" class="">
+      📃&nbsp;[KOTLIN] Nullable Types and Non-Null Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Scope-Functions/" class="">
+      📃&nbsp;[KOTLIN] Scope Functions</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3927411be887bec05a8486d4276d11d6" class="toggle"  />
+    <label for="section-3927411be887bec05a8486d4276d11d6" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;PHP&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-CodeIgniter-Library-%EB%A1%9C%EB%94%A9/" class="">
+      📃&nbsp;[PHP] CodeIgniter Library 로딩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-CodeIgniter-xss_clean/" class="">
+      📃&nbsp;[PHP] CodeIgniter Xss_clean</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-Function-Return-Type/" class="">
+      📃&nbsp;[PHP] Function Return Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-PHP-%EA%B8%B0%EB%B3%B8/" class="">
+      📃&nbsp;[PHP] PHP 기본</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0718a629c6e22fa2feadefa75423d7b0" class="toggle"  />
+    <label for="section-0718a629c6e22fa2feadefa75423d7b0" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;LINUX&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LINUX/LINUX-epoll/" class="">
+      📃&nbsp;[LINUX] Epoll</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LINUX/LINUX-rsync/" class="">
+      📃&nbsp;[LINUX] Rsync</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LINUX/LINUX-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" class="">
+      📃&nbsp;[LINUX] 소켓 프로그래밍</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-62746ffff6f37838c90c6eacd73ac19f" class="toggle"  />
+    <label for="section-62746ffff6f37838c90c6eacd73ac19f" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;NETWORK&nbsp;(5)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-LDAP/" class="">
+      📃&nbsp;[NETWORK] LDAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-Network_NAT/" class="">
+      📃&nbsp;[NETWORK] Network_NAT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-Network_Tunneling/" class="">
+      📃&nbsp;[NETWORK] Network_Tunneling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-OSI-7-Layer/" class="">
+      📃&nbsp;[NETWORK] OSI 7 Layer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%84%9C/" class="">
+      📃&nbsp;[NETWORK] 로드밸런서</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-daeb41d9644d4954832252ed7ac91de2" class="toggle"  />
+    <label for="section-daeb41d9644d4954832252ed7ac91de2" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;NUXT&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NUXT/NUXT-Nuxt-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/" class="">
+      📃&nbsp;[NUXT] Nuxt 라이프사이클</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NUXT/NUXT-Static-site-vs-SSR/" class="">
+      📃&nbsp;[NUXT] Static-Site vs SSR</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NUXT/NUXT-Vue-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/" class="">
+      📃&nbsp;[NUXT] Vue 라이프사이클</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c77df9c772c5b18b5f038eb337ba2e5" class="toggle"  />
+    <label for="section-8c77df9c772c5b18b5f038eb337ba2e5" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;OS&nbsp;(9)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/01.-OS-Introduction/" class="">
+      📃&nbsp;01. OS Introduction</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/02.-Processes/" class="">
+      📃&nbsp;02. Processes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/03.-Scheduling/" class="">
+      📃&nbsp;03. Scheduling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/04.-Memory-Management/" class="">
+      📃&nbsp;04. Memory Management</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/07.-Concurrency-Thread-and-Lock/" class="">
+      📃&nbsp;07. (Concurrency) Thread and Lock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/08.-Concurrency-Semaphore-and-Deadlock/" class="">
+      📃&nbsp;08. (Concurrency) Semaphore and Deadlock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/10.-File-System-Basic/" class="">
+      📃&nbsp;10. File System Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/99.-RAID/" class="">
+      📃&nbsp;99. RAID</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/99.-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/" class="">
+      📃&nbsp;99. 스케줄링</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27f5a9a519f4c7552e3958601f59417b" class="toggle"  />
+    <label for="section-27f5a9a519f4c7552e3958601f59417b" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;REDIS&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/REDIS/REDIS-Data-Structures/" class="">
+      📃&nbsp;[REDIS] Data Structures</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/REDIS/REDIS-Redis-Pipelining/" class="">
+      📃&nbsp;[REDIS] Redis Pipelining</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/REDIS/REDIS-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/" class="">
+      📃&nbsp;[REDIS] 트랜잭션</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6fc779c68f63a6f22a24ca2aca903e7a" class="toggle"  />
+    <label for="section-6fc779c68f63a6f22a24ca2aca903e7a" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;SPRING&nbsp;(34)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-2.7.2-3.0.1-migration/" class="">
+      📃&nbsp;[SPRING] 2.7.2 -&gt; 3.0.1 Migration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@SpringBootApplication/" class="">
+      📃&nbsp;[SPRING] @SpringBootApplication</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@ToString-Enable-toString-Object-View/" class="">
+      📃&nbsp;[SPRING] @ToString (Enable ToString() Object View)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@Transactional/" class="">
+      📃&nbsp;[SPRING] @Transactional</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@Version/" class="">
+      📃&nbsp;[SPRING] @Version</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-ApplicationEventPublisher/" class="">
+      📃&nbsp;[SPRING] ApplicationEventPublisher</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-DispatcherServlet/" class="">
+      📃&nbsp;[SPRING] DispatcherServlet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Embeded-TomcatTCP-ThreadRequest-Connection/" class="">
+      📃&nbsp;[SPRING] Embeded Tomcat(TCP, Thread(Request), Connection)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Filter-vs-Interceptor-vs-AOP/" class="">
+      📃&nbsp;[SPRING] Filter vs Interceptor vs AOP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-IoC-%EC%99%80-DI/" class="">
+      📃&nbsp;[SPRING] IoC 와 DI</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Logging/" class="">
+      📃&nbsp;[SPRING] Logging</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Lombok-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC/" class="">
+      📃&nbsp;[SPRING] Lombok 동작 원리</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-OSIV/" class="">
+      📃&nbsp;[SPRING] OSIV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Reactive-Kafka/" class="">
+      📃&nbsp;[SPRING] Reactive Kafka</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-RedisKeyValueAdapter-update/" class="">
+      📃&nbsp;[SPRING] RedisKeyValueAdapter (Update)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Servlet/" class="">
+      📃&nbsp;[SPRING] Servlet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-ServletContext-ApplicationContext/" class="">
+      📃&nbsp;[SPRING] ServletContext, ApplicationContext</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Session-1/" class="">
+      📃&nbsp;[SPRING] Session (1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Batch-1/" class="">
+      📃&nbsp;[SPRING] Spring Batch (1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Batch-2/" class="">
+      📃&nbsp;[SPRING] Spring Batch (2)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-1/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-2/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-3/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-4-Error-Handling/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 4 (Error Handling)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-5-RouteLocator/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 5 (RouteLocator)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-MVC-Error/" class="">
+      📃&nbsp;[SPRING] Spring MVC - Error</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Security-1/" class="">
+      📃&nbsp;[SPRING] Spring Security (1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Security-2/" class="">
+      📃&nbsp;[SPRING] Spring Security (2)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-SpringBoot-JPA-Spring-Data-Jpa-Hibernate/" class="">
+      📃&nbsp;[SPRING] SpringBoot JPA, Spring Data Jpa, Hibernate</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-SpringBoot-Multiple-DB-%EC%97%B0%EB%8F%99/" class="">
+      📃&nbsp;[SPRING] SpringBoot Multiple DB 연동</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-SpringBoot-N&#43;1/" class="">
+      📃&nbsp;[SPRING] SpringBoot N&#43;1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Webflux/" class="">
+      📃&nbsp;[SPRING] Webflux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-WebServer-vs-WAS-vs-Servlet-Container/" class="">
+      📃&nbsp;[SPRING] WebServer vs WAS vs Servlet Container</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cache/" class="">
+      📃&nbsp;[SPRING] Spring Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bccae9ed06d6aa9e844ee361c0ab8bd7" class="toggle"  />
+    <label for="section-bccae9ed06d6aa9e844ee361c0ab8bd7" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;WEB&nbsp;(7)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-Apache-vs-Nginx/" class="">
+      📃&nbsp;[WEB] Apache vs Nginx</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-CSRF/" class="">
+      📃&nbsp;[WEB] CSRF</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-DOM/" class="">
+      📃&nbsp;[WEB] DOM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-HTTP-Header/" class="">
+      📃&nbsp;[WEB] HTTP Header</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-OAuth-2.0/" class="">
+      📃&nbsp;[WEB] OAuth 2.0</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-Restful-API/" class="">
+      📃&nbsp;[WEB] Restful API</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-SSL-Handshake/" class="">
+      📃&nbsp;[WEB] SSL Handshake</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+TOTAL: 281
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/hjjae2"  target="_blank" rel="noopener">
+        GITHUB
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>14. Trigger vs Application(Business) Logic</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#trigger">Trigger</a></li>
+        <li><a href="#application-logic">Application Logic</a></li>
+        <li><a href="#결론">결론</a></li>
+        <li><a href="#참고">참고</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><blockquote>
+<p>트리거 vs Application Logic 비교해보기</p>
+<p>인터넷들의 글/댓글들을 읽어 종합해본 내용입니다.</p>
+</blockquote>
+<br>
+<h2 id="trigger">
+  Trigger
+  <a class="anchor" href="#trigger">#</a>
+</h2>
+<ol>
+<li>
+<p>개발자 입장에서 유지보수가 어렵다.<br>
+(반대로) 예전 글(2010년대 초반)을 보면 Trigger 가 유지보수가 더 쉽다는 의견/글들이 있는 것 같다.</p>
+</li>
+<li>
+<p>빌드/배포 시간에 제약이 없다.</p>
+</li>
+<li>
+<p>Application -&gt; DB call 횟수가 줄어든다.</p>
+</li>
+<li>
+<p>성능(처리율, 속도) 우수하다.</p>
+</li>
+<li>
+<p>(Application Logic 반대 의견) (한 액션 시 여러 개의 DB Table 에 삽입/수정 등이 이뤄질 때) Application Logic 으로 관리하면 Exception, Transaction 등을 신경써줘야 한다.</p>
+</li>
+</ol>
+<br>
+<h2 id="application-logic">
+  Application Logic
+  <a class="anchor" href="#application-logic">#</a>
+</h2>
+<ol>
+<li>
+<p>개발자 입장에서 유지보수가 쉽다.</p>
+</li>
+<li>
+<p>Trigger 의 경우 위험이 크다.</p>
+</li>
+<li>
+<p>비즈니스 로직이 크다면 Application 이 더 나을 수 있다.</p>
+</li>
+<li>
+<p>꼭 필요한 경우에는 Trigger 에 로직이 들어가는 것은 찬성, 그러나 기본적인 로직들은 Application 단에서 이뤄지는 것이 맞다. (단순한 로직, Performance 의 비약적인 향상 등도 Trigger 찬성)</p>
+</li>
+<li>
+<p>H/W 사양 변경, 유지보수 등의 문제가 많이 있다.</p>
+</li>
+</ol>
+<br>
+<h2 id="결론">
+  결론
+  <a class="anchor" href="#%ea%b2%b0%eb%a1%a0">#</a>
+</h2>
+<p>여러 글을 읽어보니 개개인의 취향에 따라 의견이 다양한 것 같다. 나의 경우에는 아직은 트리거와 익숙하지 않아서 그런지 Application 단에서 로직을 작성하는 것이 관리, 유지보수 측면에서 더욱 용이하지 않을까라고 생각이 드는 것 같다. 조금 더 직접 경험해보고 비교해보면 더 잘 알 수 있을 것 같다.</p>
+<br>
+<h2 id="참고">
+  참고
+  <a class="anchor" href="#%ec%b0%b8%ea%b3%a0">#</a>
+</h2>
+<ul>
+<li>
+  <a href="http://gurubee.net/article/68704">http://gurubee.net/article/68704</a> (2016년 글)</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/commit/0d62346bca98171821e3530b5a2e0754e607f3fe" title='Last modified by hjjae2 | May 22, 2023' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>May 22, 2023</span>
+    </a>
+  </div>
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/content.en/docs/ETC/14.%20Trigger%20vs%20Application%28Business%29%20Logic.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#trigger">Trigger</a></li>
+        <li><a href="#application-logic">Application Logic</a></li>
+        <li><a href="#결론">결론</a></li>
+        <li><a href="#참고">참고</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

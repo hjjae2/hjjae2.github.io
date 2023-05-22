@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BOOKS on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/BOOKS/</link>
+    <description>Recent content in BOOKS on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/BOOKS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mock Roles, not Objects</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/PAPER-Mock-Roles-not-Objects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/PAPER-Mock-Roles-not-Objects/</guid>
+      <description>Mock Roles, not Objects # 4. MOCK OBJECTS IN PRACTICE # 시스템 설계가 약할 때(강한 결합, 잘못된 책임 등_), Mock 기반의 테스트 코드는 굉장히 복잡해지고, 많은 문제(problem)를 야기한다.
+예를 들어, 우리가 하나의 클래스에 너무 많은 역할을 부여하고 테스트 코드(with Mocking) 작성할 때 이상함을 느끼곤한다. (그러곤 이 부분에 대해 리팩토링을 하곤 한다.)
+이런 케이스도 위에서 말한 케이스에 포함되는 것 같다.
+한 가지 대응 방법은 &amp;lsquo;Mocking 사용&amp;rsquo;을 중단하는 것이다.
+&amp;lsquo;Mocking 사용&amp;rsquo;은 설계 개선(위에서 말한 &amp;lsquo;예시&amp;rsquo; 처럼)을 위한 목적으로 사용하는 것이 더 낫다고 생각한다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ETC on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/ETC/</link>
+    <description>Recent content in ETC on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/ETC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/01.-AB-%ED%85%8C%EC%8A%A4%ED%8A%B8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/01.-AB-%ED%85%8C%EC%8A%A4%ED%8A%B8/</guid>
+      <description>A/B 테스트 # 전체 대상자를 대조군과 실험군(A, B)로 나누어 변수(UI, 알고리즘 등)를 실험하는 것 = 더 가치 있는 변수를 식별 → 최고의 시안을 선정하는 것
+예를 들어, 웹사이트의 디자인, 마케팅, 광고에서 &amp;lsquo;가장 좋은 효과를 낼 수 있는 전략&amp;rsquo;을 선택하기 위해 실험하는 것이다.
+용어 설명 대조군 (control group) 현재 사용 중이거나 주로 사용되어온 변경되지 않은 버전 실험군(Experimental Group) 처리군 (Treatment Group) 챌린저 (Challenger) 새롭게 실험할(시도할) 버전 챔피언 (champion) (AB 테스트 실행 후 얻은) 목표에 근접한 버전 방식 방법 특징 적합한 사용 노출 분산 방식 A, B 의 노출을 &amp;lsquo;일정 비율&amp;rsquo;로 노출한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/02.-Blocking-NonBlocking-Sync-Async/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/02.-Blocking-NonBlocking-Sync-Async/</guid>
+      <description>Blocking-NonBlocking-Synchronous-Asynchronous 글을 참고합니다.
+관심사의 차이 # 키워드 관심사 Blocking / Non-Blocking 함수가 바로 응답하는지, 안하는지 Blocking : 함수 호출 후 함수가 완료될 때까지 기다린다. Non-Blocking : 함수 호출 후 함수가 완료되는 것을 기다리지 않는다.
+= 즉, 함수를 호출한 곳에 제어권을 곧바로 넘겨준다. = 즉, 함수를 호출한 곳은 다른 일을 할 수 있다. Sync / Async 함수의 &amp;lsquo;완료&amp;rsquo;를 누가 신경쓰는지 Sync : 함수의 완료(응답)을 호출한 쪽에서 신경쓴다. Async : 함수의 완료(응답)을 호출당한 쪽에서 신경쓴다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/03.-DB-Trigger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/03.-DB-Trigger/</guid>
+      <description>트리거에 대해 찾아본 내용 정리해보기
+트리거란? # (데이터베이스에서) 데이터의 입력, 수정, 삭제 등의 이벤트가 발생할 때 자동으로 수행되는 (사용자 정의)프로시저이다.
+(즉, 이벤트에 반응하여 실행되는 프로그램)
+트리거는 TABLE 에 종속되는 개념이 아니라, DATABASE 에 종속되는 개념이다.
+(즉, DATABASE에 저장된다.)
+트리거는 VIEW 가 아닌 실제 TABLE 에 관해서만 작성(정의)할 수 있다.
+보통 제약조건으로 명시할 수 없는 무결성 제약조건을 지키기 위해(무결성 보장), 혹은 관련 테이블의 데이터를 일치(수정)시켜야 할 때(DB 관리 자동화) 등의 목적으로 사용된다고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/04.-Docker-multi-arch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/04.-Docker-multi-arch/</guid>
+      <description>Multi-platform images # 도커 이미지는 여러 플랫폼(아키텍처)를 지원할 수 있다. 즉 하나의 단일 이미지는 여러 개의 아키텍처, OS 환경에서 동작할 수 있다.
+(멀티 아키텍처의 이미지는) 이미지가 실행될 때, 자동적으로 맞는 OS, 아키텍처를 선택하여 구동된다.
+Docker images can support multiple platforms, which means that a single image may contain variants for different architectures, and sometimes for different operating systems, such as Windows.
+When running an image with multi-platform support, docker automatically selects the image that matches your OS and architecture.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/05.-FTP-active-vs-passive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/05.-FTP-active-vs-passive/</guid>
+      <description>FTP active vs passive # FTP 는 2개의 포트를 사용한다.
+Command 포트: 주로 21번 포트를 사용하며, 연결 시에 사용되는 포트 Data 포트: 주로 20번 포트를 사용하며, 데이터 전송 시에 사용되는 포트 Active 모드 # Client -&amp;gt; Server: 연결 시도 (21번 포트) Server -&amp;gt; Client: OK 응답 Server -&amp;gt; Client: Data 채널 연결 요청 &amp;lt;&amp;mdash; active Client -&amp;gt; Server: OK 응답 흔히, Client -&amp;gt; Server 로 연결을 시도하는 방식과 달리, Server -&amp;gt; Client 로 연결을 시도한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/06.-Lettuce-ReadFrom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/06.-Lettuce-ReadFrom/</guid>
+      <description>ReadFrom # Defines from which Redis nodes data is read.
+read 커맨드, write 커맨드 식별 방법 # io.lettuce.core.cluster.ReadOnlyCommands 클래스 참고
+redis 커맨드를 기준으로 식별한다.
+lua script # 스크립트는 eval, evalsha 커맨드로 실행 -&amp;gt; read 커맨드로 판단한다.
+REPLICA_PREFERRED vs MASTER_PREFERRED # master(write)커넥션, replica(reader)커넥션을 리스트에 저장한다. reader 커넥션을 가져올 때 1번의 리스트 중 0번째 인덱스에서 가져온다. 분류 컬렉션 내 커넥션 순서 REPLICA_PREFERRED 0번째 인덱스 : reader 1번째 인덱스 : writer MASTER_PREFERRED 0번째 인덱스 : writer 1번째 인덱스 : reader MASTER_PREFERRED</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/07.-LocalDate-OpenJDK-Suggestion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/07.-LocalDate-OpenJDK-Suggestion/</guid>
+      <description>SUGGESTION # A DESCRIPTION OF THE PROBLEM : I think a lot of people write the following code to get tomorrow and yesterday.
+LocalDate tomorrow = LocalDate.now().plusDays(1); LocalDate yesterday = LocalDate.now().minusDays(1); I think supporting tomorrow() and yesterday() functions will make it more convenient, meaningful, and more readable.
+For example we can get &amp;rsquo;tomorrow&amp;rsquo;, &amp;lsquo;yesterday&amp;rsquo; like following code.
+LocalDate tomorrow = LocalDate.tomorrow(); // or LocalDate.tomorrow(zone); or LocalDate.tomorrow(clock); LocalDate yesterday = LocalDate.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/08.-Locale-vs-TimeZone/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/08.-Locale-vs-TimeZone/</guid>
+      <description>Locale TimeZone The place where something happens. The set of settings related to the language and region in which a computer program executes. Examples are language, paper format, currency and time formats, character encoding etc. 프로그램이 실행되는 언어(language), 지역(region)과 관련된 설정
+(예시) 언어, 통화, 시간 형식, 문자 인코딩 등 A vertical region of the globe that somewhat corresponds to longitude, that uses the same time. 출처 : https://wikidiff.com/timezone/locale
+LOCALE # 프로그램이 실행되는 언어(language), 지역(region)과 관련된 설정</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/09.-MQTT/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/09.-MQTT/</guid>
+      <description>MQTT (Message Queueing Telemetry Transport) # Telemetry : 원격 측정(법)
+다음과 같은 상황에서 사용될 수 있는 메시지 송/수신 프로토콜이다.
+(1) 작은 코드 공간에서 동작하기 위해서 (2) 제한된 네트워크 대역폭에서 동작하기 위해서 (ex: IoT) (3) 대규모 트래픽 전송을 위해서
+TCP/IP 위에서 동작하지만 굉장히 가볍고, 많은 통신 제약들을 해결해준다고 한다.
+MQTT 는 Bluetooth, Zigbee 처럼 별도의 모듈 / 별도의 대역폭을 갖는 통신 규약이 아닌, WiFi와 같은 인터넷을 통해 TCP/IP 기반의 메시지 송수신 프로토콜이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/10.-non_blocking_vs_blocking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/10.-non_blocking_vs_blocking/</guid>
+      <description>https://nodejs.org/ko/docs/guides/blocking-vs-non-blocking/
+https://velog.io/@codemcd/Sync-VS-Async-Blocking-VS-Non-Blocking-sak6d01fhx
+http://homoefficio.github.io/2017/02/19/Blocking-NonBlocking-Synchronous-Asynchronous/</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/11.-OKR/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/11.-OKR/</guid>
+      <description>&amp;quot; OKR이 간단해 보이지만 헷갈리는 이유는 &amp;lsquo;이니셔티브&amp;rsquo;를 구분하지 않기 떄문입니다. &amp;ldquo;
+Objectives (목표) # = 이루고자 하는 &amp;lsquo;목표(목적)&amp;rsquo;
+목표는 영감을 주어야하며, 회사의 우선순위에 부합해야 한다. 목표는 수치보다 정성적 문구로 표현하여 구성원의 동기를 부여한다. 책마다, 글마다 의견이 다른 것 같기도하다. (아래 예시처럼 책에서는 구체적인 수치를 제시한다.)
+예시 # O1. 온라인 판매의 매출 신기록을 세운다.
+O2. 하루 시청 시간을 10억 시간으로 늘린다. (2016년까지)
+O3. 2040년까지 전 세계 말라리아 퇴치한다.
+Key Results (핵심 결과) # = 목표를 이루기 위해 얻어야하는 &amp;lsquo;결과&amp;rsquo;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/12.-Pinpoint/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/12.-Pinpoint/</guid>
+      <description>Pinpoint # 대규모 분산 시스템 추적 플랫폼, Pinpoint
+&amp;quot; 다양한 도구와 APM(application performance management)을 사용하고 있었으나 이것으로는 부족했다. 결국 시스템 복잡도가 높아지며 발생하는 문제를 해결하기 위해 n계층 아키텍처를 효과적으로 추적할 수 있는 새로운 플랫폼을 개발하기로 했다. &amp;ldquo;
+분산 시스템에서 (1)성능을 분석하고, (2)문제를 진단, 처리하는 플랫폼이다.
+다음과 같은 특징/기능이 있다.
+특징 / 기능 설명 분산 트랜잭션 추적 분산 애플리케이션에서 메시지를 추적할 수 있다. 애플리케이션 토폴로지 자동 발견 애플리케이션의 구성을 자동으로 파악할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/13.-PR-%ED%9B%84%EA%B8%B0-Admin2-Free-Admin-Template/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/13.-PR-%ED%9B%84%EA%B8%B0-Admin2-Free-Admin-Template/</guid>
+      <description>PR 을 날려보았다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/14.-Trigger-vs-ApplicationBusiness-Logic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/14.-Trigger-vs-ApplicationBusiness-Logic/</guid>
+      <description>트리거 vs Application Logic 비교해보기
+인터넷들의 글/댓글들을 읽어 종합해본 내용입니다.
+Trigger # 개발자 입장에서 유지보수가 어렵다.
+(반대로) 예전 글(2010년대 초반)을 보면 Trigger 가 유지보수가 더 쉽다는 의견/글들이 있는 것 같다.
+빌드/배포 시간에 제약이 없다.
+Application -&amp;gt; DB call 횟수가 줄어든다.
+성능(처리율, 속도) 우수하다.
+(Application Logic 반대 의견) (한 액션 시 여러 개의 DB Table 에 삽입/수정 등이 이뤄질 때) Application Logic 으로 관리하면 Exception, Transaction 등을 신경써줘야 한다.
+Application Logic # 개발자 입장에서 유지보수가 쉽다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/15.-Useful-Tips-for-naming-variables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/15.-Useful-Tips-for-naming-variables/</guid>
+      <description>https://medium.com/better-programming/useful-tips-for-naming-your-variables-8139cc8d44b5</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/16.-UTF/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/16.-UTF/</guid>
+      <description>평면(Plain)
+0 ~ 2^16 범위를 표현하는 코드표(세트) 총 17개(0 ~ 16개)의 평면(plaon) 존재 BMP(Basic multilingual plane) : 0번째 평면(plain) 거의 대부분의 문자는 BMP 에 속함 다만 이모지와 같은 최근에 사용되기 시작한 문자들은 속하지 않음 UCS-2 (Universal Character Set) # BMP(기본 다국어 평면)만 인코딩 (고정 사이즈) 문자당 2byte 표현 &amp;lsquo;평면&amp;rsquo; 을 구분하는데 2byte가 사용되는데, UCS-2는 BMP 고정이기 때문에 평면 구분 byte가 없어도 됨 BMP 외의 문자는 표현할 수 없음 UTF-32 (Unicode Transformation Format) # (고정 사이즈) 4byte 인코딩 방식 : 평면 구분(2byte) + 문자(2byte) 모든 유니코드 문자 표현할 수 있음 (단점) 용량 차지 1byte로 표현할 수 있는 것도 4byte 고정 거의 사용되고 있지 않음 UTF-16 # 가변 사이즈(2byte, 4byte) 인코딩 2byte : BMP 4byte : BMP 외의 유니코드 문자 (UTF32 와 같은 형태가 아님에 주의!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/17.-UTF8-4byte-%EB%AC%B8%EC%9E%90-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/17.-UTF8-4byte-%EB%AC%B8%EC%9E%90-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/</guid>
+      <description>[DB] Charset &amp;amp; Collation 글과 연관이 있습니다.
+Mysql UTF8의 경우 3byte로 디자인되었다. 4byte 문자를 처리하기 위해서는 아래와 같은 방법이 있다.
+DB 스키마 변경 : charset/collation (e.g. utf8mb4) Application 처리 : (utf8)4byte 문자 확인 / 제거 등 이번 글에서는 2번의 방법을 살펴본다.
+(UTF8) 4byte 문자의 종류 # UTF8 4byte로 된 문자는 아래 링크에서 확인할 수 있다.
+https://design215.com/toolbox/utf8-4byte-characters.php
+이모지, musical symbols 등의 다양한 문자가 있다.
+(UTF8) 4byte 문자를 체크하는 방법 # 간단하게는, BMP 영역에 있는지를 체크하면 된다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/18.-WebSocket%EA%B3%BC-Socket.io/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/18.-WebSocket%EA%B3%BC-Socket.io/</guid>
+      <description>WebSocket과 Socket.io 내용을 정리합니다.
+웹 소켓의 등장 배경 # 전형적인 브라우저 상의 동작 방식, 서비스 제공 방식은 (1) 클라이언트 요청 -&amp;gt; (2) 서버 응답 (Client-Server 구조) 의 방식에서 벗어나지 않았다.
+(시간이 지남에 따라, 더 나은 상호작용을 위해)Polling, Long Polling 등의 방법을 사용했지만 모두 클라이언트가 요청을 보내고 서버가 응답하는 &amp;lsquo;단방향 통신&amp;rsquo; 이다. (= 상호작용하는 서비스를 만들기 위해 복잡하고 어려운 코드를 구현해야 했다.)
+보다 쉽게 상호작용할 수 있는 서비스, 기능을 제공하기 위해 &amp;lsquo;양방향 통신&amp;rsquo; 이 필요했고, WebSocket이 등장했다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/19.-%EB%AC%B4%EC%96%B4%EC%9D%98-%EB%B2%95%EC%B9%99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/19.-%EB%AC%B4%EC%96%B4%EC%9D%98-%EB%B2%95%EC%B9%99/</guid>
+      <description>무어의 법칙을 상기한다.
+출처 : https://www.epnc.co.kr/news/articleView.html?idxno=200319
+무어의 법칙 : 2년 혹은 18개월 마다 반도체의 집적도는 2배가 된다. # 사실 &amp;lsquo;법칙&amp;rsquo;이라는 말이 조금 어색하다고 한다.
+반도체 업계에서 무어의 법칙은 경쟁에서 살아남기 위해 달성해야 하는 &amp;lsquo;규칙&amp;rsquo;으로 받아들였다고 한다.
+다만, 최근 들어(약 2016년 이후) 인텔은 무어의 법칙(규칙) 개발 방식을 폐기했다.
+2년 주기의 틱톡(TICK-TOCK) 개발 전략을 폐기하고, 3년 주기의 개발 사이클을 추진할 것이라고 발표했다고 한다.
+참고로, 무어는 인텔 공동 설립자이다.
+이유 : 기술의 한계 + 돈 # 업계에서 무어의 법칙이 더 이상 받아들여지지 않는 이유는 &amp;lsquo;기술의 한계&amp;rsquo;와 &amp;lsquo;돈&amp;rsquo;이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/20.-%EC%82%AC%EB%82%B4%EC%97%90%EC%84%9C-%EC%82%AC%EC%84%A4-%EC%9D%B8%EC%A6%9D%EC%84%9C%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/20.-%EC%82%AC%EB%82%B4%EC%97%90%EC%84%9C-%EC%82%AC%EC%84%A4-%EC%9D%B8%EC%A6%9D%EC%84%9C%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/</guid>
+      <description>개요 # (사내)로컬 환경에서 개발을 할 때, HTTP 통신과 관련된 부분에서 종종 &amp;lsquo;SSL 인증서가 유효하지 않다&amp;rsquo; 라는 오류가 발생하곤 한다.
+그때마다 1. HTTPS(443)통신을 HTTP(80)통신으로 수정한다거나 2. (HTTP API Library 에서 제공하는) Certification Verification 체크를 하지 않는다거나 3. 혹은 운이 좋게도 다른 분들이 먼저 설정해놓은 설정 값들이 있다면 그것들을 가져와 그대로 사용하곤 했다.
+이번에도 동일한 문제가 발생했는데, 이번에는 이 부분에 대해서 정확히 이해하고 싶었다.
+&amp;lsquo;여기&amp;rsquo;에서 관련된 내용이 너무나도 상세히 잘 설명되어 있다!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/21.-%EC%95%94%EB%8B%AC%EC%9D%98-%EB%B2%95%EC%B9%99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/21.-%EC%95%94%EB%8B%AC%EC%9D%98-%EB%B2%95%EC%B9%99/</guid>
+      <description>암달의 법칙을 상기한다.
+[출처]
+https://ko.wikipedia.org/wiki/%EC%95%94%EB%8B%AC%EC%9D%98_%EB%B2%95%EC%B9%99 https://namu.wiki/w/%EC%95%94%EB%8B%AC%EC%9D%98%20%EB%B2%95%EC%B9%99 암달의 법칙 : 컴퓨터 시스템의 일부를 개선했을 때 전체적으로 얼마만큼의 최대 성능 향상이 있었는지 계산하는 공식이다. # 전체 시스템 중 P%의 부분에서 S배의 성능 향상이 되었을 때, 전체 시스템의 성능 향상은 다음과 같다.
+1 ----------------- (1 - P) + (P / S) 개선에 의해 영향을 받는 실행 시간 개선 후 실행시간 = ---------------------------------- 성능 향상 비율 + 영향을 받지 않는 실행 시간 &amp;lsquo;병목 현상&amp;rsquo;을 설명하기 위한 공식으로도 사용될 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/22.-%EC%95%95%EC%B6%95Compression/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/22.-%EC%95%95%EC%B6%95Compression/</guid>
+      <description>압축 (Compression) # HTTP 압축 (1) : 성능 향상을 위한 다른 접근 기법 글을 읽어보면, 왜 압축이 필요한지? 어떤 상황에서 적절한지? 등에 대해 이해할 수 있다.
+간단하게 요약하면,
+압축을 적용하는 것이 모든 상황에서 이점을 주지 않을 수 있다. (최근에는 옛날에 비해 네트워크 환경이 좋아지면서 압축의 중요성이 떨어질 수도 있으려나..? 싶다.) 다만, (성능 향상을 위해) 충분히 고려해볼만한 요소이다. HTTP 압축 (2) : HTTP 압축 작동 원리 글을 읽어보면, (서버-클라이언트 사이에서의) &amp;lsquo;압축&amp;rsquo;에 대한 협상 과정을 살펴볼 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/23.-%EC%9C%A0%EB%8B%89%EC%8A%A4-%EC%8B%9C%EA%B0%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/23.-%EC%9C%A0%EB%8B%89%EC%8A%A4-%EC%8B%9C%EA%B0%84/</guid>
+      <description>철도 시간표가 유닉스 시간이 되기까지 글을 읽고 정리한 내용
+GMT # 19세기 초 지역마다 각자의 지방 평균시(Local Mean Time, LMT)를 사용했다.
+지방 평균시란,
+각자의 지역에서 태양이 최고 고도에 이르는 시각을 기준으로 삼는 시간 체계이다.
+지방 평균시의 경우, 지역에 따라 시간이 달라질 수 있다.
+(다양한 이유가 있겠지만, 글을 기반으로 하여) 철도 이슈로 인해 GMT 를 사용하자고 권고했다. (이렇게 GMT가 표준으로써 사용되기 사작한다.)
+GMT 는 그리니치 천문대에서 관측한 평균시다.
+본초 자오선은 그리니치를 지나는 자오선을 의미한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/24.-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%A0%95%EA%B7%9C%ED%99%94/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/24.-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%A0%95%EA%B7%9C%ED%99%94/</guid>
+      <description>개요 # (최근에 회사 업무 중에) 고객이 업로드한 파일 이름의 자모음이 분할되어 저장되는 문제가 있었다. Mac 환경의 클라이언트가 해당 기능을 사용할 때 한글이 분할되는 현상이었다.
+예를 들어, 클라이언트에서 가나다라.jpg 라는 파일을 업로드하면 ㄱㅏㄴㅏㄷㅏㄹㅏ.jpg의 이름으로 저장이 되었다.
+관련된 내용을 찾아보니 인코딩, 정규화와 같은 키워드로 많은 내용이 있었다. 이것들을 읽고 내용을 정리해보고자 한다!
+문자코드표, 문자인코딩 # 컴퓨터는 데이터를 바이트(혹은 숫자) 단위로 처리한다. 그러므로 &amp;lsquo;문자/글자&amp;rsquo;를 나타내려면 바이트/숫자 &amp;lt;&amp;ndash;&amp;gt; 문자/글자를 매칭시켜줘야한다. 어떤 기준으로, 어떻게 매칭시켜야 할 지에 대해 규칙을 정해놓은 것들이 ASCII, Unicode, UTF-8, EUC-KR 등인 것이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/25.-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A1%9C%EB%94%A9-%EC%86%8D%EB%8F%84-%EA%B0%9C%EC%84%A0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/25.-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A1%9C%EB%94%A9-%EC%86%8D%EB%8F%84-%EA%B0%9C%EC%84%A0/</guid>
+      <description>개요 # 고객이 메시지를 발송하면 그 기록을 관리툴에서 보여준다. 대략적으로 아래와 같이 생겼다.
+발송 결과 리스트페이지
+발송 결과 상세페이지
+문제 # 특정 고객이 &amp;lsquo;발송 결과 상세페이지&amp;rsquo;에 접근할 때 20~40초 가량의 로딩 시간이 걸린다는 문의가 접수되었다.
+급히 해당 부분에 대한 로직을 살펴보았는데 불필요한 for-loop, method 호출 등 많은 부분들에서 개선이 필요해보였다. 이 중 가장 효과적인 수정이 어떤 것일지 고민했다.
+우선 쿼리부터 확인했다. 쿼리는 인덱스 힌트를 통해 인덱스를 탈 수 있도록 되어 있었다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/26.-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B0%94%EC%9D%B4%EC%A0%80/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/26.-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B0%94%EC%9D%B4%EC%A0%80/</guid>
+      <description>개요 # 호스트 컴퓨터에서 다수의 운영 체제를 동시에 실행시키기 위한 기술(플랫폼) 단일 하드웨어에서 여러 개의, 다른 가상 머신을 실행시킬 수 있는 프로그램 게스트 운영 체제(Guest)에 가상 운영 플랫폼을 제공/관리하는 역할 예를 들어, 물리적인 리소스(CPU/Processor, RAM) 등을 분리/제공/관리 2가지의 종류 : Natvie/Bare-Metal , Hosted &amp;lsquo;VMM&amp;rsquo; 이라 불리우기도 한다. 가상화 머신 모니터(Virtual Machine Monitor) 가상화 머신 매니저(Virtual Machine Manager) 하이퍼바이저 유형 1 : Natvie / Bare-Metal # 하드웨어에 직접 설치되는 구조 호스트 OS 없음 즉, 하이퍼바이저가 호스트 OS 에 종속되지 않음 VM에 설치된 게스트 OS 들은 하드웨어 바로 위에서 구동 유형 2(Type2)보다는 성능 향상 다만, 유형 2(Type2) 보다는 설치, 구성 불편 (하드웨어 드라이버 세팅&amp;hellip;?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/27.-netty-resolver-dns-native-macos/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/27.-netty-resolver-dns-native-macos/</guid>
+      <description>로컬 환경 : m1 arm64
+Caused by: java.io.FileNotFoundException: META-INF/native/libnetty_resolver_dns_native_macos_aarch_64.jnilib # Spring Cloud Gateway + Mock API 구성 후 간단한 테스트 시 다음과 같은 오류가 발생한다.
+java.lang.reflect.InvocationTargetException: null at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[na:na] at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[na:na] ... at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.78.Final.jar:4.1.78.Final] at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.78.Final.jar:4.1.78.Final] at java.base/java.lang.Thread.run(Thread.java:829) ~[na:na] Caused by: java.lang.UnsatisfiedLinkError: failed to load the required native library at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.ensureAvailability(MacOSDnsServerAddressStreamProvider.java:110) ~[netty-resolver-dns-classes-macos-4.1.78.Final.jar:4.1.78.Final] at io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider.&amp;lt;init&amp;gt;(MacOSDnsServerAddressStreamProvider.java:120) ~[netty-resolver-dns-classes-macos-4.1.78.Final.jar:4.1.78.Final] ... 125 common frames omitted Caused by: java.lang.UnsatisfiedLinkError: could not load a native library: netty_resolver_dns_native_macos_aarch_64 at io.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/28.-serverless-framework/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/28.-serverless-framework/</guid>
+      <description>serverless frameowkr 의 전반적인 컨셉과 내용은 Serverless Framework Concepts 문서를 참고한다.
+작성 방법에 대한 예시는 Usage 문서 하위 내용을 참고하면 좋다. (+ Serverless.yml Reference)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/29.-terraform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/29.-terraform/</guid>
+      <description>Terraform # Infrastructure as Code ( = Infrastructure 관리 도구 )
+tfenv # 테라폼 버전 매니저
+nvm 같은 버전 매니저
+기본 개념 # 프로비저닝
+프로세스, 서비스를 실행하기 위한 준비 단계
+네트워크, 컴퓨팅 자원 준비 작업 (준비된 컴퓨팅 자원에) 사이트 패키지, 애플리케이션 의존성 준비 작업 명확한 경계는 불분명하지만 테라폼은 주로 전자(네트워크, 컴퓨팅 자원 준비)를 주로 다룬다.
+프로바이더
+테라폼 ⇿ 외부 서비스(프로바이더) 연결해주는 모듈
+예를 들어, 테라폼으로 AWS 컴퓨팅 자원을 생성한다면 &amp;lsquo;aws 프로바이더&amp;rsquo; 프로바이더 종류 분류 AWS 클라우드 서비스 GCP 클라우드 서비스 Azure 클라우드 서비스 Github 특정 기능을 제공하는 서비스 Datadog 특정 기능을 제공하는 서비스 DNSimple 특정 기능을 제공하는 서비스 MySQL 로컬 서비스 RabbitMQ 로컬 서비스 Docker 로컬 서비스 &amp;hellip; &amp;hellip; 리소스(자원)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/30.-Prometheus-PromQL/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/30.-Prometheus-PromQL/</guid>
+      <description>프로메테우스는 실시간으로 시계열 데이터를 선택해 집계할 수 있는 PromQL(함수형 쿼리 언어)를 제공한다.
+Type (Expression Language Data Types) # 프로메테우스의 표현식 언어에서, 표현식 또는 하위 표현식은 다음 타입 중 하나로 평가될 수 있다.
+Instant vector : 같은 타임스탬프 상에 있는 시계열 셋으로, 각 시계열마다 단일 샘플을 가지고 있다. Range vector : 특정 시간 범위에 있는 시계열 셋으로, 각 시계열마다 시간에 따른 데이터 포인트들을 가지고 있다. Scalar : 간단한 부동 소수점 숫자 String : (현재 사용 X) 간단한 문자열 값 표현식을 사용하는 방식(e.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/31.-Prometheus/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/31.-Prometheus/</guid>
+      <description>https://prometheus.io/docs/prometheus/latest/storage/#storage</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/ETC/99.-%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%A4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/ETC/99.-%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%A4/</guid>
+      <description>:zap: compilePath &amp;amp; runtimeClasspath # :zap: testCompilePath &amp;amp; testRuntimeClasspath # &amp;quot; Configuration inheritance is heavily used by Gradle core plugins like the Java plugin. For example the testImplementation configuration extends the implementation configuration. &amp;ldquo;
+출처 : Configuration inheritance and composition
+:zap: example # dependencies { ... implementation &amp;#39;org.springframework.boot:spring-boot-starter-data-jpa&amp;#39; ... compileOnly &amp;#39;org.projectlombok:lombok&amp;#39; ... runtimeOnly &amp;#39;com.h2database:h2&amp;#39; runtimeOnly &amp;#39;mysql:mysql-connector-java&amp;#39; ... annotationProcessor &amp;#39;org.projectlombok:lombok&amp;#39; ... testImplementation &amp;#39;org.springframework.security:spring-security-test&amp;#39; ... } 참고 # [Spring] Gradle 파일 implementation, api, runtimeOnly, compileOnly&amp;hellip; 등에 대해 [Gradle] build.</description>
+    </item>
+    
+  </channel>
+</rss>

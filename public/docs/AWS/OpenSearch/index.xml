@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>08. Opensearch on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/AWS/OpenSearch/</link>
+    <description>Recent content in 08. Opensearch on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/AWS/OpenSearch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/OpenSearch/01.-%EA%B0%9C%EC%9A%94/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/OpenSearch/01.-%EA%B0%9C%EC%9A%94/</guid>
+      <description>OpenSearch # ES의 라이센스가 변경되면서, AWS 커뮤니티에서 개발/관리하는 (AWS 기반의)ES 프로젝트가 생겨났다. (참고 : 히스토리)
+해당 (ES)라이선스는 오픈 소스가 아니며 사용자에게 동일한 자유를 제공하지 않습니다. 오픈 소스 커뮤니티와 고객이 계속해서 안전하고 고품질에 완전한 오픈 소스 검색과 분석 제품군을 사용할 수 있도록 AWS는 커뮤니티 주도적이며 오픈 소스 Elasticsearch 및 Kibana의 ALv2 라이선스 갈래인 OpenSearch 프로젝트를 도입했습니다.
+이 AWS Elasticsearch 의 후속 서비스가 AWS OpenSearch 이다.
+ISM (Index Statement Management, 인덱스 관리) # ISM(Index Statement Management)을 통해, 커스텀한 관리 정책(custom management policies)을 정의할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/OpenSearch/02.-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/OpenSearch/02.-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/</guid>
+      <description>OpenSearch 구조 # 파란색 부분(Index, Shard)에 대해서만 이해하고 있다면 일반적인 사용에서 문제가 없다. 초록색 부분(Lucene Index, Segment)는 깊은 사용, 성능 최적화 등을 위해 이해해야 하는 부분이다. Shard # 영상에서, 샤드 = 물리적인 노드 1대1 대응해서 설명하는 것 같다.
+즉, 아래 그림은 각각의 물리적인 노드 위에 각 샤드가 있는 것을 가정한다.
+샤드의 수 = 데이터 노드(or AZ) x N Replica 수 = AZ x N Index 디자인 # Index 패턴 # 패턴 설명 Rolling Index - 인덱스 기간, 보존 기간이 있고 계속적으로 데이터가 흘러 들어오는 경우 - 오래된 Index 는 보유 기간에 따라 Warm/Cold 계층으로 마이그레이션, 삭제 가능 - search-logs-2022, weblogs-2022-07, &amp;hellip; Long-Term Retention Index - 같은 Index에 소스 데이터 저장</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/OpenSearch/03.-5xx-Error-with-Scaling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/OpenSearch/03.-5xx-Error-with-Scaling/</guid>
+      <description>SysMemoryUtilization 값이 90%를 초과하는 것은 이슈가 있는 것은 아니고, FreeStorageSpace, JVMMemoryPressure, CPUUilization 값을 확인해보아야 한다.
+5xx 에러가 발생했을 경우 아래 부분을 의심해볼 수 있다.
+확인 사항 1. 스토리지 가용 공간 확인 # 아래에 해당되는 경우 (1) 인스턴스 타입을 변경하거나 (2) EBS 볼륨을 늘리거나 (3) 인스턴스를 추가할 수 있다.
+가용 공간이 노드 스토리지의 20% or 20GB 미만인지 확인한다. ISM 통해 스냅샷 저장 후 불필요한 데이터는 삭제한다. Lack of available storage space If one or more nodes in your cluster has less than 20% of available storage space, or less than 20 GB of storage space, basic write operations like adding documents and creating indexes can start to fail.</description>
+    </item>
+    
+  </channel>
+</rss>

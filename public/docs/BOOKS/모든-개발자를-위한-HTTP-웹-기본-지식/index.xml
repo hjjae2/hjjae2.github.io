@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>모든 개발자를 위한 HTTP 웹 기본 지식 on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/</link>
+    <description>Recent content in 모든 개발자를 위한 HTTP 웹 기본 지식 on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>01. 인터넷 통신</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/01_%EC%9D%B8%ED%84%B0%EB%84%B7%ED%86%B5%EC%8B%A0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/01_%EC%9D%B8%ED%84%B0%EB%84%B7%ED%86%B5%EC%8B%A0/</guid>
+      <description>요약 # IP # 출발지 IP, 목적지 IP Packet 단위 사용 (Layer 3) 비연결성 패킷 받을 대상이 없는지 확인 X 패킷 받을 대상이 어떤 상태인지 알 수 X 비신뢰성 패킷을 잘 받았는지 확인 X 중간에 소실될 수 도 있음 패킷을 순서대로 잘 보냈는지 확인 X 늦게 보낸 게 더 빨리 도착할 수도 있음 프로그램 구분 X &amp;lsquo;비연결성, 비신뢰성, 프로그램 구분&amp;rsquo; 을 어떻게 해결 ?? =&amp;gt; TCP(UDP)
+TCP (혹은 UDP) # 참고 (TCP/IP Layer)</description>
+    </item>
+    
+    <item>
+      <title>02. URI</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/02_URI/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/02_URI/</guid>
+      <description>요약 # URI : Uniform Resource Identifier # (통일화 된) 자원(리소스) 식별자 ..?
+URI 의 종류 # URL (Uniform Resource Locator) scheme, host, port, query parameter(string), fragment fragment 서버에 전송하는 정보 X html 내부 북마크 등에 사용 URN (Uniform Resource Name) URN 이 잘 안쓰이는 이유? 자원을 식별하기 위해서는 &amp;lsquo;고유&amp;rsquo;해야한다. &amp;lsquo;이름&amp;rsquo;으로 &amp;lsquo;고유성&amp;rsquo;을 갖기는 힘들지 않을까..? 이름을 고유한 번호 형태로 부여할 수도 있을텐데(e.g. ISBN) 이렇게 되면, 식별하기 어려울 것이다.
+반변 &amp;lsquo;Locator&amp;rsquo; 기반으로 하면 (애초에)IP(서버) 가 다 다르니까 &amp;lsquo;고유성&amp;rsquo;을 갖기 더 수월하지 않을까.</description>
+    </item>
+    
+    <item>
+      <title>03. HTTP</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/03_HTTP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/03_HTTP/</guid>
+      <description>요약 # HTTP (HyperText Transfer Protocol) # Client - Server 구조 클라이언트 - 서버의 분리는 역할/책임 분리의 의미에서도 중요한 것 비상태성 (Stateless) 서버 확장(Scale Out) OK (클라이언트의 요청에 대해서) 항상 다른 서버가 처리 OK 클라이언트쪽에서 조금 불편 (서버 측에서 정보를 기억하는게 아니니까) 상태가 필요한 경우 : 대표 예시 -&amp;gt; 로그인 특정 서버에 구애받지 않게 독립적인(외부) 상태 저장소 사용 비연결성 연결을 유지할 경우, 수많은 클라이언트와 연결해야 하는 부담 서버 자원을 효율적으로 사용하기 위함 단순 * HyperText 란?</description>
+    </item>
+    
+  </channel>
+</rss>

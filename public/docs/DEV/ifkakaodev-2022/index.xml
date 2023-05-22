@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>If Kakao 2022 on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/</link>
+    <description>Recent content in If Kakao 2022 on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/Batch-Performance-%EA%B7%B9%ED%95%9C%EC%9C%BC%EB%A1%9C-%EB%81%8C%EC%96%B4%EC%98%AC%EB%A6%AC%EA%B8%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/Batch-Performance-%EA%B7%B9%ED%95%9C%EC%9C%BC%EB%A1%9C-%EB%81%8C%EC%96%B4%EC%98%AC%EB%A6%AC%EA%B8%B0/</guid>
+      <description>배치 코드의 경우 (비교적)운영 중 모니터링, 성능에 관심을 기울이지 않게 되는 것 같다.
+READ # 성능 개선의 첫 걸음, Reader 개선
+대부분의 배치에서 writer 보다 reader 가 차지하는 비중이 크다.
+예를 들어, 위 그림과 같이 10억 건 중 100만 건을 추출해야 할 때 select 쿼리의 수정만으로도 큰 효과를 볼 수 있을 것이다.
+Chunk Processing # 대용량에서는 chunk processing 이 필수이다. (절대적으로 사용될 것이다.)
+문제점 : Pagination
+Pagination 을 주로 사용할텐데 성능 관점에서 좋지 않다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/JVM-warm-up/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/JVM-warm-up/</guid>
+      <description>카카오 계정 서버의 API 배포 과정 # Rolling update
+Application Ready - Warm Up 사이에 n초 delay를 줄 수 있다.
+Compilation Level # JIT # 위 과정에서 C1, C2는 별도 쓰레드로 동작한다.
+C2 컴파일러의 큐가 가득차면, C1의 Level2 로 컴파일한다. 이후 여유가 생기면 Level3, 4 컴파일 처리가 진행된다.
+Level2 컴파일이 많이 발생한다면, C2 컴파일러 큐가 가득찼다는 것을 알 수 있겠다. 이때는 C2 컴파일러 쓰레드 수를 조정할 필요가 있겠다.
+Code Cache # 초기 캐시 사이즈와 최대 사이즈 조정이 가능하다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EB%A9%94%EC%8B%9C%EC%A7%95-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%9E%AC%EA%B1%B4%EC%B6%95-%EC%9D%B4%EC%95%BC%EA%B8%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/ifkakaodev-2022/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EB%A9%94%EC%8B%9C%EC%A7%95-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%9E%AC%EA%B1%B4%EC%B6%95-%EC%9D%B4%EC%95%BC%EA%B8%B0/</guid>
+      <description>카카오톡 메시징시스템 # 기준 값 평균 트래픽(TPS) 500K 최고 트래픽(TPS) 6.5M 평균 연결 세션 수 40M C++ 사용 이유 : 대량 트래픽 다루기 위해
+C++ 백엔드 서버 애플리케이션 # epoll 기반의 비동기 입출력 지원 쓰레드 별로 미리 할당한 메모리 버퍼 사용 system call 호출(지연)을 줄이기 위해 미리 메모리 버퍼를 할당 받아 놓음 대당 500K 이상의 세션 관리 앞으로의 10년도 커버 가능할까? # 현재까지의 구조는 최적화에 목적을 둔, 하지만 유지보수하기는 힘든 구조였다.</description>
+    </item>
+    
+  </channel>
+</rss>

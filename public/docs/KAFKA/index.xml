@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>KAFKA on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/KAFKA/</link>
+    <description>Recent content in KAFKA on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/KAFKA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/KAFKA/KAFKA-Kafka-Connect-Intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/KAFKA/KAFKA-Kafka-Connect-Intro/</guid>
+      <description>Kafka Connect Cluster: An Introduction 글을 읽고, 요약한 내용
+Kafka 를 사용하다보면, 카프카 클러스터에 없는 데이터를 처리해야하는 경우가 많이 있다.
+예를 들어, 아래와 같은 곳에 존재하는 데이터를 처리해야하는 경우이다.
+DB 외부 파일 외부 스토리지 ---&amp;gt; Kafka 외부 스토리지 &amp;lt;--- Kafka 이를 처리하기 위한 2가지 방법이 있다. # 1. 카프카 Producer 애플리케이션을 작성한다.
+애플리케이션 생성 코드 작성 실패 처리 (해야한다.) scalability, polling 2. Kafka Connect 를 사용한다.
+1번과 동일한 기능을 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/KAFKA/KAFKA-Schema-Registry/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/KAFKA/KAFKA-Schema-Registry/</guid>
+      <description> https://docs.confluent.io/platform/current/ schema-registry/index.html#schemas-subjects-and-topics
+Apache Avro # &amp;quot; Apache Avro™ is the leading serialization format for record data, and first choice for streaming data pipelines. It offers excellent schema evolution, and has implementations for the JVM (Java, Kotlin, Scala, …), Python, C/C++/C#, PHP, Ruby, Rust, JavaScript, and even Perl. &amp;ldquo;
+&amp;rdquo; Apache Avro™ is a data serialization system.&amp;quot;
+Compatibility # https://medium.com/@gaemi/kafka-%EC%99%80-confluent-schema-registry-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%8A%A4%ED%82%A4%EB%A7%88-%EA%B4%80%EB%A6%AC-1-cdf8c99d2c5c
+참고 # https://medium.com/@gaemi/kafka-%EC%99%80-confluent-schema-registry-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%9C-%EC%8A%A4%ED%82%A4%EB%A7%88-%EA%B4%80%EB%A6%AC-1-cdf8c99d2c5c </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>REDIS on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/REDIS/</link>
+    <description>Recent content in REDIS on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/REDIS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/REDIS/REDIS-Data-Structures/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/REDIS/REDIS-Data-Structures/</guid>
+      <description>Lists # Redis Lists are implemented with linked lists because for a database system it is crucial to be able to add elements to a very long list in a very fast way.
+O(1) # LPUSH, RPUSH LPOP, RPOP LLEN O(n) # LINDEX, LRANGE LSET Use Case # Feed system can be a good use case.
+Every time a user posts a new photo, we add its ID into a list with LPUSH.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/REDIS/REDIS-Redis-Pipelining/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/REDIS/REDIS-Redis-Pipelining/</guid>
+      <description>Redis Pipelining # &amp;quot; How to optimize round-trip times by batching Redis commands &amp;ldquo;
+여러 명령(command)을 한번에 요청/응답하는 것
+DB 에서는 Bulk 연산자를 지원하지만, 레디스에서는 Bulk 연산자를 지원하지 않는다. 대신 pipelin api 를 지원한다.
+(흔히 나오는 예시) (아래)HTTP pipelining 과 비슷한 개념이다.
+문제1. RTT (Round-Trip Time) # Redis는 고성능의 저장소이지만, TCP 기반 위에서 동작한다.
+즉 요청/응답을 위해 (TCP 기반의)네트워크 I/O가 발생할 것이다. Redis 의 성능이 아무리 좋아도, RTT가 길다면 클라이언트 입장에서 (시간 당)처리량이 줄어들 수 밖에 없다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/REDIS/REDIS-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/REDIS/REDIS-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/</guid>
+      <description>&amp;quot; 여러 자료구조를 사용할 수 있는 Redis 의 특성상 트랜잭션을 잘 이용하면 더 유용하게, 다양한 상황에서 Redis 를 사용할 수 있을 것 입니다. &amp;ldquo; 출처 : https://sabarada.tistory.com/177
+Redis 에서는 MULTI, EXEC, DISCARD 와 WATCH 명령어를 사용할 수 있다.
+명령어 설명 MULTI 트랜잭션 시작 트랜잭션 시작 시, 이후 명령어(들)은 바로 실행되지 않고 queue 에 쌓임 EXEC queue 에 쌓인 명령어(들)을 일괄적으로 실행
+* RDBMS 의 commit DISCARD queue 에 쌓인 명령어(들)을 버림</description>
+    </item>
+    
+  </channel>
+</rss>

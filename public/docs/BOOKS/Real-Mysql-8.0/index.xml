@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Real Mysql 8.0 on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/BOOKS/Real-Mysql-8.0/</link>
+    <description>Recent content in Real Mysql 8.0 on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/BOOKS/Real-Mysql-8.0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>03. 사용자 및 권한</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/Real-Mysql-8.0/03_%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%B0%8F-%EA%B6%8C%ED%95%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/Real-Mysql-8.0/03_%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%B0%8F-%EA%B6%8C%ED%95%9C/</guid>
+      <description>MySQL 사용자 계정 = 사용자 ID, 호스트(사용자 IP) 구성
+MySQL 8.0 부터는 Role(역할) 개념이 도입되었다. Role 을 부여함으로써, 미리 준비된 권한들을 부여할 수 있다.
+3.1 사용자 식별 # 사용자 계정
+사용자 ID 호스트(사용자 IP, 도메인) 아래와 같이 동일한 두 계정이 있다면, 로그인 시 좁은 범위의 계정이 선택된다.
+`test`@`127.0.0.1` (pw : 123) `test`@`%` (pw : abc) (로컬호스트 환경에서) test 계정으로 로그인 시, test@127.0.01 계정으로 로그인을 시도 한다.
+3.2 사용자 계정 관리 # Mysql 8.</description>
+    </item>
+    
+    <item>
+      <title>04. 아키텍처</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/Real-Mysql-8.0/04_%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/Real-Mysql-8.0/04_%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/</guid>
+      <description>Mysql 서버 = Mysql 엔진 + Storage 엔진
+Handler API(핸들러 API)를 구현하여, (추가적인) Storage 엔진을 개발/적용할 수 있다. 4.1 MySQL 엔진 아키텍처 # Mysql 서버는 다른 DBMS 에 비해 구조가 독특하다고 볼 수 있다.
+아래와 같이 구조를 나눠볼 수 있다. Mysql 엔진 Storage 엔진 - 커넥션 핸들러 - SQL 파서 - SQL 옵티마이저
+- 캐시 &amp;amp; 버퍼
+- &amp;hellip; - InnoDB
+- MyISAM
+- &amp;hellip; 커넥션 핸들러 SQL 파서 , SQL 옵티마이저 , 캐시 &amp;amp; 버퍼 스토리지 엔진 (InnoDB, MyISAM, .</description>
+    </item>
+    
+  </channel>
+</rss>

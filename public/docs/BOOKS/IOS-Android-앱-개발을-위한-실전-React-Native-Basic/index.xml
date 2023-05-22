@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IOS, Android 앱 개발을 위한 실전 React Native - Basic on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/</link>
+    <description>Recent content in IOS, Android 앱 개발을 위한 실전 React Native - Basic on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>기본</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EA%B8%B0%EB%B3%B8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EA%B8%B0%EB%B3%B8/</guid>
+      <description>기본 원리 # React Native # 1. Bundling
+JS 파일을 React N 이 번들링하여, 각 플랫폼에 제공(?)한다.
+2. Bridge
+(플랫폼 단에서) JS Thread 와 Native Threads 가 매끄럽게 이어질 수 있도록(?) Bridge 를 제공한다.
+Bulding 종류 # 종류 장점 단점 Expo CLI 1. 개발 환경 구축이 쉽다. 2. 실제로 개발이 쉽고 편하다. 1. OS Layer 와 직접 상호작용 불가능하다. (Java, Kotlin, Object-C, Swift 로 추가 작성이 불가능하다.) 2. Expo에서 제공해주는 모듈만 사용 가능하다.</description>
+    </item>
+    
+    <item>
+      <title>스타일 (1)</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EC%8A%A4%ED%83%80%EC%9D%BC-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EC%8A%A4%ED%83%80%EC%9D%BC-1/</guid>
+      <description> Style 방식 # 1. inline
+&amp;lt;View style={{...}}&amp;gt; ... &amp;lt;/View&amp;gt; 2. StyleSheet
+&amp;lt;View style={styles.mainView}&amp;gt; ... &amp;lt;/View&amp;gt; ... const styles = StyleSheet.create({ mainView: { .... } }) </description>
+    </item>
+    
+  </channel>
+</rss>

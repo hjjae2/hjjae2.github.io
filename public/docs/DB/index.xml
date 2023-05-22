@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DB on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/DB/</link>
+    <description>Recent content in DB on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/DB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/01.-Mysql-%EC%84%9C%EB%B2%84-Mysql%EC%97%94%EC%A7%84-&#43;-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%97%94%EC%A7%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/01.-Mysql-%EC%84%9C%EB%B2%84-Mysql%EC%97%94%EC%A7%84-&#43;-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%97%94%EC%A7%84/</guid>
+      <description>Mysql 서버는 아래와 같이 구분할 수 있습니다.
+Mysql 엔진 스토리지 엔진 Mysql 엔진(Mysql Engine) # 클라이언트의 요청을 받거나, 쿼리를 파싱하거나 캐싱하는 등의 전반적인 기능을 담당합니다.
+disk와의 직접적인 접근을 제외한 전반적인 역할을 수행합니다.
+커넥션 핸들러 : 커넥션 및 쿼리 요청을 처리합니다. SQL 인터페이스 : DML, DDL, Procedure, View 등 SQL 인터페이스를 제공합니다. SQL 파서 : SQL 쿼리 파싱(토큰화)합니다. 이 과정에서 SQL 문법 오류를 탐지할 수 있습니다. SQL 옵티마이저 : 쿼리를 최적화합니다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/02.-Mysql-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/02.-Mysql-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0/</guid>
+      <description>메모리 구조는 아래와 같이 구분됩니다.
+Global Memory Area(글로벌 메모리 영역) Local Memory Area(Session Memory Area) Global Memory Area # Mysql 데몬이 뜨는 순간 OS로부터 할당받는 메모리 영역입니다.
+모든 쓰레드에서 공유되는 영역입니다.
+Buffer Pool (InnoDB) Key Cache (MyISAM) Query Cache (쿼리 캐시) Binlog Buffer (바이너리 로그 버퍼) Log Buffer (로그 버퍼) Table Cache (테이블 캐시) 대게 1개의 공간으로 할당되지만, 필요에 따라 2개의 공간이 할당될 수 있습니다.
+Local Memory Area # Client Thread(Foreground Thread(?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/03.-Mysql-%EC%93%B0%EB%A0%88%EB%93%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/03.-Mysql-%EC%93%B0%EB%A0%88%EB%93%9C/</guid>
+      <description>Mysql 서버는 쓰레드 기반으로 동작합니다.
+Foreground Thread Background Thread Foreground Thread (Client Thread, 사용자 쓰레도) # Client의 커넥션/요청을 처리하기 위해 존재하는 쓰레드입니다. 즉, 최소한 클라이언트가 접속된 만큼 쓰레드가 존재합니다.
+Client가 커넥션을 종료하면, Thread Pool로 되돌아갑니다.
+Foreground Thread는 데이터를 Mysql의 캐시나 버퍼로부터 데이터를 읽어옵니다. 캐시/버퍼에 데이터가 없으면 디스크로부터 데이터를 읽어옵니다.
+스토리지엔진(InnoDb, MyISAM)에 따라 Foreground Thread가 디스크의 쓰기 역할이 다릅니다.
+InnoDB 디스크 쓰기 작업은 Background Thread 가 처리합니다. MyISAM 디스크로 쓰기 작업은 Foreground Thread 가 처리합니다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/04.-Replication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/04.-Replication/</guid>
+      <description>Replication 에 대해 이해해보기
+Replication # 회사에서 대용량의, 중요한 테이블에 대한 스키마 변경 작업을 하게 되었다. 작업을 진행하기 전 Replication 에 대한 개념이 부족하여 replication 에 대해 공부해보고 정리해보고자 한다.
+Replication 은 말그대로 &amp;lsquo;복제&amp;rsquo;이다. DB에 데이터를 insert, update, delete 하면 그 내용을 그대로 (여분의, 추가의)DB에 저장해놓는 것이다.
+이렇게 복제된 DB는 백업용으로 사용할 수도 있고, select query를 처리해줄 수도 있다. 예를 들어, select query를 slave DB에 위임하면 메인 DB의 부하를 감소시킬 수 있을 것이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/05.-%EC%9D%B8%EB%8D%B1%EC%8A%A4Index/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/05.-%EC%9D%B8%EB%8D%B1%EC%8A%A4Index/</guid>
+      <description>인덱스(Index) # 테이블의 검색 성능(속도)를 향상시켜주기 위해 사용되는 기술(혹은 자료 구조)입니다.
+데이터들을 정렬된 상태로 관리하여, 검색 시 이점이 있습니다.
+Order by 효율성 : 이미 정렬되어 있기에 인덱스에서 관리된 형태 그대로 가져올 수 있다. Min, Max 효율성 : 첫 번째 값, 마지막 값을 가져와 사용할 수 있다. Where 효율성 : 테이블의 데이터들은 내부적으로는 정렬되지 않은 상태로 저장되기 때문에 인덱스 없는 검색 시 Full-Scan이 필요하다. 인덱스 사용 시에는 정렬된 형태로 값을 저장하기 때문에 빠르게 데이터를 검색할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/06.-%EC%BF%BC%EB%A6%AC-%EC%8B%A4%ED%96%89-%EC%88%9C%EC%84%9C-%EB%B0%8F-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/06.-%EC%BF%BC%EB%A6%AC-%EC%8B%A4%ED%96%89-%EC%88%9C%EC%84%9C-%EB%B0%8F-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD/</guid>
+      <description>SELECT 쿼리 실행 순서 # 드라이빙 테이블 (where 적용 / 조인 실행) 드리븐 테이블1 드리븐 테이블2 -&amp;gt; GROUP BY -&amp;gt; DISTINCT -&amp;gt; HAVING -&amp;gt; ORDER BY -&amp;gt; LIMIT // 주로 group by 없이 order by만 적용된 쿼리에서 사용될 수 있는 순서이다. 드라이빙 테이블 -&amp;gt; ORDER BY -&amp;gt; 드리븐 테이블1, 드리븐 테이블2 (were 적용 / 조인 실행) -&amp;gt; LIMIT 적용 인덱스 컬럼의 값을 변환/조작하지 않는다. # 인덱스를 사용하지 않는 경우</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/07.-Lock-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81-%EB%9D%BD/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/07.-Lock-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81-%EB%9D%BD/</guid>
+      <description>정리하면 아래와 같을 수 있을 것 같음
+낙관적 락 : CAS
+비관적 락 : Lock
+Optimistic Lock (낙관적 락) # 트랜잭션 충돌이 발생하지 않는다고 가정하는 것
+DB 제공하는 Lock 을 사용하지 않고, Application Level(e.g. JPA)에서 버전 관리 직접함
+&amp;gt; 버전 관리 : version, timestamp, hashcode 등
+CAS 개념으로 볼 수 있을 것 같다.
+Lock 을 사용하지 않기 때문에, 트랜잭션 충돌이 많지 않은 상황에 사용하면 성능 향상
+Lock vs CAS 의 비교로도 볼 수 있을 듯</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/08.-Charset-Collation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/08.-Charset-Collation/</guid>
+      <description>Mysql 기준
+Mysql에서 제공하는 Charset 종류 # 아래의 명령어로 확인할 수 있다.
+show character set ; 대표적으로 아래와 같다.
+utf8 utf8mb4 ascii euckr 특징 (중요!!) # Mysql utf8은 3byte까지 지원한다. 4byte 문자를 사용하기 위해서는 utf8mb4를 사용한다. utf16, utf32도 4byte를 지원한다. Mysql에서 제공하는 Collation 종류 # 아래의 명령어로 확인할 수 있다.
+show collation ; 대표적으로 아래와 같다.
+utf8_bin, utf8mb4_bin (utf8, utf8mb4) binary 값(hex)으로 비교한다. utf8_general_ci, utf8mb4_general_ci (utf8, utf8mb4) a, b, &amp;hellip; 순서 (즉 휴머니스틱하게 정렬) utf8_unicode_ci, utf8mb4_unicode_ci (utf8, utf8mb4) utf8_general_ci 보다 조금 더 휴머니스틱하게 정렬한다고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/09.-GTID/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/09.-GTID/</guid>
+      <description>GTID 에 대해 이해해보기
+GTID(Global Transaction IDentifier) (작성중) # 형태 : 고유한 식별자(ID):TRANSACTION ID
+Master,Slave 복제 기준이 되었던 binlog, pos 대신 GTID 를 사용할 수 있다. Master 의 binglog file, pos 를 따라가지 않아도 된다. GTID 정보만으로 Master, Slave 간의 일관성을 쉽게 확인할 수 있다. GTID 트랜잭션은 mysql.gtid_executed 로 관리되기에, 중복 수행되지 않는다. 트랜잭션이 commit 되면 GTID 를 할당 받고 binlog 에 기록한다. 할당된 GTID 는 gtid_executed system variable, mysql.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DB/10.-InnoDB-auto_increment-%EC%B4%88%EA%B8%B0%ED%99%94-%EB%B0%A9%EC%8B%9D/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DB/10.-InnoDB-auto_increment-%EC%B4%88%EA%B8%B0%ED%99%94-%EB%B0%A9%EC%8B%9D/</guid>
+      <description>InnoDB 엔진, auto_increment 초기화 방식 # (InnoDB 엔진을 사용할 때) Mysql 5.7과 이전버전에서, 서버 재시작 시 auto_increment 의 값은 아래와 같이 초기화된다.
+이유는 auto_increment 값을 메모리 상에서 관리하기 때문.
+&amp;quot; In MySQL 5.7 and earlier, the auto-increment counter is stored in main memory, not on disk. To initialize an auto-increment counter after a server restart, InnoDB would execute the equivalent of the following statement on the first insert into a table containing an AUTO_INCREMENT column.</description>
+    </item>
+    
+  </channel>
+</rss>

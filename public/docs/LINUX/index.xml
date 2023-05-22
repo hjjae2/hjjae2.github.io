@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LINUX on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/LINUX/</link>
+    <description>Recent content in LINUX on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/LINUX/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/LINUX/LINUX-epoll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/LINUX/LINUX-epoll/</guid>
+      <description>http://blueheartscabin.blogspot.com/2013/08/c-epoll.html
+select, poll, epoll # 관심 있는 fd (= 대상 fd)들을 등록해두고 이들 중 이벤트가 발생하는 것을 감지하기 위해 사용하는 함수다.
+다만, 이벤트를 감지하는 동작 방식에 차이가 있다.
+select : 어떤 fd에 발생한 이벤트인지 찾기 위해 등록된 fd 리스트를 선형 탐색한다.
+epoll : 이벤트가 발생한 fd들을 반환해준다.
+이해한 내용이 맞는 지 다른 글도 확인
+epoll 프로그래밍 흐름 # 소켓 생성, 설정 socket(), bind(), setsockopt() epoll 에 등록 (epoll_ctl) listen() epoll_wait() epoll_wait 를 통해 이벤트 발생을 감지/accept : accpet() :thinking: accpet 로 부터 넘어온 fd와 통신 준비 fcntl() epoll 에 새로운 fd 등록 : epoll_ctl epoll_ctl # epoll이 관찰할 fd, 이벤트를 등록하기 위한 인터페이스라고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/LINUX/LINUX-rsync/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/LINUX/LINUX-rsync/</guid>
+      <description>rsnyc # 서버 간 파일, 디렉토리 정보를 동기화한다.
+서로 다른 컴퓨터에 있는 정보(파일, 디렉토리)를 동기화한다.
+비교해서 수정된 부분만 업데이트한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/LINUX/LINUX-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/LINUX/LINUX-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</guid>
+      <description>http://biscuit.cafe24.com/moniwiki/wiki.php/socket%C7%C1%B7%CE%B1%D7%B7%A1%B9%D6%B1%E2%BA%BB
+socket() bind() listen() read() / write() 1. socket() # socket() 함수는 통신을 위한 하나의 포인트(= endpoint)를 만든다. 통신을 위한 매개체(= fd)를 만든다.
+&amp;quot; socket() 함수는, 통신을 위한 끝점 한개를 만든다 (무슨 소리냐! :@). 워낙 여러가지 통신에 사용할 수 있는 함수이지만, 이 글에서는 TCP/IP 통신을 위한 부분에 국한해서, 뭔가 통신을 하기위한 매개체(이것을 fd, file descriptor 라고 한다)를 한개 생성하는데 쓴다. &amp;ldquo;
+#include &amp;lt;sys/types.h&amp;gt; #include &amp;lt;sys/socket.h&amp;gt; int socket(int domain, int type, int protocol); int fd; if ((fd = socket(PF_INET, SOCK_STREAM, 0)) &amp;lt; 0) { fprintf(stderr, &amp;#34;socket() error\n&amp;#34;); exit(-1); } &amp;rdquo; socket() 함수의 파라미터 domain과 type은 TCP/IP의 IP와 TCP를 의미한다.</description>
+    </item>
+    
+  </channel>
+</rss>

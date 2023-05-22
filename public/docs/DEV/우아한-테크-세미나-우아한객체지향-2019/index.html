@@ -1,0 +1,5831 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2019년 &ldquo;우아한Tech - 우아한객체지향 by 조영호님&rdquo; 유투브 세미나를 듣고 내용 정리하기
+제목 : &lsquo;우아한 객체지향 의존성을 이용해 설계 진화시키키&rsquo;
+설계에서 가장 중요한 것은 &lsquo;의존성&rsquo;이다. &lsquo;의존성&rsquo;을 어떻게 설정,관리하느냐에 따라 설계가 많이 달라진다.
+의존성(Dependency)
+설계는 코드를 어떻게 배치할 것인가? 어떤 코드를 어디에 넣을 것인가? 어떤 코드를 어디 클래스에, 어디 패키지에 넣을건지 등에 대한 고민을 하는 것이다.
+변경에 초점을 맞춰야한다. 같이 변경되는 코드를 같이 넣어줘야하고, 같이 변경되지 않는 것은 따로 넣는다. (= 결국에는 의존성과 관련이 있다.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="2019년 &ldquo;우아한Tech - 우아한객체지향 by 조영호님&rdquo; 유투브 세미나를 듣고 내용 정리하기
+제목 : &lsquo;우아한 객체지향 의존성을 이용해 설계 진화시키키&rsquo;
+설계에서 가장 중요한 것은 &lsquo;의존성&rsquo;이다. &lsquo;의존성&rsquo;을 어떻게 설정,관리하느냐에 따라 설계가 많이 달라진다.
+의존성(Dependency)
+설계는 코드를 어떻게 배치할 것인가? 어떤 코드를 어디에 넣을 것인가? 어떤 코드를 어디 클래스에, 어디 패키지에 넣을건지 등에 대한 고민을 하는 것이다.
+변경에 초점을 맞춰야한다. 같이 변경되는 코드를 같이 넣어줘야하고, 같이 변경되지 않는 것은 따로 넣는다. (= 결국에는 의존성과 관련이 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-2019/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2023-05-22T12:17:45+09:00" />
+<title>우아한 테크 세미나 : 우아한객체지향 2019 | thisandthat</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.e445341171724705139aa04714dd8476488be2501fd643c3da5b13e1069f17b7.css" integrity="sha256-5EU0EXFyRwUTmqBHFN2EdkiL4lAf1kPD2lsT4QafF7c=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.174ed7393cf719b821420ec991c1a56c4bdc8bc768bef5f161f2be043e51f96a.js" integrity="sha256-F07XOTz3GbghQg7JkcGlbEvci8dovvXxYfK&#43;BD5R&#43;Wo=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>thisandthat</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fc737caa1681790d3823abdf5db61974" class="toggle"  />
+    <label for="section-fc737caa1681790d3823abdf5db61974" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;AWS&nbsp;(10)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/01.-API-Gateway/" class="">
+      📃&nbsp;01. API Gateway</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/02.-Batch/" class="">
+      📃&nbsp;02. Batch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/03.-Cloud-Formation/" class="">
+      📃&nbsp;03. Cloud Formation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/04.-Elastic-Beanstalk/" class="">
+      📃&nbsp;04. Elastic Beanstalk</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/05.-Glue/" class="">
+      📃&nbsp;05. Glue</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/06.-IAM/" class="">
+      📃&nbsp;06. IAM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/07.-VPC/" class="">
+      📃&nbsp;07. VPC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-136b25850e9e92201a6980aea5823b9b" class="toggle"  />
+    <label for="section-136b25850e9e92201a6980aea5823b9b" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;08. Opensearch&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/OpenSearch/01.-%EA%B0%9C%EC%9A%94/" class="">
+      📃&nbsp;01. 개요</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/OpenSearch/02.-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94-%EA%B7%B8%EB%A6%AC%EA%B3%A0-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81/" class="">
+      📃&nbsp;02. 내부 구조, 성능 최적화 그리고 스케일링</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/AWS/OpenSearch/03.-5xx-Error-with-Scaling/" class="">
+      📃&nbsp;03. 5xx Error (With Scaling)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f42f7225344636e8189436d82f8a192a" class="toggle"  />
+    <label for="section-f42f7225344636e8189436d82f8a192a" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;BOOKS&nbsp;(105)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/PAPER-Mock-Roles-not-Objects/" class="">
+      📃&nbsp;Mock Roles, not Objects</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a35e9e89fce8cdfc1295724e762bcdaa" class="toggle"  />
+    <label for="section-a35e9e89fce8cdfc1295724e762bcdaa" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;IOS, Android 앱 개발을 위한 실전 React Native - Basic&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EA%B8%B0%EB%B3%B8/" class="">
+      📃&nbsp;기본</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/IOS-Android-%EC%95%B1-%EA%B0%9C%EB%B0%9C%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%8B%A4%EC%A0%84-React-Native-Basic/%EC%8A%A4%ED%83%80%EC%9D%BC-1/" class="">
+      📃&nbsp;스타일 (1)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-910ca7f10d85070f199aea04d0873cf6" class="toggle"  />
+    <label for="section-910ca7f10d85070f199aea04d0873cf6" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;Real Mysql 8.0&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Real-Mysql-8.0/03_%EC%82%AC%EC%9A%A9%EC%9E%90-%EB%B0%8F-%EA%B6%8C%ED%95%9C/" class="">
+      📃&nbsp;03. 사용자 및 권한</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Real-Mysql-8.0/04_%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/" class="">
+      📃&nbsp;04. 아키텍처</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1d3f54a0c666e5779f2b8969af077915" class="toggle"  />
+    <label for="section-1d3f54a0c666e5779f2b8969af077915" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;Spring Cloud로 개발하는 마이크로서비스 애플리케이션&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Spring-Cloud%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%84%B9%EC%85%981-Service-Discovery/" class="">
+      📃&nbsp;섹션1. Service Discovery</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Spring-Cloud%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%84%B9%EC%85%982-API-Gateway/" class="">
+      📃&nbsp;섹션2. API Gateway</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/Spring-Cloud%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94-%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98/%EC%84%B9%EC%85%983-Spring-Configuration-Service/" class="">
+      📃&nbsp;섹션3. Spring Configuration Service</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3a397ecab4a261ae076e95a1953805da" class="toggle"  />
+    <label for="section-3a397ecab4a261ae076e95a1953805da" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;가상 면접 사례로 배우는 대규모 시스템 설계 기초&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/01_%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%88%98%EC%97%90-%EB%94%B0%EB%A5%B8-%EA%B7%9C%EB%AA%A8-%ED%99%95%EC%9E%A5%EC%84%B1/" class="">
+      📃&nbsp;01. 사용자 수에 따른 규모 확장성</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/02_%EA%B0%9C%EB%9E%B5%EC%A0%81%EC%9D%B8-%EA%B7%9C%EB%AA%A8-%EC%B6%94%EC%A0%95/" class="">
+      📃&nbsp;02. 개략적인 규모 추정</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/06_Key-Value-Store-%EC%84%A4%EA%B3%84/" class="">
+      📃&nbsp;03. Key-Value Store 설계</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EA%B0%80%EC%83%81-%EB%A9%B4%EC%A0%91-%EC%82%AC%EB%A1%80%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84-%EA%B8%B0%EC%B4%88/10_%EC%95%8C%EB%A6%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%A4%EA%B3%84/" class="">
+      📃&nbsp;10. 알림 시스템 설계</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b593263db66ae346fb8390214e6fe136" class="toggle"  />
+    <label for="section-b593263db66ae346fb8390214e6fe136" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;대규모 서비스를 지탱하는 기술&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EC%A7%80%ED%83%B1%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0/5%EC%9E%A5_%EB%8C%80%EA%B7%9C%EB%AA%A8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B2%98%EB%A6%AC%EC%9D%98-%EC%96%B4%EB%A0%A4%EC%9A%B4-%EC%A0%90-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%99%80-%EB%94%94%EC%8A%A4%ED%81%AC/" class="">
+      📃&nbsp;5장. 대규모 데이터 처리의 어려운 점 (메모리와 디스크)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EC%A7%80%ED%83%B1%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0/6%EC%9E%A5_%EA%B7%9C%EB%AA%A8-%EC%A1%B0%EC%A0%95%EC%9D%98-%EC%9A%94%EC%86%8C/" class="">
+      📃&nbsp;6장. 규모 조정의 요소</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%8C%80%EA%B7%9C%EB%AA%A8-%EC%84%9C%EB%B9%84%EC%8A%A4%EB%A5%BC-%EC%A7%80%ED%83%B1%ED%95%98%EB%8A%94-%EA%B8%B0%EC%88%A0/7%EC%9E%A5_%EB%8C%80%EA%B7%9C%EB%AA%A8-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EB%8B%A4%EB%A3%A8%EA%B8%B0-%EC%9C%84%ED%95%9C-%EA%B8%B0%EC%B4%88_%EC%A7%80%EC%8B%9D/" class="">
+      📃&nbsp;7장. 대규모 데이터를 다루기 위한 기초 지식</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ef447d8651038f7fd25fab94af25afe1" class="toggle"  />
+    <label for="section-ef447d8651038f7fd25fab94af25afe1" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;만들면서 배우는 클린 아키텍처&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%A7%8C%EB%93%A4%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/01.-%EA%B3%84%EC%B8%B5%ED%98%95-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EB%8A%94-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C/" class="">
+      📃&nbsp;01. 계층형 아키텍처의 문제는 무엇일까?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%A7%8C%EB%93%A4%EB%A9%B4%EC%84%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%ED%81%B4%EB%A6%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/02.-%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%97%AD%EC%A0%84%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;02. 의존성 역전하기</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ccd854ef23d7e15292a92cf172361a2b" class="toggle"  />
+    <label for="section-ccd854ef23d7e15292a92cf172361a2b" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;모던 자바 인 액션&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/1%EC%9E%A5-%EC%9E%90%EB%B0%94-891011-%EB%AC%B4%EC%8A%A8-%EC%9D%BC%EC%9D%B4-%EC%9D%BC%EC%96%B4%EB%82%98%EA%B3%A0-%EC%9E%88%EB%8A%94%EA%B0%80/" class="">
+      📃&nbsp;1장. 자바 8,9,10,11 무슨 일이 일어나고 있는가?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/2%EC%9E%A5-%EB%8F%99%EC%9E%91-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%ED%99%94-%EC%BD%94%EB%93%9C-%EC%A0%84%EB%8B%AC%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;2장. 동작 파라미터화 코드 전달하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/3%EC%9E%A5-%EB%9E%8C%EB%8B%A4%ED%91%9C%ED%98%84%EC%8B%9D/" class="">
+      📃&nbsp;3장. 람다표현식</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%8D%98-%EC%9E%90%EB%B0%94-%EC%9D%B8-%EC%95%A1%EC%85%98/4%EC%9E%A5-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%86%8C%EA%B0%9C/" class="">
+      📃&nbsp;4장. 스트림 소개</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1974f97cac2664bb09dc1c5c1e4f4eac" class="toggle"  />
+    <label for="section-1974f97cac2664bb09dc1c5c1e4f4eac" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;모든 개발자를 위한 HTTP 웹 기본 지식&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/01_%EC%9D%B8%ED%84%B0%EB%84%B7%ED%86%B5%EC%8B%A0/" class="">
+      📃&nbsp;01. 인터넷 통신</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/02_URI/" class="">
+      📃&nbsp;02. URI</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EB%AA%A8%EB%93%A0-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-HTTP-%EC%9B%B9-%EA%B8%B0%EB%B3%B8-%EC%A7%80%EC%8B%9D/03_HTTP/" class="">
+      📃&nbsp;03. HTTP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-282a6a887e5b6b3f5a1982afcfbdbb35" class="toggle"  />
+    <label for="section-282a6a887e5b6b3f5a1982afcfbdbb35" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;스프링 5 레시피&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-5-%EB%A0%88%EC%8B%9C%ED%94%BC/1%EC%9E%A5.%EC%8A%A4%ED%94%84%EB%A7%81-%EC%BD%94%EC%96%B4/" class="">
+      📃&nbsp;01. 스프링 코어</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-5-%EB%A0%88%EC%8B%9C%ED%94%BC/2%EC%9E%A5.-%EC%8A%A4%ED%94%84%EB%A7%81-MVC/" class="">
+      📃&nbsp;02. 스프링 MVC</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3f7fe8f855e743b7e1ba575f1b4dc438" class="toggle"  />
+    <label for="section-3f7fe8f855e743b7e1ba575f1b4dc438" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;스프링 입문을 위한 자바 객체 지향의 원리와 이해&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%B0%94-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%9D%98-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%9D%B4%ED%95%B4/5%EC%9E%A5.-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-5%EC%9B%90%EC%B9%99-SOLID/" class="">
+      📃&nbsp;5장. 객체 지향 설계 5원칙 (SOLID)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%B0%94-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%9D%98-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%9D%B4%ED%95%B4/6%EC%9E%A5.-%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%B4-%EC%82%AC%EB%9E%91%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/" class="">
+      📃&nbsp;6장. 스프링이 사랑한 디자인 패턴</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9E%90%EB%B0%94-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5%EC%9D%98-%EC%9B%90%EB%A6%AC%EC%99%80-%EC%9D%B4%ED%95%B4/7%EC%9E%A5.-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%82%BC%EA%B0%81%ED%98%95%EA%B3%BC-%EC%84%A4%EC%A0%95-%EC%A0%95%EB%B3%B4/" class="">
+      📃&nbsp;7장. 스프링 삼각형과 설정 정보</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5c6ded3850a698035d0c71bd15f4a25e" class="toggle"  />
+    <label for="section-5c6ded3850a698035d0c71bd15f4a25e" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;스프링 핵심 원리 (기본편)&nbsp;(5)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/@ComponentScan/" class="">
+      📃&nbsp;@ComponentScan</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/@Configuration%EA%B3%BC-%EB%B0%94%EC%9D%B4%ED%8A%B8%EC%BD%94%EB%93%9C-%EC%A1%B0%EC%9E%91%EC%9D%98-%EB%A7%88%EB%B2%95/" class="">
+      📃&nbsp;@Configuration과 바이트코드 조작의 마법</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EB%B9%88-%EC%83%9D%EB%AA%85-%EC%A3%BC%EA%B8%B0/" class="">
+      📃&nbsp;빈 생명 주기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EB%B9%88-%EC%8A%A4%EC%BD%94%ED%94%84/" class="">
+      📃&nbsp;빈 스코프</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84-%EC%A3%BC%EC%9E%85/" class="">
+      📃&nbsp;의존관계 주입</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-16cda8d474737b81ab1b70aec4bf8aa0" class="toggle"  />
+    <label for="section-16cda8d474737b81ab1b70aec4bf8aa0" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;실무로 배우는 시스템 성능 최적화&nbsp;(1)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%8B%A4%EB%AC%B4%EB%A1%9C-%EB%B0%B0%EC%9A%B0%EB%8A%94-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94/1-01.-%EC%84%B1%EB%8A%A5%EC%9D%B4%EB%9E%80/" class="">
+      📃&nbsp;1-01. 성능이란?</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e0c823f71c8bb91b9ce34a487b6e6290" class="toggle"  />
+    <label for="section-e0c823f71c8bb91b9ce34a487b6e6290" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;아파치 카프카 for beginners&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/Broker-Replication-ISR/" class="">
+      📃&nbsp;Broker, Replication, ISR</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/%EC%BB%A8%EC%8A%88%EB%A8%B8-%EB%9E%99Consumer-Lag/" class="">
+      📃&nbsp;컨슈머 랙(Consumer Lag)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/%ED%86%A0%ED%94%BD/" class="">
+      📃&nbsp;토픽</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-for-beginners/%ED%8C%8C%ED%8B%B0%EC%85%94%EB%84%88/" class="">
+      📃&nbsp;파티셔너</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ab0f5d302d29a0dda0e4a921532e6f7d" class="toggle"  />
+    <label for="section-ab0f5d302d29a0dda0e4a921532e6f7d" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;오브젝트&nbsp;(1)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/1%EC%9E%A5-%EA%B0%9D%EC%B2%B4-%EC%84%A4%EA%B3%84/" class="">
+      📃&nbsp;1장 객체, 설계</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-891b4cb33e5b783079063ff0841f1103" class="toggle"  />
+    <label for="section-891b4cb33e5b783079063ff0841f1103" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;이펙티브 코틀린&nbsp;(30)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-01.-%EA%B0%80%EB%B3%80%EC%84%B1%EC%9D%84-%EC%A0%9C%ED%95%9C%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 01. 가변성을 제한하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-02.-%EB%B3%80%EC%88%98%EC%9D%98-%EC%8A%A4%EC%BD%94%ED%94%84%EB%A5%BC-%EC%B5%9C%EC%86%8C%ED%95%98%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 02. 변수의 스코프를 최소하하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-03.-%EC%B5%9C%EB%8C%80%ED%95%9C-%ED%94%8C%EB%9E%AB%ED%8F%BC-%ED%83%80%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 03. 최대한 플랫폼 타입을 사용하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-04.-inferred-%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C-%EB%A6%AC%ED%84%B4%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 04. Inferred 타입으로 리턴하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-05.-%EC%98%88%EC%99%B8%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%B4-%EC%BD%94%EB%93%9C%EC%97%90-%EC%A0%9C%ED%95%9C%EC%9D%84-%EA%B1%B8%EC%96%B4%EB%9D%BC/" class="">
+      📃&nbsp;아이템 05. 예외를 활용해 코드에 제한을 걸어라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-06.-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EC%98%A4%EB%A5%98%EB%B3%B4%EB%8B%A4%EB%8A%94-%ED%91%9C%EC%A4%80-%EC%98%A4%EB%A5%98%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 06. 사용자 정의 오류보다는 표준 오류를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-07.-%EA%B2%B0%EA%B3%BC-%EB%B6%80%EC%A1%B1%EC%9D%B4-%EB%B0%9C%EC%83%9D%ED%95%A0-%EA%B2%BD%EC%9A%B0-null%EA%B3%BC-Failure%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 07. 결과 부족이 발생할 경우 Null과 Failure를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-08.-%EC%A0%81%EC%A0%88%ED%95%98%EA%B2%8C-null%EC%9D%84-%EC%B2%98%EB%A6%AC%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 08. 적절하게 Null을 처리하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-09.-use%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EB%A6%AC%EC%86%8C%EC%8A%A4%EB%A5%BC-%EB%8B%AB%EC%95%84%EB%9D%BC/" class="">
+      📃&nbsp;아이템 09. Use를 사용하여 리소스를 닫아라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-10.-%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%9D%BC/" class="">
+      📃&nbsp;아이템 10. 단위 테스트를 만들어라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-11.-%EA%B0%80%EB%8F%85%EC%84%B1%EC%9D%84-%EB%AA%A9%ED%91%9C%EB%A1%9C-%EC%84%A4%EA%B3%84%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 11. 가독성을 목표로 설계하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-12.-%EC%97%B0%EC%82%B0%EC%9E%90-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C%EB%A5%BC-%ED%95%A0-%EB%95%8C%EB%8A%94-%EC%9D%98%EB%AF%B8%EC%97%90-%EB%A7%9E%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 12. 연산자 오버로드를 할 때는 의미에 맞게 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-13.-Unit%EC%9D%84-%EB%A6%AC%ED%84%B4%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 13. Unit?을 리턴하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-14.-%EB%B3%80%EC%88%98-%ED%83%80%EC%9E%85%EC%9D%B4-%EB%AA%85%ED%99%95%ED%95%98%EC%A7%80-%EC%95%8A%EC%9D%80-%EA%B2%BD%EC%9A%B0-%ED%99%95%EC%8B%A4%ED%95%98%EA%B2%8C-%EC%A7%80%EC%A0%95%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 14. 변수 타입이 명확하지 않은 경우 확실하게 지정하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-15.-%EB%A6%AC%EC%8B%9C%EB%B2%84%EB%A5%BC-%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9C%BC%EB%A1%9C-%EC%B0%B8%EC%A1%B0%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 15. 리시버를 명시적으로 참조하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-16.-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0%EB%8A%94-%EB%8F%99%EC%9E%91%EC%9D%B4-%EC%95%84%EB%8B%88%EB%9D%BC-%EC%83%81%ED%83%9C%EB%A5%BC-%EB%82%98%ED%83%80%EB%82%B4%EC%95%BC-%ED%95%9C%EB%8B%A4/" class="">
+      📃&nbsp;아이템 16. 프로퍼티는 동작이 아니라 상태를 나타내야 한다</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-17.-%EC%9D%B4%EB%A6%84-%EC%9E%88%EB%8A%94-%EC%95%84%EA%B7%9C%EB%A8%BC%ED%8A%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 17. 이름 있는 아규먼트를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-18.-%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98%EC%9D%84-%EC%A7%80%EC%BC%9C%EB%9D%BC/" class="">
+      📃&nbsp;아이템 18. 코딩 컨벤션을 지켜라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-19.-knowledge%EB%A5%BC-%EB%B0%98%EB%B3%B5%ED%95%98%EC%97%AC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 19. Knowledge를 반복하여 사용하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-20.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EB%B0%98%EB%B3%B5%ED%95%B4%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%98%EC%A7%80-%EB%A7%90%EB%9D%BC/" class="">
+      📃&nbsp;아이템 20. 일반적인 알고리즘을 반복해서 구현하지 말라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-21.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%ED%8C%A8%ED%84%B4%EC%9D%80-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0-%EC%9C%84%EC%9E%84%EC%9C%BC%EB%A1%9C-%EB%A7%8C%EB%93%A4%EC%96%B4%EB%9D%BC/" class="">
+      📃&nbsp;아이템 21. 일반적인 프로퍼티 패턴은 프로퍼티 위임으로 만들어라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-22.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%84-%EA%B5%AC%ED%98%84%ED%95%A0-%EB%95%8C-%EC%A0%9C%EB%84%A4%EB%A6%AD%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 22. 일반적인 알고리즘을 구현할 때 제네릭을 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-23.-%ED%83%80%EC%9E%85-%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0%EC%9D%98-%EC%84%80%EB%8F%84%EC%9E%89%EC%9D%84-%ED%94%BC%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 23. 타입 파라미터의 섀도잉을 피하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-24.-%EC%A0%9C%EB%84%A4%EB%A6%AD-%ED%83%80%EC%9E%85%EA%B3%BC-variance-%ED%95%9C%EC%A0%95%EC%9E%90%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 24. 제네릭 타입과 Variance 한정자를 활용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-25.-%EA%B3%B5%ED%86%B5-%EB%AA%A8%EB%93%88%EC%9D%84-%EC%B6%94%EC%B6%9C%ED%95%B4%EC%84%9C-%EC%97%AC%EB%9F%AC-%ED%94%8C%EB%9E%AB%ED%8F%BC%EC%97%90%EC%84%9C-%EC%9E%AC%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 25. 공통 모듈을 추출해서 여러 플랫폼에서 재사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-26.-%ED%95%A8%EC%88%98-%EB%82%B4%EB%B6%80%EC%9D%98-%EC%B6%94%EC%83%81%ED%99%94-%EB%A0%88%EB%B2%A8%EC%9D%84-%ED%86%B5%EC%9D%BC%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 26. 함수 내부의 추상화 레벨을 통일하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-27.-%EB%B3%80%ED%99%94%EB%A1%9C%EB%B6%80%ED%84%B0-%EC%BD%94%EB%93%9C%EB%A5%BC-%EB%B3%B4%ED%98%B8%ED%95%98%EB%A0%A4%EB%A9%B4-%EC%B6%94%EC%83%81%ED%99%94%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 27. 변화로부터 코드를 보호하려면 추상화를 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-28.-API-%EC%95%88%EC%A0%84%EC%84%B1%EC%9D%84-%ED%99%95%EC%9D%B8%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 28. API 안전성을 확인하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-29.-%EC%99%B8%EB%B6%80-API%EB%A5%BC-%EB%9E%A9wrap%ED%95%B4%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 29. 외부 API를 랩(wrap)해서 사용하라</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%EC%BD%94%ED%8B%80%EB%A6%B0/%EC%95%84%EC%9D%B4%ED%85%9C-50.-%EC%BB%AC%EB%A0%89%EC%85%98-%EC%B2%98%EB%A6%AC-%EB%8B%A8%EA%B3%84-%EC%88%98%EB%A5%BC-%EC%A0%9C%ED%95%9C%ED%95%98%EB%9D%BC/" class="">
+      📃&nbsp;아이템 50. 컬렉션 처리 단계 수를 제한하라</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-54b5008ec09b432f44de7159ae457b86" class="toggle"  />
+    <label for="section-54b5008ec09b432f44de7159ae457b86" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;이펙티브 타입스크립트&nbsp;(27)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-01.-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%99%80-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EA%B4%80%EA%B3%84-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 01. 타입스크립트와 자바스크립트의 관계 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-02.-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%84%A4%EC%A0%95-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 02. 타입스크립트 설정 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-03.-%EC%BD%94%EB%93%9C-%EC%83%9D%EC%84%B1%EA%B3%BC-%ED%83%80%EC%9E%85%EC%9D%B4-%EA%B4%80%EA%B3%84%EC%97%86%EC%9D%8C%EC%9D%84-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 03. 코드 생성과 타입이 관계없음을 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-04.-%EA%B5%AC%EC%A1%B0%EC%A0%81-%ED%83%80%EC%9D%B4%ED%95%91%EC%97%90-%EC%9D%B5%EC%88%99%ED%95%B4%EC%A7%80%EA%B8%B0/" class="">
+      📃&nbsp;아이템 04. 구조적 타이핑에 익숙해지기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-05.-any-%ED%83%80%EC%9E%85-%EC%A7%80%EC%96%91%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 05. Any 타입 지양하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-06.-%ED%8E%B8%EC%A7%91%EA%B8%B0%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%ED%83%80%EC%9E%85-%EC%8B%9C%EC%8A%A4%ED%85%9C-%ED%83%90%EC%83%89%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 06. 편집기를 사용하여 타입 시스템 탐색하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-07.-%ED%83%80%EC%9E%85%EC%9D%B4-%EA%B0%92%EB%93%A4%EC%9D%98-%EC%A7%91%ED%95%A9%EC%9D%B4%EB%9D%BC%EA%B3%A0-%EC%83%9D%EA%B0%81%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 07. 타입이 값들의 집합이라고 생각하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-08.-%ED%83%80%EC%9E%85-%EA%B3%B5%EA%B0%84%EA%B3%BC-%EA%B0%92-%EA%B3%B5%EA%B0%84%EC%9D%98-%EC%8B%AC%EB%B2%8C-%EA%B5%AC%EB%B6%84%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 08. 타입 공간과 값 공간의 심벌 구분하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-09.-%ED%83%80%EC%9E%85-%EB%8B%A8%EC%96%B8%EB%B3%B4%EB%8B%A4%EB%8A%94-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 09. 타입 단언보다는 타입 선언을 사용하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-10.-%EA%B0%9D%EC%B2%B4-%EB%9E%98%ED%8D%BC-%ED%83%80%EC%9E%85-%ED%94%BC%ED%95%98%EA%B8%B0-todo/" class="">
+      📃&nbsp;아이템 10. 객체 래퍼 타입 피하기 (Todo)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-11.-%EC%9E%89%EC%97%AC-%EC%86%8D%EC%84%B1-%EC%B2%B4%ED%81%AC%EC%9D%98-%ED%95%9C%EA%B3%84-%EC%9D%B8%EC%A7%80%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 11. 잉여 속성 체크의 한계 인지하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-14.-%ED%83%80%EC%9E%85-%EC%97%B0%EC%82%B0%EA%B3%BC-%EC%A0%9C%EB%84%88%EB%A6%AD-%EC%82%AC%EC%9A%A9%EC%9C%BC%EB%A1%9C-%EB%B0%98%EB%B3%B5-%EC%A4%84%EC%9D%B4%EA%B8%B0/" class="">
+      📃&nbsp;아이템 14. 타입 연산과 제너릭 사용으로 반복 줄이기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-15.-%EB%8F%99%EC%A0%81-%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%97%90-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B2%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 15. 동적 데이터에 인덱스 시그니처 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-16.-number-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%8B%9C%EA%B7%B8%EB%8B%88%EC%B2%98%EB%B3%B4%EB%8B%A4%EB%8A%94-Array-%ED%8A%9C%ED%94%8C-ArrayLike%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 16. Number 인덱스 시그니처보다는 Array, 튜플, ArrayLike를 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-19.-%EC%B6%94%EB%A1%A0-%EA%B0%80%EB%8A%A5%ED%95%9C-%ED%83%80%EC%9E%85%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%B4-%EC%9E%A5%ED%99%A9%ED%95%9C-%EC%BD%94%EB%93%9C-%EB%B0%A9%EC%A7%80%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 19. 추론 가능한 타입을 사용해 장황한 코드 방지하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-20.-%EB%8B%A4%EB%A5%B8-%ED%83%80%EC%9E%85%EC%97%90%EB%8A%94-%EB%8B%A4%EB%A5%B8-%EB%B3%80%EC%88%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 20. 다른 타입에는 다른 변수 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-21.-%ED%83%80%EC%9E%85-%EB%84%93%ED%9E%88%EA%B8%B0/" class="">
+      📃&nbsp;아이템 21. 타입 넓히기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-23.-%ED%95%9C%EA%BA%BC%EB%B2%88%EC%97%90-%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 23. 한꺼번에 객체 생성하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-24.-%EC%9D%BC%EA%B4%80%EC%84%B1-%EC%9E%88%EB%8A%94-%EB%B3%84%EC%B9%AD-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 24. 일관성 있는 별칭 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-25.-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%BD%94%EB%93%9C%EC%97%90%EB%8A%94-%EC%BD%9C%EB%B0%B1-%EB%8C%80%EC%8B%A0-async-%ED%95%A8%EC%88%98-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 25. 비동기 코드에는 콜백 대신 Async 함수 사용하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-26.-%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0%EC%97%90-%EB%AC%B8%EB%A7%A5%EC%9D%B4-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%82%AC%EC%9A%A9%EB%90%98%EB%8A%94%EC%A7%80-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 26. 타입 추론에 문맥이 어떻게 사용되는지 이해하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-27.-%ED%95%A8%EC%88%98%ED%98%95-%EA%B8%B0%EB%B2%95%EA%B3%BC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%A1%9C-%ED%83%80%EC%9E%85-%ED%9D%90%EB%A6%84-%EC%9C%A0%EC%A7%80%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 27. 함수형 기법과 라이브러리로 타입 흐름 유지하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-28.-%EC%9C%A0%ED%9A%A8%ED%95%9C-%EC%83%81%ED%83%9C%EB%A7%8C-%ED%91%9C%ED%98%84%ED%95%98%EB%8A%94-%ED%83%80%EC%9E%85%EC%9D%84-%EC%A7%80%ED%96%A5%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 28. 유효한 상태만 표현하는 타입을 지향하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-29.-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%95%8C%EB%8A%94-%EB%84%88%EA%B7%B8%EB%9F%BD%EA%B2%8C-%EC%83%9D%EC%84%B1%ED%95%A0-%EB%95%8C%EB%8A%94-%EC%97%84%EA%B2%A9%ED%95%98%EA%B2%8C/" class="">
+      📃&nbsp;아이템 29. 사용할 때는 너그럽게, 생성할 때는 엄격하게</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-30.-%EB%AC%B8%EC%84%9C%EC%97%90-%ED%83%80%EC%9E%85-%EC%A0%95%EB%B3%B4%EB%A5%BC-%EC%93%B0%EC%A7%80-%EC%95%8A%EA%B8%B0/" class="">
+      📃&nbsp;아이템 30. 문서에 타입 정보를 쓰지 않기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-31.-%ED%83%80%EC%9E%85-%EC%A3%BC%EB%B3%80%EC%97%90-null-%EA%B0%92-%EB%B0%B0%EC%B9%98%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 31. 타입 주변에 Null 값 배치하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9D%B4%ED%8E%99%ED%8B%B0%EB%B8%8C-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%95%84%EC%9D%B4%ED%85%9C-33.-string-%ED%83%80%EC%9E%85%EB%B3%B4%EB%8B%A4-%EB%8D%94-%EA%B5%AC%EC%B2%B4%EC%A0%81%EC%9D%B8-%ED%83%80%EC%9E%85-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;아이템 33. String 타입보다 더 구체적인 타입 사용하기</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4697fbced11885aa030c59400f40a300" class="toggle"  />
+    <label for="section-4697fbced11885aa030c59400f40a300" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;자바 ORM 표준 JPA 프로그래밍&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/03%EC%9E%A5_%EC%98%81%EC%86%8D%EC%84%B1%EA%B4%80%EB%A6%AC/" class="">
+      📃&nbsp;03장_영속성관리</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/04%EC%9E%A5_%EC%97%94%ED%8B%B0%ED%8B%B0%EB%A7%A4%ED%95%91/" class="">
+      📃&nbsp;04장_엔티티매핑</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/13%EC%9E%A5_%EC%9B%B9-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EA%B3%BC-%EC%98%81%EC%86%8D%EC%84%B1-%EA%B4%80%EB%A6%AC/" class="">
+      📃&nbsp;13장_웹 애플리케이션과 영속성 관리</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/16%EC%9E%A5_%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD-2%EC%B0%A8%EC%BA%90%EC%8B%9C/" class="">
+      📃&nbsp;16장_트랜잭션과 락, 2차캐시</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ec0f936c0b41df3ee505e6b185255de8" class="toggle"  />
+    <label for="section-ec0f936c0b41df3ee505e6b185255de8" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;코틀린 인 액션&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/2%EC%9E%A5.-%EC%BD%94%ED%8B%80%EB%A6%B0-%EA%B8%B0%EC%B4%88/" class="">
+      📃&nbsp;2장. 코틀린 기초</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/3%EC%9E%A5.-%ED%95%A8%EC%88%98-%EC%A0%95%EC%9D%98%EC%99%80-%ED%98%B8%EC%B6%9C/" class="">
+      📃&nbsp;3장. 함수 정의와 호출</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/4%EC%9E%A5.-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B0%9D%EC%B2%B4-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4/" class="">
+      📃&nbsp;4장. 클래스, 객체, 인터페이스</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/BOOKS/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%B8-%EC%95%A1%EC%85%98/5%EC%9E%A5.-%EB%9E%8C%EB%8B%A4%EB%A1%9C-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" class="">
+      📃&nbsp;5장. 람다로 프로그래밍</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-48bf30cc405ff68ed91894477e567c2a" class="toggle"  />
+    <label for="section-48bf30cc405ff68ed91894477e567c2a" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;DB&nbsp;(10)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/01.-Mysql-%EC%84%9C%EB%B2%84-Mysql%EC%97%94%EC%A7%84-&#43;-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%EC%97%94%EC%A7%84/" class="">
+      📃&nbsp;01. Mysql 서버 (Mysql엔진 &#43; 스토리지 엔진)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/02.-Mysql-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0/" class="">
+      📃&nbsp;02. Mysql 메모리 구조</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/03.-Mysql-%EC%93%B0%EB%A0%88%EB%93%9C/" class="">
+      📃&nbsp;03. Mysql 쓰레드</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/04.-Replication/" class="">
+      📃&nbsp;04. Replication</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/05.-%EC%9D%B8%EB%8D%B1%EC%8A%A4Index/" class="">
+      📃&nbsp;05. 인덱스(Index)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/06.-%EC%BF%BC%EB%A6%AC-%EC%8B%A4%ED%96%89-%EC%88%9C%EC%84%9C-%EB%B0%8F-%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD/" class="">
+      📃&nbsp;06. 쿼리 실행 순서 및 주의사항</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/07.-Lock-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81-%EB%9D%BD/" class="">
+      📃&nbsp;07. Lock (낙관적 락, 비관적 락)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/08.-Charset-Collation/" class="">
+      📃&nbsp;08. Charset &amp; Collation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/09.-GTID/" class="">
+      📃&nbsp;09. GTID</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DB/10.-InnoDB-auto_increment-%EC%B4%88%EA%B8%B0%ED%99%94-%EB%B0%A9%EC%8B%9D/" class="">
+      📃&nbsp;10. InnoDB Auto_increment 초기화 방식</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0b42f369d34ca222e1944f91e7a39783" class="toggle" checked />
+    <label for="section-0b42f369d34ca222e1944f91e7a39783" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;DEV&nbsp;(25)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/int%EB%8A%94-%EB%AA%87-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EC%9D%B8%EA%B0%80%EC%9A%94/" class="">
+      📃&nbsp;Int는 몇 바이트 인가요</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/NGINX-%EA%B8%B0%EC%88%A0-%EB%B6%80%EC%B1%84%EA%B0%80-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9C%BC%EB%A0%A4%EB%A9%B4/" class="">
+      📃&nbsp;NGINX, 기술 부채가 되지 않으려면</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/Reactive-Programming/" class="">
+      📃&nbsp;Reactive Programming</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/The-NIST-Model-for-Role-Based-Access-Control-Towards-A-Unified-Standard/" class="">
+      📃&nbsp;The NIST Model for Role-Based Access Control: Towards a Unified Standard</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/Top-10-Architecture-Characteristics/" class="">
+      📃&nbsp;Top 10 Architecture Characteristics</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/Woowa-course-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0/" class="">
+      📃&nbsp;Woowa-Course 코드리뷰</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EB%B8%94%EB%9E%99%EC%9E%AD-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-%EA%B8%80%EC%9D%84-%EC%9D%BD%EA%B3%A0/" class="">
+      📃&nbsp;블랙잭 코드리뷰 글을 읽고</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%A0%84%EB%9E%B5/" class="">
+      📃&nbsp;예외 처리 전략</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%96%B4%EB%94%94-%EA%B0%80%EC%84%9C-%EC%BD%94%ED%94%84%EB%A7%81-%EB%A7%A4%EC%9A%B0-%EC%95%8C%EC%9D%80-%EC%B2%B4%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;우아한 테크 세미나 : 어디 가서 코프링 매우 알은 체하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C-Redis-2019/" class="">
+      📃&nbsp;우아한 테크 세미나 : 우아한 Redis 2019</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-2019/" class="active">
+      📃&nbsp;우아한 테크 세미나 : 우아한객체지향 2019</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EC%8A%A4%ED%94%84%EB%A7%81%EB%B0%B0%EC%B9%98-2019/" class="">
+      📃&nbsp;우아한 테크 세미나 : 우아한스프링배치 2019</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%BD%94%EC%8A%A4-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EB%82%B4%EC%97%90-%EC%99%B8%EB%B6%80-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EC%9A%94%EC%B2%AD%EC%9D%B4-%EB%8B%B4%EA%B8%B0%EA%B2%8C-%EB%90%98%EB%A9%B4-%EC%96%B4%EB%96%A4-%EB%AC%B8%EC%A0%9C%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%A0%EA%B9%8C/" class="">
+      📃&nbsp;우아한 테크 코스 : 트랜잭션 내에 외부 리소스 요청이 담기게 되면 어떤 문제가 발생할까?</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-Java-App-Server-Refactoring-%ED%9B%84%EA%B8%B0/" class="">
+      📃&nbsp;카카오톡 Java App Server Refactoring 후기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/%EC%BA%90%EC%8B%B1-%EC%A0%84%EB%9E%B5/" class="">
+      📃&nbsp;캐싱 전략</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-64afeb7d484a9c3ba5762a956a1ee9e3" class="toggle"  />
+    <label for="section-64afeb7d484a9c3ba5762a956a1ee9e3" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;AWS Community Day 2022&nbsp;(7)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/Amazon-CloudFront%EC%99%80-AWS-Lambda@Edge%EB%A1%9C-SPA%EC%97%90%EC%84%9C-%EB%8F%99%EC%A0%81-SEO-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;Amazon CloudFront와 AWS Lambda@Edge로 SPA에서 동적 SEO 구현하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/AWS-Lambda-Container%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-%EC%84%9C%EB%B2%84%EB%A6%AC%EC%8A%A4-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B0%B0%ED%8F%AC-%EB%B0%8F-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81/" class="">
+      📃&nbsp;AWS Lambda Container를 활용한 서버리스 아키텍처 배포 및 성능 향상</a>
+  
+
+        </li>
+      
+    
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/AWS%EC%97%90%EC%84%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9A%B4%EC%98%81%ED%95%98%EA%B8%B0.-%EA%B7%B8%EB%A6%AC%EA%B3%A0-ROSA/" class="">
+      📃&nbsp;AWS에서 컨테이너 운영하기. 그리고 ROSA</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/CDK-for-Terraform%EC%9C%BC%EB%A1%9C-%EB%82%98%EB%A7%8C%EC%9D%98-AWS-Resource-%EC%A0%95%EC%9D%98%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;CDK for Terraform으로 나만의 AWS Resource 정의하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/%EA%B4%91%EA%B3%A0-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%88%98%EC%A7%91%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%9D%B8%ED%94%84%EB%9D%BC-%EA%B5%AC%EC%B6%95/" class="">
+      📃&nbsp;광고 데이터 수집을 위한 인프라 구축</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/AWS-Community-Day-2022/%EC%98%A4%ED%94%88-%EC%86%8C%EC%8A%A4-Karpenter%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-Amazon-EKS-%ED%99%95%EC%9E%A5-%EC%9A%B4%EC%98%81-%EC%A0%84%EB%9E%B5/" class="">
+      📃&nbsp;오픈 소스 Karpenter를 활용한 Amazon EKS 확장 운영 전략</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-aa09e19263019fe4f1ab9d17d097c564" class="toggle"  />
+    <label for="section-aa09e19263019fe4f1ab9d17d097c564" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;If Kakao 2022&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/ifkakaodev-2022/Batch-Performance-%EA%B7%B9%ED%95%9C%EC%9C%BC%EB%A1%9C-%EB%81%8C%EC%96%B4%EC%98%AC%EB%A6%AC%EA%B8%B0/" class="">
+      📃&nbsp;Batch Performance 극한으로 끌어올리기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/ifkakaodev-2022/JVM-warm-up/" class="">
+      📃&nbsp;JVM Warm Up</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/DEV/ifkakaodev-2022/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-%EB%A9%94%EC%8B%9C%EC%A7%95-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%9E%AC%EA%B1%B4%EC%B6%95-%EC%9D%B4%EC%95%BC%EA%B8%B0/" class="">
+      📃&nbsp;카카오톡 메시징 시스템 재건축 이야기</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1137695ea9c7d018c35d138dead01ec3" class="toggle"  />
+    <label for="section-1137695ea9c7d018c35d138dead01ec3" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;ETC&nbsp;(32)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/01.-AB-%ED%85%8C%EC%8A%A4%ED%8A%B8/" class="">
+      📃&nbsp;01. AB 테스트</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/02.-Blocking-NonBlocking-Sync-Async/" class="">
+      📃&nbsp;02. Blocking, NonBlocking, Sync, Async</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/03.-DB-Trigger/" class="">
+      📃&nbsp;03. DB Trigger</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/04.-Docker-multi-arch/" class="">
+      📃&nbsp;04. Docker (Multi Arch)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/05.-FTP-active-vs-passive/" class="">
+      📃&nbsp;05. FTP Active vs Passive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/06.-Lettuce-ReadFrom/" class="">
+      📃&nbsp;06. Lettuce ReadFrom</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/07.-LocalDate-OpenJDK-Suggestion/" class="">
+      📃&nbsp;07. LocalDate (OpenJDK Suggestion)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/08.-Locale-vs-TimeZone/" class="">
+      📃&nbsp;08. Locale vs TimeZone</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/09.-MQTT/" class="">
+      📃&nbsp;09. MQTT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/10.-non_blocking_vs_blocking/" class="">
+      📃&nbsp;10. Non_blocking_vs_blocking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/11.-OKR/" class="">
+      📃&nbsp;11. OKR</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/12.-Pinpoint/" class="">
+      📃&nbsp;12. Pinpoint</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/13.-PR-%ED%9B%84%EA%B8%B0-Admin2-Free-Admin-Template/" class="">
+      📃&nbsp;13. PR 후기 : Admin2 Free Admin Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/14.-Trigger-vs-ApplicationBusiness-Logic/" class="">
+      📃&nbsp;14. Trigger vs Application(Business) Logic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/15.-Useful-Tips-for-naming-variables/" class="">
+      📃&nbsp;15. Useful Tips for Naming (Variables)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/16.-UTF/" class="">
+      📃&nbsp;16. UTF</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/17.-UTF8-4byte-%EB%AC%B8%EC%9E%90-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0/" class="">
+      📃&nbsp;17. UTF8 4byte 문자 체크하기</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/18.-WebSocket%EA%B3%BC-Socket.io/" class="">
+      📃&nbsp;18. WebSocket과 Socket.io</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/19.-%EB%AC%B4%EC%96%B4%EC%9D%98-%EB%B2%95%EC%B9%99/" class="">
+      📃&nbsp;19. 무어의 법칙</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/20.-%EC%82%AC%EB%82%B4%EC%97%90%EC%84%9C-%EC%82%AC%EC%84%A4-%EC%9D%B8%EC%A6%9D%EC%84%9C%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/" class="">
+      📃&nbsp;20. 사내에서 사설 인증서를 사용하는 이유</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/21.-%EC%95%94%EB%8B%AC%EC%9D%98-%EB%B2%95%EC%B9%99/" class="">
+      📃&nbsp;21. 암달의 법칙</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/22.-%EC%95%95%EC%B6%95Compression/" class="">
+      📃&nbsp;22. 압축(Compression)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/23.-%EC%9C%A0%EB%8B%89%EC%8A%A4-%EC%8B%9C%EA%B0%84/" class="">
+      📃&nbsp;23. 유닉스 시간</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/24.-%EC%9D%B8%EC%BD%94%EB%94%A9-%EC%A0%95%EA%B7%9C%ED%99%94/" class="">
+      📃&nbsp;24. 인코딩-정규화</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/25.-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%A1%9C%EB%94%A9-%EC%86%8D%EB%8F%84-%EA%B0%9C%EC%84%A0/" class="">
+      📃&nbsp;25. 페이지 로딩 속도 개선</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/26.-%ED%95%98%EC%9D%B4%ED%8D%BC%EB%B0%94%EC%9D%B4%EC%A0%80/" class="">
+      📃&nbsp;26. 하이퍼바이저</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/27.-netty-resolver-dns-native-macos/" class="">
+      📃&nbsp;27. Netty-Resolver-Dns-Native-Macos</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/28.-serverless-framework/" class="">
+      📃&nbsp;28. Serverless Framework</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/29.-terraform/" class="">
+      📃&nbsp;29. Terraform</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/30.-Prometheus-PromQL/" class="">
+      📃&nbsp;30. Prometheus PromQL</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/31.-Prometheus/" class="">
+      📃&nbsp;31. Prometheus</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ETC/99.-%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%A4/" class="">
+      📃&nbsp;99. 그레이들</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c6319cc001b226aa5291a812ecfe5374" class="toggle"  />
+    <label for="section-c6319cc001b226aa5291a812ecfe5374" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;KAFKA&nbsp;(2)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/KAFKA/KAFKA-Kafka-Connect-Intro/" class="">
+      📃&nbsp;[KAFKA] Kafka Connect (Intro)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/KAFKA/KAFKA-Schema-Registry/" class="">
+      📃&nbsp;[KAFKA] Schema Registry</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a9ab61a4d6306485342ee29671cdf78f" class="toggle"  />
+    <label for="section-a9ab61a4d6306485342ee29671cdf78f" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;LANGUAGES&nbsp;(33)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-56f7364b2d7fec36aee0fa285191b7f3" class="toggle"  />
+    <label for="section-56f7364b2d7fec36aee0fa285191b7f3" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;CPP&nbsp;(1)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/CPP/99.-unordered_map-vs-map/" class="">
+      📃&nbsp;99. Unordered_map vs Map</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-fd12f8958f0835463384bf0a08a42b10" class="toggle"  />
+    <label for="section-fd12f8958f0835463384bf0a08a42b10" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;JAVA&nbsp;(24)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Acquire-a-Lock-by-a-Key-in-Java/" class="">
+      📃&nbsp;[JAVA] Acquire a Lock by a Key in Java</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Callable-vs-Runnable/" class="">
+      📃&nbsp;[JAVA] Callable vs Runnable</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Future/" class="">
+      📃&nbsp;[JAVA] Future</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Garbage-Collection-%EA%B8%B0%EB%B3%B8/" class="">
+      📃&nbsp;[JAVA] Garbage Collection (기본)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Garbage-Collection-%EC%A2%85%EB%A5%98/" class="">
+      📃&nbsp;[JAVA] Garbage Collection (종류)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Interface-default-method/" class="">
+      📃&nbsp;[JAVA] Interface Default Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Java-ClassPath/" class="">
+      📃&nbsp;[JAVA] Java ClassPath</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Java-Stream/" class="">
+      📃&nbsp;[JAVA] Java Stream</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Java-String-Pool/" class="">
+      📃&nbsp;[JAVA] Java String Pool</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-JVM-%EC%9D%B8%EC%A6%9D%EC%84%9C-%EC%A0%81%EC%9A%A9/" class="">
+      📃&nbsp;[JAVA] JVM 인증서 적용</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/Java-JVM/" class="">
+      📃&nbsp;[Java] JVM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Lock/" class="">
+      📃&nbsp;[JAVA] Lock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Map/" class="">
+      📃&nbsp;[JAVA] Map</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-MDC/" class="">
+      📃&nbsp;[JAVA] MDC</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Multi-Threading/" class="">
+      📃&nbsp;[JAVA] Multi-Threading</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Netty/" class="">
+      📃&nbsp;[JAVA] Netty</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Open-JDK/" class="">
+      📃&nbsp;[JAVA] Open JDK</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Optional-orElse-vs-orElseGet/" class="">
+      📃&nbsp;[JAVA] Optional OrElse vs OrElseGet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Reflection/" class="">
+      📃&nbsp;[JAVA] Reflection</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Stack/" class="">
+      📃&nbsp;[JAVA] Stack</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Static-method-Overriding-Hiding/" class="">
+      📃&nbsp;[JAVA] Static Method Overriding (Hiding)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/Java-String/" class="">
+      📃&nbsp;[Java] String</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Throwable-Error-Exception/" class="">
+      📃&nbsp;[JAVA] Throwable (Error, Exception)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/JAVA/JAVA-Valve-Tomcat/" class="">
+      📃&nbsp;[JAVA] Valve (Tomcat)</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-d76c550680ce0e499b23b1d899f69b9e" class="toggle"  />
+    <label for="section-d76c550680ce0e499b23b1d899f69b9e" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;KOTLIN&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Companion-object-&#43;-static/" class="">
+      📃&nbsp;[KOTLIN] Companion Object (&#43; Static)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Naming-Convetion/" class="">
+      📃&nbsp;[KOTLIN] Naming Convetion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Nullable-types-and-non-null-types/" class="">
+      📃&nbsp;[KOTLIN] Nullable Types and Non-Null Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/KOTLIN/KOTLIN-Scope-Functions/" class="">
+      📃&nbsp;[KOTLIN] Scope Functions</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3927411be887bec05a8486d4276d11d6" class="toggle"  />
+    <label for="section-3927411be887bec05a8486d4276d11d6" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;PHP&nbsp;(4)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-CodeIgniter-Library-%EB%A1%9C%EB%94%A9/" class="">
+      📃&nbsp;[PHP] CodeIgniter Library 로딩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-CodeIgniter-xss_clean/" class="">
+      📃&nbsp;[PHP] CodeIgniter Xss_clean</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-Function-Return-Type/" class="">
+      📃&nbsp;[PHP] Function Return Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LANGUAGES/PHP/PHP-PHP-%EA%B8%B0%EB%B3%B8/" class="">
+      📃&nbsp;[PHP] PHP 기본</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0718a629c6e22fa2feadefa75423d7b0" class="toggle"  />
+    <label for="section-0718a629c6e22fa2feadefa75423d7b0" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;LINUX&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LINUX/LINUX-epoll/" class="">
+      📃&nbsp;[LINUX] Epoll</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LINUX/LINUX-rsync/" class="">
+      📃&nbsp;[LINUX] Rsync</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/LINUX/LINUX-%EC%86%8C%EC%BC%93-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" class="">
+      📃&nbsp;[LINUX] 소켓 프로그래밍</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-62746ffff6f37838c90c6eacd73ac19f" class="toggle"  />
+    <label for="section-62746ffff6f37838c90c6eacd73ac19f" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;NETWORK&nbsp;(5)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-LDAP/" class="">
+      📃&nbsp;[NETWORK] LDAP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-Network_NAT/" class="">
+      📃&nbsp;[NETWORK] Network_NAT</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-Network_Tunneling/" class="">
+      📃&nbsp;[NETWORK] Network_Tunneling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-OSI-7-Layer/" class="">
+      📃&nbsp;[NETWORK] OSI 7 Layer</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NETWORK/NETWORK-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%84%9C/" class="">
+      📃&nbsp;[NETWORK] 로드밸런서</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-daeb41d9644d4954832252ed7ac91de2" class="toggle"  />
+    <label for="section-daeb41d9644d4954832252ed7ac91de2" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;NUXT&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NUXT/NUXT-Nuxt-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/" class="">
+      📃&nbsp;[NUXT] Nuxt 라이프사이클</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NUXT/NUXT-Static-site-vs-SSR/" class="">
+      📃&nbsp;[NUXT] Static-Site vs SSR</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/NUXT/NUXT-Vue-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4/" class="">
+      📃&nbsp;[NUXT] Vue 라이프사이클</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-8c77df9c772c5b18b5f038eb337ba2e5" class="toggle"  />
+    <label for="section-8c77df9c772c5b18b5f038eb337ba2e5" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;OS&nbsp;(9)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/01.-OS-Introduction/" class="">
+      📃&nbsp;01. OS Introduction</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/02.-Processes/" class="">
+      📃&nbsp;02. Processes</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/03.-Scheduling/" class="">
+      📃&nbsp;03. Scheduling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/04.-Memory-Management/" class="">
+      📃&nbsp;04. Memory Management</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/07.-Concurrency-Thread-and-Lock/" class="">
+      📃&nbsp;07. (Concurrency) Thread and Lock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/08.-Concurrency-Semaphore-and-Deadlock/" class="">
+      📃&nbsp;08. (Concurrency) Semaphore and Deadlock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/10.-File-System-Basic/" class="">
+      📃&nbsp;10. File System Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/99.-RAID/" class="">
+      📃&nbsp;99. RAID</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/OS/99.-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/" class="">
+      📃&nbsp;99. 스케줄링</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-27f5a9a519f4c7552e3958601f59417b" class="toggle"  />
+    <label for="section-27f5a9a519f4c7552e3958601f59417b" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;REDIS&nbsp;(3)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/REDIS/REDIS-Data-Structures/" class="">
+      📃&nbsp;[REDIS] Data Structures</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/REDIS/REDIS-Redis-Pipelining/" class="">
+      📃&nbsp;[REDIS] Redis Pipelining</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/REDIS/REDIS-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/" class="">
+      📃&nbsp;[REDIS] 트랜잭션</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6fc779c68f63a6f22a24ca2aca903e7a" class="toggle"  />
+    <label for="section-6fc779c68f63a6f22a24ca2aca903e7a" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;SPRING&nbsp;(34)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-2.7.2-3.0.1-migration/" class="">
+      📃&nbsp;[SPRING] 2.7.2 -&gt; 3.0.1 Migration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@SpringBootApplication/" class="">
+      📃&nbsp;[SPRING] @SpringBootApplication</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@ToString-Enable-toString-Object-View/" class="">
+      📃&nbsp;[SPRING] @ToString (Enable ToString() Object View)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@Transactional/" class="">
+      📃&nbsp;[SPRING] @Transactional</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-@Version/" class="">
+      📃&nbsp;[SPRING] @Version</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-ApplicationEventPublisher/" class="">
+      📃&nbsp;[SPRING] ApplicationEventPublisher</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-DispatcherServlet/" class="">
+      📃&nbsp;[SPRING] DispatcherServlet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Embeded-TomcatTCP-ThreadRequest-Connection/" class="">
+      📃&nbsp;[SPRING] Embeded Tomcat(TCP, Thread(Request), Connection)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Filter-vs-Interceptor-vs-AOP/" class="">
+      📃&nbsp;[SPRING] Filter vs Interceptor vs AOP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-IoC-%EC%99%80-DI/" class="">
+      📃&nbsp;[SPRING] IoC 와 DI</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Logging/" class="">
+      📃&nbsp;[SPRING] Logging</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Lombok-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC/" class="">
+      📃&nbsp;[SPRING] Lombok 동작 원리</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-OSIV/" class="">
+      📃&nbsp;[SPRING] OSIV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Reactive-Kafka/" class="">
+      📃&nbsp;[SPRING] Reactive Kafka</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-RedisKeyValueAdapter-update/" class="">
+      📃&nbsp;[SPRING] RedisKeyValueAdapter (Update)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Servlet/" class="">
+      📃&nbsp;[SPRING] Servlet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-ServletContext-ApplicationContext/" class="">
+      📃&nbsp;[SPRING] ServletContext, ApplicationContext</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Session-1/" class="">
+      📃&nbsp;[SPRING] Session (1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Batch-1/" class="">
+      📃&nbsp;[SPRING] Spring Batch (1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Batch-2/" class="">
+      📃&nbsp;[SPRING] Spring Batch (2)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-1/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-2/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-3/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-4-Error-Handling/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 4 (Error Handling)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cloud-Gateway-5-RouteLocator/" class="">
+      📃&nbsp;[SPRING] Spring Cloud Gateway - 5 (RouteLocator)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-MVC-Error/" class="">
+      📃&nbsp;[SPRING] Spring MVC - Error</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Security-1/" class="">
+      📃&nbsp;[SPRING] Spring Security (1)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Security-2/" class="">
+      📃&nbsp;[SPRING] Spring Security (2)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-SpringBoot-JPA-Spring-Data-Jpa-Hibernate/" class="">
+      📃&nbsp;[SPRING] SpringBoot JPA, Spring Data Jpa, Hibernate</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-SpringBoot-Multiple-DB-%EC%97%B0%EB%8F%99/" class="">
+      📃&nbsp;[SPRING] SpringBoot Multiple DB 연동</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-SpringBoot-N&#43;1/" class="">
+      📃&nbsp;[SPRING] SpringBoot N&#43;1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Webflux/" class="">
+      📃&nbsp;[SPRING] Webflux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-WebServer-vs-WAS-vs-Servlet-Container/" class="">
+      📃&nbsp;[SPRING] WebServer vs WAS vs Servlet Container</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/SPRING/SPRING-Spring-Cache/" class="">
+      📃&nbsp;[SPRING] Spring Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bccae9ed06d6aa9e844ee361c0ab8bd7" class="toggle"  />
+    <label for="section-bccae9ed06d6aa9e844ee361c0ab8bd7" class="flex justify-between">
+      <a role="button" class="">
+        📁&nbsp;WEB&nbsp;(7)
+      </a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-Apache-vs-Nginx/" class="">
+      📃&nbsp;[WEB] Apache vs Nginx</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-CSRF/" class="">
+      📃&nbsp;[WEB] CSRF</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-DOM/" class="">
+      📃&nbsp;[WEB] DOM</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-HTTP-Header/" class="">
+      📃&nbsp;[WEB] HTTP Header</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-OAuth-2.0/" class="">
+      📃&nbsp;[WEB] OAuth 2.0</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-Restful-API/" class="">
+      📃&nbsp;[WEB] Restful API</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/WEB/WEB-SSL-Handshake/" class="">
+      📃&nbsp;[WEB] SSL Handshake</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+TOTAL: 281
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="https://github.com/hjjae2"  target="_blank" rel="noopener">
+        GITHUB
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>우아한 테크 세미나 : 우아한객체지향 2019</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#예제를-살펴보자">예제를 살펴보자.</a></li>
+            <li><a href="#설계-개선하기">설계 개선하기</a></li>
+            <li><a href="#의존성과-시스템-분리">의존성과 시스템 분리</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><blockquote>
+<p>2019년 &ldquo;우아한Tech - 우아한객체지향 by 조영호님&rdquo; 유투브 세미나를 듣고 내용 정리하기</p>
+</blockquote>
+<br>
+<p><strong>제목 : &lsquo;우아한 객체지향 의존성을 이용해 설계 진화시키키&rsquo;</strong></p>
+<p>설계에서 가장 중요한 것은 &lsquo;의존성&rsquo;이다. &lsquo;의존성&rsquo;을 어떻게 설정,관리하느냐에 따라 설계가 많이 달라진다.</p>
+<br>
+<p><strong>의존성(Dependency)</strong></p>
+<p>설계는 코드를 어떻게 배치할 것인가? 어떤 코드를 어디에 넣을 것인가? 어떤 코드를 어디 클래스에, 어디 패키지에 넣을건지 등에 대한 고민을 하는 것이다.</p>
+<p>변경에 초점을 맞춰야한다. 같이 변경되는 코드를 같이 넣어줘야하고, 같이 변경되지 않는 것은 따로 넣는다. (= 결국에는 의존성과 관련이 있다.)</p>
+<pre tabindex="0"><code>// a 가 b 에 의존한다고 한다.
+a ---&gt; b
+
+// b가 변경될 때 a도 변경이 될 수 있다. (변경 될 가능성이 있다.)
+// 즉 &#39;의존성&#39;이 있다.
+// 즉 &#39;의존성&#39;은 &#39;변경&#39;과 관련되어 있는 것이다.
+</code></pre><p>의존성 = 변경에 의해서 영향을 받을 수 있는 가능성</p>
+<p>클래스 사이에, 패키지 사이에 의존성이 있다.</p>
+<br>
+<p><strong>클래스 의존성의 종류</strong></p>
+<p><strong>연관관계(Association)</strong></p>
+<p>A-&gt;B 로 영구적으로 갈 수 있음</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// A -&gt; B
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> B b<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
+<p><strong>의존관계(Dependency)</strong></p>
+<p>A-&gt;B 일시적으로 연관</p>
+<p>parameter, return type, method 안에서 해당 type 을 사용한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> B <span style="color:#a6e22e">method</span><span style="color:#f92672">(</span>B b<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> B<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
+<p><strong>상속관계(Inheritance)</strong></p>
+<p>상속관계는 B 가 변경되면 A 도 변경됨</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">extends</span> B <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><br>
+<p><strong>실체화관계(Realization) (인터페이스 구현 관계)</strong></p>
+<p>실체화관계에서는 B의 시그니처가 변경될 때에만 A가 변경된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">implements</span> B <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><br><br></p>
+<p><strong>패키지 의존성이란?</strong></p>
+<p>pcakage b 안의 클래스B가 변경될 때 package a 안의 A클래스가 변경된다. (package a -&gt; package b)</p>
+<p>using, import 등의 문법이 있다? = 패키지 의존성이 있다.</p>
+<p><br><br></p>
+<p>좋은 의존성을 관리하기 위한 몇가지 팁이 있다.</p>
+<p><strong>양방향 의존성을 피하라</strong></p>
+<p>양방향 의존성 -&gt; A가 바뀔 때, B가 바뀌고, B가 바뀌면 A가 바뀐다 -&gt; 하나의 클래스를 억지로 찢어놓은것과 같다.</p>
+<p>양방향일 때에는 항상 sync 도 맞춰줘야하고 등등 너무 복잡하다. 하나를 수정할 때 둘 다 수정해줘야하기때문에
+(단방향으로 바꿔주어야 한다.)</p>
+<br>
+<p><strong>다중성이 적은 방향을 선택해라</strong></p>
+<p>일대다 보다는 다대일을 선택해라.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Collection<span style="color:#f92672">&lt;</span>B<span style="color:#f92672">&gt;</span> bList<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> a<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>위의 방식 보단 아래의 방식을 택한다.</p>
+<br>
+<p><strong>의존성이 필요없다면 제거하라</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> B b<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>위의 방식보단 아래의 방식을 택한다.</p>
+<br>
+<p><strong>패키지 사이의 의존성 사이클(양방향 의존성)을 제거하라</strong></p>
+<p><code>A -&gt; B -&gt; C -&gt; A</code> 등의 관계(사이클)이 있다면 제거하라. (양방향 포함)</p>
+<p><br><br></p>
+<p>설계의 원칙은 무조건 &lsquo;변경&rsquo; 이다.</p>
+<p>만약 A 가 변경되면, 누가 변경되는지 봐야한다.</p>
+<p><br><br></p>
+<h3 id="예제를-살펴보자">
+  예제를 살펴보자.
+  <a class="anchor" href="#%ec%98%88%ec%a0%9c%eb%a5%bc-%ec%82%b4%ed%8e%b4%eb%b3%b4%ec%9e%90">#</a>
+</h3>
+<p>먼저 배달의민족앱 주문 flow 를 살펴보자. (아래 flow 에서 특정한 부분에 대해 설명하고자 한다.)</p>
+<p><code>가게 선택 -&gt; 메뉴 선택 -&gt; 장바구니 담기 -&gt; 주문</code></p>
+<pre tabindex="0"><code>/* 가게 엔티티 설계 */
+가게 1 --- * 메뉴
+메뉴 1 --- * 옵션그룹 1 --- * 옵션
+</code></pre><pre tabindex="0"><code>/* 주문 엔티티 설계 */ 
+주문 1 --- * 주문항목 1 --- * 주문옵션그룹 1 --- * 주문옵션
+</code></pre><p>간단하게 정리하면, &lsquo;가게&rsquo;를 중심으로 &lsquo;메뉴&rsquo;와 &lsquo;주문&rsquo;이 런타임시에 연관되어 동작한다.</p>
+<p><strong>문제1 : 메뉴 불일치</strong></p>
+<ol>
+<li>고객이 장바구니에 &lsquo;1인 메뉴 세트&rsquo;를 담았다. 이 장바구니 데이터는 고객 디바이스 로컬에 저장된다.<br>
+<ul>
+<li>메뉴 클래스</li>
+<li>옵션, 옵션그룹 클래스</li>
+</ul>
+</li>
+<li>이 시점에 가게에서 &lsquo;1인 메뉴 세트&rsquo;의 명칭과 가격을 변경했다고 가정하자. -&gt; &lsquo;0.5인 메뉴 세트&rsquo;, 15000원 -&gt; 7500원<br>
+<ul>
+<li>주문 클래스</li>
+<li>주문항목, 주문옵션, 주문옵션그룹 클래스</li>
+</ul>
+</li>
+</ol>
+<br>
+<p>즉, 주문 시에 고객이 주문한 메뉴와 가게 메뉴를 검증한다. (Validation)</p>
+<ul>
+<li>메뉴명 - 주문항목 이름 검증(비교)</li>
+<li>옵션그룹명 - 주문옵션그룹명 이름 검증(비교)</li>
+<li>옵션명 - 주문옵션명 이름 검증(비교)</li>
+<li>옵션가격 - 주문옵션가격 이름 검증(비교)</li>
+<li>가게의 최소주문금액 체크</li>
+<li>가게의 영업여부 체크</li>
+<li>&hellip;</li>
+</ul>
+<pre tabindex="0"><code>  -------- 메뉴 - 옵션그룹 - 옵션
+  |
+가게 
+  |
+  ----- 주문 - 주문항목 - 주문옵션그룹 - 주문옵션
+</code></pre><br>
+<p><strong>협력 설계하기</strong></p>
+<p>이제 위 Validation 협력,로직 등에 대해 살펴본다.</p>
+<blockquote>
+<p>// 이후 이미지 대체 <br>
+// 이후 이미지 대체</p>
+</blockquote>
+<br>
+<p>클래스 사이의 &lsquo;관계/협력/의존성&rsquo;에는 방향성이 필요하다.<br></p>
+<ul>
+<li>관계의 방향 = 협력의 방향 = 의존성의 방향</li>
+<li>A 가 B 에 의존해/요청해. (어떤 객체 A 가 어떤 객체 B 에게 메세지를 보내야해.)</li>
+<li>DB와는 조금 다르다. DB는 foreign key 가 잡히면 양방향으로 움직일 수 있다. 하지만 객체는 다르다. 객체는 정확한 방향성을 선택할 수 있다.</li>
+</ul>
+<p>앞서 소개했던 연관관계, 의존관계 중에 생각해보자. (이건 상속이나 실체화관계가 아닌 것은 확실하니까)</p>
+<ul>
+<li>
+<p>협력을 위해 영구적으로 탐색이 필요한 구조라면 -&gt; 연관관계</p>
+<ul>
+<li>order, shop 이 한번만/일시적으로만 관계를 맺으면 -&gt; 연관관계</li>
+<li>객체 참조 (composition)</li>
+</ul>
+</li>
+<li>
+<p>협력을 위해 일시적으로 탐색이 필요한 구조라면 -&gt; 의존관계</p>
+<ul>
+<li>parameter, return type, local variable</li>
+<li>메서드 파라미터, 메서드 내부에서 new() 등등</li>
+</ul>
+</li>
+</ul>
+<p>관계를 맺을 때에는 &lsquo;이유&rsquo;가 있어야한다.</p>
+<ul>
+<li>A -&gt; B 로 향할 때에는 &lsquo;이유&rsquo;가 필요함</li>
+</ul>
+<p>예를 들어, 아래와 같다.</p>
+<p>Order -&gt; OrderLineItem 으로 연관관계를 맺어야 하는 이유?</p>
+<ol>
+<li>Order 가 뭔지 알면, OrderLienItemr 을 찾을 수 있어야 한다.</li>
+<li>이 두 클래스(객체)는 영구적으로 관계가 맺어져 있어야 한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>OrderLienItem<span style="color:#f92672">&gt;</span> orderLineItems<span style="color:#f92672">;</span> <span style="color:#75715e">// 연관관계를 통해 협력한다. 여기서는 객체참조를 통해 연관관계를 구현한 것이다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">place</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        validate<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ordered<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>OrderLineItem orderLineItem <span style="color:#f92672">:</span> orderLineItems<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 연관관계를 통해 협력한다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            orderLineItem<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>* &lsquo;연관관계&rsquo; 는 &lsquo;개념&rsquo;, &lsquo;객체참조&rsquo; 는 &lsquo;구현방법&rsquo; 이다. 이 둘을 같다고 오해하지말자.<br>
+* 연관관계를 구현할 수 있는 방법은 객체참조 말고도 다른 방법이 있다.</p>
+<br>
+<p><strong>메서드가 필요한 이유는, 메세지를 전달하기 위해서이다.</strong></p>
+<p>메서드를 만들었기 때문에 메세지를 받는게 아니다. 메세지를 받기 위해 메서드를 만드는 것이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Order 라는 객체가 place 라는 메세지를 받는다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">place</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 주문 메세지를 위해 메서드를 만들었다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        validate<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ordered<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>주문은 &lsquo;가게&rsquo; 와 &lsquo;주문항목&rsquo; 에 메세지를 보내야한다. (위의 flow 대로)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@ManyToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SHOP_ID&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Shop shop<span style="color:#f92672">;</span> <span style="color:#75715e">// 가게와 협력해야한다. 메세지를 보내야한다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToMany</span><span style="color:#f92672">(</span>cascade <span style="color:#f92672">=</span> CascadeType<span style="color:#f92672">.</span><span style="color:#a6e22e">ALL</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ORDER_ID&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>OrderLineItem<span style="color:#f92672">&gt;</span> orderLineItems <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span> <span style="color:#75715e">// 주문항목과 협력해야한다. 메세지를 보내야한다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">place</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        validate<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ordered<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>orderLineItems<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;주문 항목이 비어 있습니다.&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>shop<span style="color:#f92672">.</span><span style="color:#a6e22e">isOpen</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 가게에 메세지를 보낸다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;가게가 영업중이 아닙니다.&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>shop<span style="color:#f92672">.</span><span style="color:#a6e22e">isValidOrderAmount</span><span style="color:#f92672">(</span>calculateTotalPrice<span style="color:#f92672">()))</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 주문항목에 메세지를 보낸다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalStateException<span style="color:#f92672">(</span>String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;최소 주문 금액 %s 이상을 주문해주세요&#34;</span><span style="color:#f92672">,</span> shop<span style="color:#f92672">.</span><span style="color:#a6e22e">getMinOrderAmount</span><span style="color:#f92672">()));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>OrderLineItem orderLineItem <span style="color:#f92672">:</span> orderLineItems<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            orderLineItem<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 주문항목에 메세지를 보낸다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ordered</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">orderStatus</span> <span style="color:#f92672">=</span> OrderStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">ORDERED</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>위 코드의 베이스는 아래와 같다.</p>
+<ol>
+<li>주문은 가게,주문항목과 (영구적으로) 협력해야 한다. 강한 연관관계를 갖는다. (라는 것을 의도한 것이다.)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderLineItem</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        menu<span style="color:#f92672">.</span><span style="color:#a6e22e">validateOrder</span><span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">orderOptionGroups</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 메뉴에 메세지를 보낸다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Menu</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validateOrder</span><span style="color:#f92672">(</span>String menuName<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>OrderOptionGroup<span style="color:#f92672">&gt;</span> groups<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equal</span><span style="color:#f92672">(</span>menuName<span style="color:#f92672">))</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// 메뉴와 주문옵션그룹의 이름을 비교한다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;기본상품이 변경되었습니다.&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>isSatisfiedBy<span style="color:#f92672">(</span>groups<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IllegalArgumentException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;메뉴가 변경되었습니다.&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>OrderOptionGroup<span style="color:#f92672">&gt;</span> groups<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cartOptionGroups<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">anyMatch</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">::</span>isSatisfiedBy<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>OrderOptionGroup group<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> optionGroupSpecs<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">anyMatch</span><span style="color:#f92672">(</span>spec <span style="color:#f92672">-&gt;</span> spec<span style="color:#f92672">.</span><span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>group<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 메뉴에서 옵션그룹으로 메세지를 보낸다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OptionGroupSpecification</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>OrderOptionGroup group<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span>isSatisfied<span style="color:#f92672">(</span>group<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(),</span> satisfied<span style="color:#f92672">(</span>group<span style="color:#f92672">.</span><span style="color:#a6e22e">getOptions</span><span style="color:#f92672">()));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfied</span><span style="color:#f92672">(</span>String groupName<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>OrderOption<span style="color:#f92672">&gt;</span> satisfied<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>name<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>groupName<span style="color:#f92672">)</span> <span style="color:#f92672">||</span> satisfied<span style="color:#f92672">.</span><span style="color:#a6e22e">isEmpty</span><span style="color:#f92672">()</span> <span style="color:#f92672">||</span> <span style="color:#f92672">(</span>exclusive <span style="color:#f92672">&amp;&amp;</span> satisfied<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Options<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">satisfied</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>OrderOption<span style="color:#f92672">&gt;</span> options<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> optionSpecs<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">flatMap</span><span style="color:#f92672">(</span>spec <span style="color:#f92672">-&gt;</span> option<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">().</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>spec<span style="color:#f92672">::</span>isSatisfiedBy<span style="color:#f92672">)).</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>toList<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>* 나머지 코드는 github 에서 살펴보자.</p>
+<p><strong>즉, 위와 같이 한 클래스가 다른 클래스에 메세지를 보낸다.</strong></p>
+<p>(위의 코드는 레이어 아키텍처에서 Domain 사이에서의 관계를 나타낸 것이다. 비즈니스 로직을 구현한 부분!)</p>
+<p>Service, Infrastructure(Repository) 등의 대한 부분도 작성해야할 것이다. 간단히 보면 아래와 같다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Service 예시
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderService</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Transactional</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">placeOrder</span><span style="color:#f92672">(</span>Cart cart<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Order order <span style="color:#f92672">=</span> orderMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">mapFrom</span><span style="color:#f92672">(</span>cart<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#f92672">.</span><span style="color:#a6e22e">place</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 이 안에서 order 검증하고, 상태값 변경함...!! (문제가 있다면 예외가 발생한다.  )
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        orderRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>order<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Repository</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderRepositoryImpl</span> <span style="color:#66d9ef">implements</span> OrderRepository <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><br><br></p>
+<h3 id="설계-개선하기">
+  설계 개선하기
+  <a class="anchor" href="#%ec%84%a4%ea%b3%84-%ea%b0%9c%ec%84%a0%ed%95%98%ea%b8%b0">#</a>
+</h3>
+<p>대부분 class 하나를 보여주고 어떻게 개선하는지 물어본다. 이때에는 이름이나 메서드의 사이즈나, 책임/원칙 등에 대해서만 피드백할 수 있다.</p>
+<p>큰 그림에서 보곤해야한다. 코드를 짜고, class 간의 dependency 를 그려봐야한다. (손으로 직접 그려보자.)</p>
+<p><strong>객체를 어디에 두고 메서드를 어디에 작성하고 하는 것들이 처음엔 정말 어렵다. 그러면 일단 코드를 작성해보고 의존성을 그려보자. 그리고 다시 봐보자.</strong></p>
+<p>오늘은 (위에서 작성했던 코드들에 대한) 아래의 2가지 문제에 대해 살펴본다.</p>
+<ol>
+<li>객체 참조로 인한 결합도 상승</li>
+<li>패키지 의존성 사이클</li>
+</ol>
+<p><strong>패키지 의존성 사이클의 문제</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// package order &lt;-&gt; shop
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>shop<span style="color:#f92672">.</span><span style="color:#a6e22e">isOpen</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// package order -&gt; package shop 의존
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OptionGroupSpecification</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>OrderOptionGroup group<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// package shop -&gt; package order 의존 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OptionSpecification</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>OrderOption option<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// package shop -&gt; package order 의존
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>개선 방법1. 중간 객체를 이용한 의존성 사이클 끊기(ManyToMany 를 쪼개듯 중간에 하나의 도메인을 만든다)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// OptionGroupSpecification -&gt; OptionGroup &lt;- OrderOptionGroup
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// OptionSpecification -&gt; Option &lt;- OrderOption
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OptionGroupSpecification</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">isSatisfiedBy</span><span style="color:#f92672">(</span>OptionGroup group<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// OptionGroupSpecification -&gt; OptionGroup
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderOptionGroup</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> OptionGroup <span style="color:#a6e22e">convertToOptionGroup</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// OrderOptionGroup -&gt; OrderOption
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> OptionGroup<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#f92672">...);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderOption</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Option <span style="color:#a6e22e">convertToOption</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Option<span style="color:#f92672">(</span>name<span style="color:#f92672">,</span> <span style="color:#f92672">...);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이렇게 바꿨을 때의 장점은 무엇일까?</p>
+<p>OptioGroup, Option 의 재사용성이 증가될 수 있다. 저 클래스는 다른 곳에서도 사용할 수 있게 되었다. (Cart 에서 사용한다거나 등등)</p>
+<p>다만, 위의 방법은 확실히 어색하게 보는 사람이 많이 있다. 이 방법은 하나의 방법으로 보자. 따라서 기존대로 유지하되 이것도 하나의 방법으로 둘 것같다고 말씀해주셨다.</p>
+<p>* 여기서 참고!!<br></p>
+<ul>
+<li>DIP 는 클래스들이 구체적인것이 아닌 추상화된 것에 의존하라는 것인데, 이걸로 패키지 싸이클을 끊을 수 있다.</li>
+<li>근데 사람들이 오해하는게 여기서 말하는 추상화는 인터페이스나 super 클래스가 아니다. 그냥 자주 안변하는 클래스라고 보면된다.</li>
+</ul>
+<br>
+<p><strong>객체 참조의 문제</strong></p>
+<p>객체들이 다 연결되어 있기 때문에, 하나의 객체에서 연결되어 있는 모든 객체를 다 탐색할 수 있다.</p>
+<p>이것은 ORM 을 사용할 때 헬게이트로 다가온다..! (LazyLoading 등등. .. JPA 사용할 때의 연관관계 문제 등등)</p>
+<ol>
+<li>객체가 다 연결되어 있다보니, 하나를 볼 때 어디까지 봐야하는지 알기 힘들다.</li>
+<li>하나의 객체가 변경될 때, 같이 변경되어야 하는 객체들은 어디까지?(어디까지 변경시킬 건지?, 범위) -&gt; Transaction 의 경계가 모호해진다. (Locking)</li>
+</ol>
+<p>객체 참조는 너무 쉽게 다른 객체를 참조할 수 있다보니 다른 객체에 대한 수정이나 작업을 계속해서, 쉽게 변경하게 되곤 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderService</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Transactional</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">payOrder</span><span style="color:#f92672">(</span>Long orderId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Order order <span style="color:#f92672">=</span> orderRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>orderId<span style="color:#f92672">)</span> <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#f92672">.</span><span style="color:#a6e22e">payed</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Delivery delivery <span style="color:#f92672">=</span> Delivery<span style="color:#f92672">.</span><span style="color:#a6e22e">started</span><span style="color:#f92672">(</span>order<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        deliveryRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>delivery<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Transactional</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deliverOrder</span><span style="color:#f92672">(</span>Long orderId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Order order <span style="color:#f92672">=</span> orderRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>orderId<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#f92672">.</span><span style="color:#a6e22e">delivered</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Delivery delivery <span style="color:#f92672">=</span> deliveryRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>orderId<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        delivery<span style="color:#f92672">.</span><span style="color:#a6e22e">complete</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> OrderStatus <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        ORDERED<span style="color:#f92672">,</span> PAYED<span style="color:#f92672">,</span> DELIVERED
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Enumerated</span><span style="color:#f92672">(</span>EnumType<span style="color:#f92672">.</span><span style="color:#a6e22e">STRING</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;STATUS&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> OrderStatus orderStatus<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">payed</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">orderStatus</span> <span style="color:#f92672">=</span> PAYED<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">delivered</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">orderStatus</span> <span style="color:#f92672">=</span> DELIVERED<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 여기에 가게에 수수료를 부과한다라는 부분도 추가해보자.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">shop</span><span style="color:#f92672">.</span><span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>calculateTotalPrice<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Delivery</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">enum</span> DeliveryStatus <span style="color:#f92672">{</span> DELIVERING<span style="color:#f92672">,</span> DELIVERED <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@OneToOne</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@JoinColumn</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ORDER_ID&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Order order<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Enumerated</span><span style="color:#f92672">(</span>EnumType<span style="color:#f92672">.</span><span style="color:#a6e22e">STRING</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;STATUS&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> DeliveryStatus deliveryStatus<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Delivery <span style="color:#a6e22e">started</span><span style="color:#f92672">(</span>Order order<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Delivery<span style="color:#f92672">(</span>order<span style="color:#f92672">,</span> DELIVERING<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">complete</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">deliveryStatus</span> <span style="color:#f92672">=</span> DELIVERED<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">order</span><span style="color:#f92672">.</span><span style="color:#a6e22e">completed</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shop</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Ratio commissionRate<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Money commision <span style="color:#f92672">=</span> Money<span style="color:#f92672">.</span><span style="color:#a6e22e">ZERO</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>Money price<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        commission <span style="color:#f92672">=</span> commission<span style="color:#f92672">.</span><span style="color:#a6e22e">plus</span><span style="color:#f92672">(</span>commissionRate<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>price<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>문제점 : 이들은 변경의 빈도/순간이 다르다.</strong></p>
+<p>위의 <code>OrderService.deliverOrder()</code> 는 shop, order, delivery 에 대해서 transaction(lock) 을 건다. 그런데.. 각각의 아래 요청을 처리할 수 있다.</p>
+<p>Shop &lt;-  admin 에서 가게 상태 변경</p>
+<p>Order &lt;- 주문 상태 변경</p>
+<p>Delivery &lt;- 배달 상태 변경</p>
+<p>서비스가 커지면 커질수록 lock 늪에 빠질 수 있다.</p>
+<p>객체 참조로 인해 -&gt; 트랜잭션 경합이 발생할 가능성이 높아진다. -&gt; 성능 저하로 이뤄진다. (잘못된다면 장애까지 발생할 수 있다.)</p>
+<p>객체참조 = 한 트랜잭션 안에서 동작하는 객체가 많아진다.</p>
+<p>객체 참조는 결합도가 굉장히 굉장히 높은 의존성이다. 꼭 필요한 경우를 제외하곤 다 끊어야한다. (&lsquo;어떤 객체들을 묶고 어떤 객체들을 분리할 것인가?&rsquo; 부분에서 다시 봐보자.)</p>
+<p>그러면 어떻게 해결할 수 있을까??</p>
+<br>
+<p><strong>&lsquo;Repository 를 통한 탐색(약한 결합도)&rsquo; 방법을 사용한다.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SHOP_ID&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long shopId<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Shop shop <span style="color:#f92672">=</span> shopRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>order<span style="color:#f92672">.</span><span style="color:#a6e22e">getShopId</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Entity</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Table</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SHOPS&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shop</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Id</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>특히 이 부분은 내가 아예 잘못된 방향으로 생각했다..! 나는 객체 탐색을 쉽게 하기 위해 오히려 객체 참조를 걸곤 했다.</p>
+</blockquote>
+<p>즉.. Repository 로 연관관계를 넘기는 것이다.</p>
+<p>-&gt; 비즈니스 로직은 단방향으로 깔끔하게 작성할 수 있곤하는데, 조회로직이 들어가면서부터 양방향 등등의 복잡한 관계가 설정되곤한다.</p>
+<br>
+<p><strong>어떤 객체들을 묶고 어떤 객체들을 분리할 것인가?</strong></p>
+<p>(* 모든 객체참조가 불필요하지는 않다.) 즉 알고쓰자는 것이다.</p>
+<ul>
+<li>
+<p>함께 생성되고 함께 삭제되는, 함께 변경되는 애들은 묶자.<br>
+(객체참조는 트랜잭션이 같이 묶이는 것이라고 했다. 그러니까 도메인 관점에서 같이 변경될 것들은 객체참조로 묶어도된다는 것이다.)
+(트랜잭션단위, 조회단위(lazy,eager) 등등)</p>
+</li>
+<li>
+<p>도메인 제약사항을 공유하는 객체들은 묶자.</p>
+</li>
+<li>
+<p>가능하면 분리하자.</p>
+</li>
+<li>
+<p>(도메인)의미적으로 강하게 묶여야하는 애들은 묶자. 근데 이걸 repository 방식으로 풀수 있다고 생각한다면 풀자.</p>
+</li>
+<li>
+<p>장바구니, 장바구니항목은 무조건 (객체참조로) 결합되어야 한다? <br>
+-&gt; 아닐 수 있다. 보통 장바구니, 장바구니항목이 변경되는 시점이나 도메인 제약사항에 따라 다르다.<br>
+-&gt; 단순하게 이름으로만, 쉽게 생각해서는 안된다!</p>
+</li>
+</ul>
+<p>즉, 규칙은 없다. 도메인에 따라 다를 것이다.</p>
+<blockquote>
+<p>// 이후에 이미지 참조 (객체 묶기)</p>
+</blockquote>
+<p>위의 그림에서 같은 경계안에 있다면 연관관계로 묶었다고 한다. (묶는 것이 맞다고한다.)</p>
+<ol>
+<li>lazy/eager loading</li>
+<li>같이 CRUD 되어야하고 등등</li>
+</ol>
+<p>그림에서 같은 경계에 있따면 id(repository)로 묶는다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>OrderLineItem<span style="color:#f92672">&gt;</span> orderLineItems<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Column</span><span style="color:#f92672">(</span>name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SHOP_ID&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long shopId<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>객체참조를 사용하는것은 굉장히 편하고, 이론적으로 설명하기에 너무 쉽다.</p>
+<p>다만 실무에서는 객체간에 어디서 끊고, 어디까지 관리할건지 등이 중요하기에 이런것들이 중요하다.</p>
+<br>
+<p>위에처럼 경계를 나누면</p>
+<ol>
+<li>어디까지 db에서 한번에 가져올건지, 트랜잭션을 어디까지 잡을건지 확 알 수 있다.</li>
+<li>그룹별로 (영속성) 저장소도 변경할 수 있다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Shop shop<span style="color:#f92672">;</span> <span style="color:#75715e">// 이제 더이상 안쓰이니까 컴파일 에러 발생할 것이다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> Long shopId<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이렇게 끊고나면 일단 컴파일 에러가 날텐데 아래 부터는 어떻게 해결했는지 설명한다. (객체참조로 된 기존 소스와 다르니까)</p>
+<br>
+<p><strong>이렇게 해결했다 1 : &ldquo;객체를 직접 참조하는 로직을 다른 객체(OrderValidator)로 옮기자.&rdquo;</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 컴파일 에러가 났던 부분(order-shop)을 이쪽으로 다 뺸다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderValidator</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span>Order order<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        validate<span style="color:#f92672">(</span>order<span style="color:#f92672">,</span> getShop<span style="color:#f92672">(</span>order<span style="color:#f92672">),</span> getMenus<span style="color:#f92672">(</span>order<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span>Order order<span style="color:#f92672">,</span> Shop shop<span style="color:#f92672">,</span> Map<span style="color:#f92672">&lt;</span>Long<span style="color:#f92672">,</span> Menu<span style="color:#f92672">&gt;</span> Menus<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span><span style="color:#f92672">(!</span>shop<span style="color:#f92672">.</span><span style="color:#a6e22e">isOpen</span><span style="color:#f92672">())</span> <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Service</span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderService</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> OrderValidator orderValidator<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Transactional</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">placeOrder</span><span style="color:#f92672">(</span>Cart cart<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Order order <span style="color:#f92672">=</span> orderMapper<span style="color:#f92672">.</span><span style="color:#a6e22e">mapFrom</span><span style="color:#f92672">(</span>cart<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#f92672">.</span><span style="color:#a6e22e">place</span><span style="color:#f92672">(</span>orderValidator<span style="color:#f92672">);</span> <span style="color:#75715e">// 이것도 보면, 나같으면 service 에서 orderValidator.validate(order) 이런식으로 했을 것 같은데, order 쪽에 넘겼다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        orderRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>order<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">place</span><span style="color:#f92672">(</span>OrderValidator orderValidator<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        orderValidator<span style="color:#f92672">.</span><span style="color:#a6e22e">validate</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        ordered<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>위의 로직을 좋다고 생각한 이유.</p>
+<ol>
+<li>사실 여러 객체를 타고타고 들어가는 것은 이해하기 힘들 수 있다. 한곳에 모은 것이 좋다고 생각한다. (한눈에 볼 수 있다.)</li>
+<li>응집도가 높아진다.
+<ul>
+<li>응집도 = 관련된 책임의 집합, 다르게 말하면 응집도는 &lsquo;변경&rsquo;과 관련이 있다. (모든 설계는 변경과 관련이 있다.)</li>
+<li>같이 변경되는 게 한곳에 있다? == 응집도가 높다.</li>
+<li>다르게 변경되는 것이 한곳에 있다? == 응집도가 낮다. (기존 order 는 주문처리, validation 둘다 있음)</li>
+</ul>
+</li>
+</ol>
+<p>(* 때로는 절차지향이 객체지향보다 좋을 수 있다.)</p>
+<p>객체 안에 validation 로직을 넣어야한다는 강박관념을 벗어나자.</p>
+<p>간단한 validation 이라면 ok, 여러 객체가 사용되야한다면 위에처럼 따로 뺴는 것도 방법(절차지향) (tradeoff, 잘 선택할 것)</p>
+<br>
+<p><strong>이렇게 해결했다 2 : 1번 방법처럼 &ldquo;절차지향&rdquo;, 도메인 이벤트(domain event) 발행</strong></p>
+<p><strong>1. 절차지향</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 문제 코드
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">delivered</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">orderStatus</span> <span style="color:#f92672">=</span> OrderStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">DELIVERED</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">shop</span><span style="color:#f92672">.</span><span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>calculateTotalPrice<span style="color:#f92672">());</span> <span style="color:#75715e">// 이코드가 작성된 이유
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 1. orderStatus 먼저 변경되고 shop 의 수수료 값이 변경 되어야한다.(도메인 규칙)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 2. order -&gt; shop 갖고 있으니 편하게 작성하자.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// OrderDeliverdService 만든다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderDeliveredService</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deliverOrder</span><span style="color:#f92672">(</span>Long orderId<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1번 처럼 기존 로직을 여기로 다 넣는다. // 현재 내가 작성하고 있는 코드와 유사함. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Order order <span style="color:#f92672">=</span> orderRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>orderId<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Shop shop <span style="color:#f92672">=</span> shopRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>order<span style="color:#f92672">.</span><span style="color:#a6e22e">getShopId</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        Delivery delivery <span style="color:#f92672">=</span> deliveryRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findByOrderId</span><span style="color:#f92672">(</span>orderId<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        order<span style="color:#f92672">.</span><span style="color:#a6e22e">delivered</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        shop<span style="color:#f92672">.</span><span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>order<span style="color:#f92672">.</span><span style="color:#a6e22e">calculateTotalPrice</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        delivery<span style="color:#f92672">.</span><span style="color:#a6e22e">complete</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>위의 코드는 주문 완료후 변경되는 로직으 2개의 클래스에 있음. (OrderService, Order)<br>
+아래 코드는 OrderDeliveredService 한 곳에 있음</p>
+<p>(* 이렇게 수정하면 패키지 사이클돔)</p>
+<br>
+<p>이럴 때에는 인터페이스 써서 의존성 역전하면됨.</p>
+<blockquote>
+<p>// 이후에 이미지 참조 (의존성 싸이클!!)<br>
+// 이후에 이미지 참조 (의존셩 역전)</p>
+</blockquote>
+<p>* 위와같이 서비스에서 해결하면, 로직을 한눈에 볼 수 있다라는 장점 : 객체간의 결합도 낮되 로직간의 결합도 명확히 확인</p>
+<br>
+<p><strong>2. 도메인 이벤트</strong></p>
+<p>* 로직간의 순서를 명확히 알되 느슨하게한다?</p>
+<p><code>Order -&gt; OrderDeliveredEvent -&gt; Delivery,Shop</code></p>
+<blockquote>
+<p>// 이후에 이미지 참조 (Domain Event 를 이용한 의존성 제거)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 직접 구현해도 되고,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Spring 에서 제공하는 AbstractAggregateRoot 써도됨
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#66d9ef">extends</span> AbstractAggregateRoot<span style="color:#f92672">&lt;</span>Order<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">delivered</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">orderStatus</span> <span style="color:#f92672">=</span> OrderStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">DELIVERED</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        registerEvent<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> OrderDeliveredEvent<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">));</span> <span style="color:#75715e">// DB commit 시에 발행해줌 (바로 발행하는 게아님)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderDeliveredEvent</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Order order<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getOrderId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{...}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Long <span style="color:#a6e22e">getShopId</span><span style="color:#f92672">()</span> <span style="color:#f92672">{...}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Money <span style="color:#a6e22e">getTotalPrice</span><span style="color:#f92672">()</span> <span style="color:#f92672">{...}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Shop 이벤트 핸들러
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BillShopWithOrderDeliveredEvnetHandler</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 동기,비동기 가능
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 다른 트랜잭션, 같은 트랜잭션 다 가능
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Asnyc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@EventListener</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Transactional</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle</span><span style="color:#f92672">(</span>OrderDeliveredEvent event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Shop shop <span style="color:#f92672">=</span> shopRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getShopId</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        shop<span style="color:#f92672">.</span><span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getTotalPrice</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Delivery 이벤트 핸들러
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CompleteDeliveryWithOrderDeliveredEventHandler</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Asnyc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@EventListner</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Transactional</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle</span><span style="color:#f92672">(</span>OrderDeliveredEvent event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Delivery delivery <span style="color:#f92672">=</span> deliveryRepository<span style="color:#f92672">.</span><span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span>event<span style="color:#f92672">.</span><span style="color:#a6e22e">getOrderId</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        delivery<span style="color:#f92672">.</span><span style="color:#a6e22e">complete</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>* 이것도 그려보면 사이클 돈다.</p>
+<p>여기서는 패키지를 분리해서 해결해보자.</p>
+<p>BillShopWithOrderDeliveredEvnetHandler 를 특정 패키지/클래스로 뺀다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Shop -&gt; Shop, Billing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shop</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Ratio commissionRate<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Money commission <span style="color:#f92672">=</span> Money<span style="color:#f92672">.</span><span style="color:#a6e22e">ZERO</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>Money price<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        commission <span style="color:#f92672">=</span> commission<span style="color:#f92672">.</span><span style="color:#a6e22e">plus</span><span style="color:#f92672">(</span>commissionRate<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>price<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 아래와 같이 분리
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shop</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Ratio commissionRate<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Money <span style="color:#a6e22e">calculateCommissionFee</span><span style="color:#f92672">(</span>Money price<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> commissionRate<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>price<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Billing</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Long shopId<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Money commission <span style="color:#f92672">=</span> Money<span style="color:#f92672">.</span><span style="color:#a6e22e">ZERO</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(</span>Money commission<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        commission <span style="color:#f92672">=</span> commission<span style="color:#f92672">.</span><span style="color:#a6e22e">plus</span><span style="color:#f92672">(</span>commission<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@Component</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BillShopWithOrderDeliveredEvnetHandler</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Asnyc</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">handle</span><span style="color:#f92672">(</span>OrderDeliveredEvent event<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Shop shop <span style="color:#f92672">=</span> <span style="color:#f92672">...;</span>
+</span></span><span style="display:flex;"><span>        Billing billing <span style="color:#f92672">=</span> <span style="color:#f92672">...;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        billing<span style="color:#f92672">.</span><span style="color:#a6e22e">billCommissionFee</span><span style="color:#f92672">(...);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>// 이후에 이미지 참고(Billing 을 새로 만든 패키지에 포함)</p>
+</blockquote>
+<p>패키지가 싸이클이 돌아서 해결해보면, 도메인(클래스)을 분리해야되는 경우가 많은 것을 확인할 수 있다.</p>
+<ul>
+<li>Shop 안에 정산로직이 있었던 것이 이상했던 것을 자연스럽게 알게 된다.</li>
+<li>(정산)Billing 이라는 클래스를 따로 뺀다는 의사결정을 자연스럽게 하게 된다.</li>
+</ul>
+<blockquote>
+<p>* 세미나에서는 패키지 사이클이 돌면 기계처럼 분리했는데, 실제로 해보면 도메인이 분리되어야 하는 것을 보게 되는 경우가 많다.</p>
+</blockquote>
+<br>
+<p><strong>패키지 사이클 해결법</strong></p>
+<ol>
+<li>추상화 + 의존성 역전</li>
+<li>중간객체(클래스) 두는것</li>
+<li>패키지/클래스 새로 생성한다.</li>
+</ol>
+<blockquote>
+<p>tradeoff</p>
+</blockquote>
+<p><br><br></p>
+<h3 id="의존성과-시스템-분리">
+  의존성과 시스템 분리
+  <a class="anchor" href="#%ec%9d%98%ec%a1%b4%ec%84%b1%ea%b3%bc-%ec%8b%9c%ec%8a%a4%ed%85%9c-%eb%b6%84%eb%a6%ac">#</a>
+</h3>
+<p>의존성을 관리하다보면, 시스템을 쉽게 분리할 수 있게 된다.</p>
+<blockquote>
+<p>내가 지금 작성하고 있는 방식은 layered architecture 에 도메인들을 넣어 사용하고 있는 것이다. 의존성 관리 없이 이렇게 사용하는 것은 그나마 나을 수 있다고한다 (같은 레이어 안에서만 의존성 관리해주면 되니까.) (고민할 게 없다. 걍 쓰곤한다.)</p>
+</blockquote>
+<p>근데 의존성 관리하면 (도메인단위로 패키지 분리할 수 있다.) 도메인이 먼저, 그다음 layered architecture 가 나오게 만들 수 있다. (의존성을 컨트롤 할 수 있다.)</p>
+<blockquote>
+<p>// 이후에 이미지 참조(Domain Evnet 사용 전의 의존성)
+// 이후에 이미지 참조(도메인 단위 모듈)</p>
+</blockquote>
+<p>이렇게 하면, 추후에 시스템 분리도 가능하다. (물론 작업이 필요하겠지만 패키지 관리를 안하는 것보단 훨씬 수월할 것이다.)</p>
+<p>* 도메인 이벤트, 시스템 이벤트</p>
+<p>mono 로 가더라도, 꼭 패키지(의존성)관리는 해주자..!</p>
+<p>시스템 관리 = 의존성 관리</p>
+<p><strong>의존성을 따라 시스템을 진화시켜라</strong></p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/commit/21004b68b20385617a444cc8a933bb5eb5dfd7a5" title='Last modified by hjjae2 | May 22, 2023' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>May 22, 2023</span>
+    </a>
+  </div>
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/content.en/docs/DEV/%ec%9a%b0%ec%95%84%ed%95%9c%20%ed%85%8c%ed%81%ac%20%ec%84%b8%eb%af%b8%eb%82%98%20:%20%ec%9a%b0%ec%95%84%ed%95%9c%ea%b0%9d%ec%b2%b4%ec%a7%80%ed%96%a5%202019.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#예제를-살펴보자">예제를 살펴보자.</a></li>
+            <li><a href="#설계-개선하기">설계 개선하기</a></li>
+            <li><a href="#의존성과-시스템-분리">의존성과 시스템 분리</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

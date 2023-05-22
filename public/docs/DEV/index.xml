@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DEV on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/DEV/</link>
+    <description>Recent content in DEV on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/DEV/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/int%EB%8A%94-%EB%AA%87-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EC%9D%B8%EA%B0%80%EC%9A%94/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/int%EB%8A%94-%EB%AA%87-%EB%B0%94%EC%9D%B4%ED%8A%B8-%EC%9D%B8%EA%B0%80%EC%9A%94/</guid>
+      <description>https://devocean.sk.com/blog/techBoardDetail.do?ID=164788
+결론 # 1. 언어마다 다를 수 있다.
+2. 시스템(플랫폼)마다 다를 수 있다.
+C/C++ : 4 or 8 Byte # 시스템(플랫폼)에 의존적이다.
+LLP64, LP64 등 데이터 모델에 따라 다르다.
+Java : 4 Byte 고정 # 플랫폼에 독립적인 가상머신(JVM)에서 동작하기에 플랫폼의 영향을 받지 않는다.
+4Byte 로 고정되어 있다.
+Python : 8 Byte ~ # Python 의 경우 int 의 크기가 정해져 있지 않다.
+sys.maxsize 의 경우, 시스템에 의존적인 형태라고 볼 수 있을 것 같다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/NGINX-%EA%B8%B0%EC%88%A0-%EB%B6%80%EC%B1%84%EA%B0%80-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9C%BC%EB%A0%A4%EB%A9%B4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/NGINX-%EA%B8%B0%EC%88%A0-%EB%B6%80%EC%B1%84%EA%B0%80-%EB%90%98%EC%A7%80-%EC%95%8A%EC%9C%BC%EB%A0%A4%EB%A9%B4/</guid>
+      <description>로드밸런서 # GSLB, LSLB, CSLB
+요약 # Nginx 설정도 저장소에서 관리하자. 배포까지 자동화할 수 있다. 주석은 꼼꼼히 작성하자. 주기적으로 확인하여 필요하지 않은 설정은 제거하자. (계속해서 관리하자.) mirror # nginx 설정은 업데이트를 한다. 기존 설정이 변경되다보니 항상 걱정하게 된다.
+mirror 는 들어온 요청을 그대로 복제해서 또 다른 upstream 서버 / block 으로 보내주는 역할을 한다.
+이를 통해 기존 로직을 손대지 않고 설정 테스트가 가능하다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/Reactive-Programming/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/Reactive-Programming/</guid>
+      <description>Reactive Programming # 참고
+https://gngsn.tistory.com/223 https://en.wikipedia.org/wiki/Reactive_programming Keywords
+Data Stream Functional Programming Asynchronous Declarative Programming Paradigm Reactive programming is a declarative programming paradigm concerned with data streams and the propagation of change.
+&amp;quot; Reactive Programming은 데이터 스트림을 비동기 처리하는 선언형 프로그래밍입니다. 선언형 프로그래밍이란 기존의 명령형 프로그래밍 방식과 대비되는 새로운 프로그래밍 패러다임으로, 라인 단위의 프로그래밍 과정과 달리 특정 목적과 같이 무엇을 하는 지를 명시하여 개발하는 과정입니다. 리액티브 프로그래밍은 아래 3가지(Data Stream, Functional Programming, Asynchronous) 측면으로 기존 프로그래밍 방식의 문제점들을 해결합니다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/The-NIST-Model-for-Role-Based-Access-Control-Towards-A-Unified-Standard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/The-NIST-Model-for-Role-Based-Access-Control-Towards-A-Unified-Standard/</guid>
+      <description>1. INTRODUCTION # The lack of standards for RBAC has led to roles being implemented in different ways, impeding the advance of RBAC technology.
+The goal of this paper is to provide a standard in this arena.
+The basic role concept is simple: establish permissions based on the functional roles in the enterprise, and then appropriately assign users to a role or set of roles
+Roles colud represent the tasks, responsibilities, and qualifications associated with an enterprise.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/Top-10-Architecture-Characteristics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/Top-10-Architecture-Characteristics/</guid>
+      <description>Top 10 Architecture Characteristics # 참고 : https://medium.com/@abd0hrz/top-10-architecture-characteristics-non-functional-requirements-with-cheatsheet-f639458d357d
+1. Scalability # Scalability is a achievable with horizontal/vertical scaling of the machine.
+Traffic Pattern # Understand the traffic pattern of the system. :star:
+Pattern Diurnal Pattern Traffic increases in the morning and decreases in the evening for a particular region. Global / Regional Regional Heavy usage of the application. Thundering Herd These could occur during peak time or in densely populated areas.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/Woowa-course-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/Woowa-course-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0/</guid>
+      <description>1. getter 대신에 객체에 물어보는 형태로 작성해보자.
+* 적절한 예시인지 모르겠다. 아무튼 getter 보다 최대한 객체의 method 를 활용해보는 것? 이 포인트 인 것 같다.
+Man man = new Man(); ... // A if(man.getAge() &amp;gt; 10) { ... } // B if(man.isOverTenAge()) { ... } 2. 될 수 있으면 숫자, 문자열 값에 대한 상수(변수) 처리를 하자.
+혹은 Enum 클래스를 사용하도록 하자.
+3. 한 테스트 함수(코드)에서 여러 개를 테스트하지 말자.
+n 개를 테스트하고자 한다면, n 개의 테스트 함수를 만들자.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EB%B8%94%EB%9E%99%EC%9E%AD-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-%EA%B8%80%EC%9D%84-%EC%9D%BD%EA%B3%A0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EB%B8%94%EB%9E%99%EC%9E%AD-%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-%EA%B8%80%EC%9D%84-%EC%9D%BD%EA%B3%A0/</guid>
+      <description>Okky fender, jojoldu 님의 글을 읽고 느껴지는 부분, 공감되는 부분에 대해서 정리해보기
+초보 개발자에게 권장하는 객체지향 모델링 공부 방법
+객체지향 좀 더 이해하기 - 블랙잭 게임 구현(1)
+아래 코드에서 개선할 수 있는 부분은 무엇이 있을지 생각해본다. # public Card draw(){ int size = cards.size(); int select = (int)(Math.random()*size); Card selectedCard = cards.get(select); cards.remove(select); return selectedCard; } 위의 코드는 (카드덱)객체에서
+가지고 있는 카드 리스트 중 랜덤한 카드 한장을 뽑고 그 카드는 리스트에서 제거하는 코드이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%A0%84%EB%9E%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%98%88%EC%99%B8-%EC%B2%98%EB%A6%AC-%EC%A0%84%EB%9E%B5/</guid>
+      <description> 예외 처리 전략 # 예외 복구 다른 작업의 흐름을 유도한다.
+예외 처리 회피 처리하지 않고 호출한 쪽으로 예외를 던진다.
+예외 전환 명확한 의미의 예외로 전환하여 예외를 던진다.
+Reference
+https://www.nextree.co.kr/p3239/ </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%96%B4%EB%94%94-%EA%B0%80%EC%84%9C-%EC%BD%94%ED%94%84%EB%A7%81-%EB%A7%A4%EC%9A%B0-%EC%95%8C%EC%9D%80-%EC%B2%B4%ED%95%98%EA%B8%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%96%B4%EB%94%94-%EA%B0%80%EC%84%9C-%EC%BD%94%ED%94%84%EB%A7%81-%EB%A7%A4%EC%9A%B0-%EC%95%8C%EC%9D%80-%EC%B2%B4%ED%95%98%EA%B8%B0/</guid>
+      <description>DSL (Domain Specific Language) : 도메인에 특화된 언어, 즉 범용적인 언어가 아닌 (해당 도메인에 대해서만) 사용되는 언어.
+이번 세미나의 내용은 간략하게 아래의 내용을 포함하고 있다.
+Kotlin DSL 에 대해 살펴보고 Kotlin 사용 시 주의사항 (with SpringBoot) 개요 # 코틀린은 JVM, 안드로이드, Javascript, 네이티브 등에서 동작할 수 있는 (혹은 이것들을 대상으로 하는) 컴파일 언어이다. OO(Object-Oriented), FP(Functional-Programmin) 두 스타일 모두 활용할 수 있다. 간결하고, 실용적이다. (+ 최근에 &amp;lsquo;코루틴&amp;rsquo; 이라는 것이 주목받고 있다고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C-Redis-2019/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C-Redis-2019/</guid>
+      <description>우아한 테크 세미나 : 우아한 Redis (2019) # 이번 세미나에서 다루지 않는 것들
+Redis Persistence(RDB, AOF) Redis Pub/Sub Redis Stream 확률적 자료구조 Hyperlog Redis Module Redis 소개 # In-Memory 데이터 저장소 Open Source (BSD 3 License) 지원하는 자료구조 String Set Sorted-Set Hash List Hyperloglog Bitmap Geospatial index Stream Only 1 Commiter Cache 란? # 결과를 미리 저장해두었다가 빠르게 제공하는 것
+ex : (dp) factorial Disk Memory L3 cache L2 cache L1 cache core Cache 아키텍처 #1 : Look-Aside Cache # Client - Server - DB ㄴ Cache 캐시를 먼저 조회한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-2019/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-2019/</guid>
+      <description>2019년 &amp;ldquo;우아한Tech - 우아한객체지향 by 조영호님&amp;rdquo; 유투브 세미나를 듣고 내용 정리하기
+제목 : &amp;lsquo;우아한 객체지향 의존성을 이용해 설계 진화시키키&amp;rsquo;
+설계에서 가장 중요한 것은 &amp;lsquo;의존성&amp;rsquo;이다. &amp;lsquo;의존성&amp;rsquo;을 어떻게 설정,관리하느냐에 따라 설계가 많이 달라진다.
+의존성(Dependency)
+설계는 코드를 어떻게 배치할 것인가? 어떤 코드를 어디에 넣을 것인가? 어떤 코드를 어디 클래스에, 어디 패키지에 넣을건지 등에 대한 고민을 하는 것이다.
+변경에 초점을 맞춰야한다. 같이 변경되는 코드를 같이 넣어줘야하고, 같이 변경되지 않는 것은 따로 넣는다. (= 결국에는 의존성과 관련이 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EC%8A%A4%ED%94%84%EB%A7%81%EB%B0%B0%EC%B9%98-2019/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%84%B8%EB%AF%B8%EB%82%98-%EC%9A%B0%EC%95%84%ED%95%9C%EC%8A%A4%ED%94%84%EB%A7%81%EB%B0%B0%EC%B9%98-2019/</guid>
+      <description>@ConditionalOnProperty 사용 여부 # 개요 : Job(Bean) 수가 많아짐에 따라, 초기 로딩 속도가 느려질 수 있음
+현재 실행할 Job 만 Bean 으로 띄우기 위해 @ConditionalOnProperty 사용
+= 필요한 Bean 만 등록 -&amp;gt; 초기 로딩 속도 빨라짐 = 단, @ConditionalOnProperty 사용 시 테스트 코드 실행 시 속도가 느려짐
+@ConditionalOnProperty 사용 시 마다 (테스트)컨텍스트를 다시 띄움 결론
+목적 사용 여부 실제 동작에 우선순위가 있을 때
+빠르게 Job 을 띄우고 실행할 때 @ConditionalOnProperty 사용 O 테스트 코드에 우선순위가 있을 때</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%BD%94%EC%8A%A4-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EB%82%B4%EC%97%90-%EC%99%B8%EB%B6%80-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EC%9A%94%EC%B2%AD%EC%9D%B4-%EB%8B%B4%EA%B8%B0%EA%B2%8C-%EB%90%98%EB%A9%B4-%EC%96%B4%EB%96%A4-%EB%AC%B8%EC%A0%9C%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%A0%EA%B9%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%9A%B0%EC%95%84%ED%95%9C-%ED%85%8C%ED%81%AC-%EC%BD%94%EC%8A%A4-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EB%82%B4%EC%97%90-%EC%99%B8%EB%B6%80-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EC%9A%94%EC%B2%AD%EC%9D%B4-%EB%8B%B4%EA%B8%B0%EA%B2%8C-%EB%90%98%EB%A9%B4-%EC%96%B4%EB%96%A4-%EB%AC%B8%EC%A0%9C%EA%B0%80-%EB%B0%9C%EC%83%9D%ED%95%A0%EA%B9%8C/</guid>
+      <description>출처 : 트랜잭션 내에 외부 리소스 요청이 담기게 되면 어떤 문제가 발생할까?
+간단 요약 # DB 트랜잭션 시, 꼭 필요한 부분(범위)에만 트랜잭션이 걸릴 수 있도록 한다.
+불필요한 부분(예를 들어, DB 트랜잭션과 관련 없는 외부 API 호출 등)은 분리한다.
+예시 # OutGoingService : 외부API호출서비스.class DBTxService : 꼭필요한DB트랜잭션서비스.class
+class DBTxService { @Transactional void save() { ... } } class OutGoingService { private final DBTxService dbTxService; void save() { // 외부 API 호출 로직 dbTxService.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-Java-App-Server-Refactoring-%ED%9B%84%EA%B8%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%B9%B4%EC%B9%B4%EC%98%A4%ED%86%A1-Java-App-Server-Refactoring-%ED%9B%84%EA%B8%B0/</guid>
+      <description>객체를 수정하기 위해서, (메서드에서) 객체를 파라미터로 받아 메서드 내부에서 해당 객체를 수정하지 말자. # 어떤 클래스를 파라미터로 받으면 결합도가 높아진다.
+다음은 (Car 객체를 필드로 갖는) CarContext 객체의 Car 필드를 새로운 값으로 설정하는 예시이다.
+&amp;quot; 아래와 같이, 함수 내부에서 만드는 새로운 값 또는 상태를 함수의 안에서 외부 객체의 상태 변경에 직접 적용하는 것은 좋지 않습니다. 가능하면 리턴으로 받아서 처리하는 방식이 좋습니다. &amp;quot;
+// Bad Result createCar(CarContext carContext, Something A, Something B) { .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/DEV/%EC%BA%90%EC%8B%B1-%EC%A0%84%EB%9E%B5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/DEV/%EC%BA%90%EC%8B%B1-%EC%A0%84%EB%9E%B5/</guid>
+      <description>6-Caching Strategies to Remember while designing Cache System
+Key Metrics # 캐시 히트율 (cache hit ratio) 응답 시간 (latency) 처리량 (throughput) 캐시 사이즈 (cache size) 캐시 미스율 (cache miss ratio) Read Intensive Application Caching # Cache-aside Cache-through Refresh-ahead Cache-aside # 캐시가 미스됐을 때, 3번의 trip 이 발생해 급격한 딜레이가 생길 수 있다. 데이터베이스에 업데이트하고 캐시에는 업데이트를 누락하여 캐시의 데이터가 낡은 상태로 유지될 수 있다. &amp;quot; Data might become stale if someone updates the database without writing to the cache.</description>
+    </item>
+    
+  </channel>
+</rss>

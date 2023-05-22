@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SPRING on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/SPRING/</link>
+    <description>Recent content in SPRING on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/SPRING/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-2.7.2-3.0.1-migration/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-2.7.2-3.0.1-migration/</guid>
+      <description>전제 조건 # Java 17 이상 SpringBoot 2.7.x 참고 문서 # wiki: Spring Boot 3.0 Migration Guide TIP # 다음 라이브러리가 도움을 준다.
+runtime(&amp;#34;org.springframework.boot:spring-boot-properties-migrator&amp;#34;) 의존성 설치 후 애플리케이션을 시작하면, 로그에 변경된 사항을 알려준다.
+Core Changes # Jakarta EE (패키지명 변경 : javax -&amp;gt; jakarta) # history 잠깐 보면, 2017년 오라클에서 이클립스 재단으로 자바 EE를 이관했다. (&amp;ldquo;썬 마이크로시스템즈를 인수한 오라클이 사실상 자바EE의 수익화에 실패하면서 기술 주도권을 포기한 것으로 판단됩니다.&amp;rdquo;) (오픈소스) 이클립스 재단으로 이관된 자바 EE의 공식 명칭이 자카르타 EE 이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-@SpringBootApplication/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-@SpringBootApplication/</guid>
+      <description>@SpringBootApplication # /** * Indicates a configuration class that declares one or more @Bean methods * and also triggers auto-configuration and component scanning. * This is a convenience annotation that is equivalent to declaring @Configuration, @EnableAutoConfiguration and @ComponentScan. */ @Target(ElementType.TYPE) @Retention(RetentionPolicy.RUNTIME) @Documented @Inherited @SpringBootConfiguration @EnableAutoConfiguration @ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class), @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) }) public @interface SpringBootApplication { ... } 아래 기능을 하는 Configuration Class</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-@ToString-Enable-toString-Object-View/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-@ToString-Enable-toString-Object-View/</guid>
+      <description>Intellij 디버깅 시,
+Build, Execution, Deployment &amp;gt; Debugger &amp;gt; Data Views &amp;gt; Java &amp;gt; Enable toString() Object View 설정이 활성화되어 있다는 가정
+Lazy 연관관계를 가진 Entity 조회 시, Lazy 객체의 초기화(Fetch) 시점이 예상과 다를 수 있다.
+예시 # ... @ToString @Entity public class Poster { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = &amp;#34;user_id&amp;#34;) private User user; @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = &amp;#34;poster_type_id&amp;#34;) private PosterType posterType; .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-@Transactional/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-@Transactional/</guid>
+      <description>PROPAGATION (전파) # 이름 설명 REQUIRED Default 설정 - 이미 시작된 트랜잭션이 없는 경우 : 트랜잭션 생성 - 이미 시작된 트랜잭션이 있는 경우 : 해당 트랜잭션에 참여 REQUIRES_NEW 항상 새로운(new), 독립된 트랜잭션 시작 - 이미 시작된 트랜잭션이 없는 경우 : 트랜잭션 생성 - 이미 시작된 트랜잭션이 있는 경우 : 새로운 트랜잭션 생성, 기존 트랜잭선은 보류(suspend) * 트랜잭션 보류(suspension)의 경우 모든 트랜잭션 매니저(Transaction manager)에서 기본적으로 동작하지 않음에 주의.
+(TransactionManager to be made available to it) SUPPORTS - 이미 시작된 트랜잭션이 없는 경우 : 트랜잭션 없이 진행 - 이미 시작된 트랜잭션이 있는 경우 : 해당 트랜잭션에 참여 MANDATORY 기존에 생성된 트랜잭션이 있도록 강제한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-@Version/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-@Version/</guid>
+      <description>@Version # &amp;lsquo;낙관적 락&amp;rsquo; 구현 시 사용될 수 있음
+package javax.persistence; ... /** * Specifies the version field or property of an entity class that serves as its optimistic lock value. * * The version is used to ensure integrity when performing the merge operation and for optimistic concurrency control. * * Only a single Version property or field should be used per class; applications that use more than one Version property or field will not be portable.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-ApplicationEventPublisher/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-ApplicationEventPublisher/</guid>
+      <description>동작 순서 : ApplicationEventPublisher.publishEvent() # 간단 요약 # AbstractApplicationContext.publishEvent() 호출 ApplicationEvent 타입 확인 &amp;amp; Wrapping (PayloadApplicationEvent) Multicast to listeners ApplicationEventMulticaster.multicastEvent() 호출 (Default) SimpleApplicationEventMulticaster Listener loop 돌며 invoke() public void myMethod() { ... applicationEventPublisher.publishEvent(myObject); } AbstractApplicationContext # public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext { ... /** * Publish the given event to all listeners. * Note: Listeners get initialized after the MessageSource, * to be able to access it within listener implementations.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-DispatcherServlet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-DispatcherServlet/</guid>
+      <description>Dispatcher Servlet # (웹 상에서) 클라이언트로부터 어떠한 요청이 들어오면 (Tomcat 과 같은) Servlet Container 가 요청을 받는다. 이때 제일 앞에서 서버로 들어오는 모든 요청을 처리하는(수신하는) &amp;lsquo;Front-Controller&amp;rsquo; 를 Dispatcher-Servlet 이라고 한다.
+MVC 아키텍쳐는 보통 이 Front-Controller 패턴과 함께 사용된다고 한다.
+공통적인 작업은 Dispatcher-Servlet 이 처리하고 세부적인 작업에 대해서는 적절한 Controller 에 작업을 위임한다.
+잠시 Servlet 개념으로 돌아가보면, 기존에는 모든 Servlet 에 대해 web.xml 에서 URL 매핑을 등록해주어야 했다. 그런데 Dispatcher-Servlet 이 등장하면서 해당 애플리케이션으로 들어오는 모든 요청을 핸들링 해주었다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Embeded-TomcatTCP-ThreadRequest-Connection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Embeded-TomcatTCP-ThreadRequest-Connection/</guid>
+      <description>TCP 연결을 맺고 동시에 여러 요청(API 호출)을 했을 때 :arrow_right: 서로 다른 Thread 로 처리 # 내장 톰캣 설정 확인 # org.springframework.boot.autoconfigure.web.ServerProperties
+package org.springframework.boot.autoconfigure.web; @ConfigurationProperties(prefix = &amp;#34;server&amp;#34;, ignoreUnknownFields = true) public class ServerProperties { ... /** * Tomcat properties. */ public static class Tomcat { /** * Maximum number of connections that the server accepts and processes at any * given time. Once the limit has been reached, the operating system may still * accept connections based on the &amp;#34;acceptCount&amp;#34; property.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Filter-vs-Interceptor-vs-AOP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Filter-vs-Interceptor-vs-AOP/</guid>
+      <description>Filter # 요청 / 응답을 필터링한다.
+DispatcherServlet 이전에 실행 된다. 즉, 스프링 영역 외부에 존재하여, 스프링과 무관한 자원에 대해 동작한다.
+init() : ServletContainer 에 Filter 가 등록되어 초기화될 때 실행 doFilter() : Filter가 적용된 servlet에 요청이 들어왔을 때 실행 (servlet에 전달하기 전에) destroy() : ServletContainer 가 종료될 때(Filter 가 삭제될 때)실행 일반적으로 Encoding 처리, XSS 방어 등을 처리하기 위해 사용될 수 있다.
+Interceptor # 요청/응답에 대해 전(pre)/후(post)로 가로챈다.
+DispatcherServlet 이 Controller 를 호출하기 전/후로 가로챈다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-IoC-%EC%99%80-DI/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-IoC-%EC%99%80-DI/</guid>
+      <description>IoC (Inversion of Control) # 제어(관리)의 역전 프로그램에 대해서 개발자가 관리하는 것이 아닌, 제 3의 존재가 관리한다. IoC의 이점
+역할 / 책임을 분리한다. (의존성 주입 등 관리의 일부를 제 3의 존재가 한다. 즉 역할이 분리되는 것이다.) 유연하게 코드를 작성할 수 있다. (개발 코드에 집중할 수 있다. 편리하다.) 개발자가 관리한다는 것은 권한도 강해짐을 의미한다. 이를 제어할 수 있다. DI (Dependencies Injection) # IoC 이라는 큰 범주의 개념 중 구체적인 한 특징 (?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Logging/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Logging/</guid>
+      <description>&amp;lsquo;Log&amp;rsquo; 는 소프트웨어의 행위(이벤트)를 기록하여, 문제가 발생했을 때 문제를 빠르게 파악할 수 있게 합니다. 또는 소프트웨어 자체를 모니터링할 수 있게 합니다.
+Java 에서 log 관련 프레임워크는 아래와 같은 것들이 있습니다.
+Slf4j Log4j Logback Log4j2 Slf4j (Simple Logging Facade For Java) # logger 인터페이스, 추상체 역할을 합니다. 즉, 다른 logging 프레임워크 구현체들의 인터페이스, 추상체 역할을 합니다.
+예를 들어, Logback, Log4j2 의 Logger 클래스는 Slf4j Logger 인터페이스를 구현합니다.
+package ch.qos.logback.classic; public final class Logger implements org.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Lombok-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Lombok-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC/</guid>
+      <description>컴파일 시점에 Annotation Processor 를 통해 소스코드의 AST(Abstract Syntax Tree)를 동적으로 조작/수정한다.
+컴파일 시점에 바이트 코드를 변환하여 추가적인 코드를 주입/생성한다.
+AnnotationProcessor # 컴파일 단계에서 정의/사용된 annotation 코드를 스캔/분석/처리하기 위해 사용되는 훅이다.
+컴파일 시점에 끼어들어 annotation 이 붙어있는 코드를 스캔/분석/처리하여 추가적인 소스 코드를 만들어낼 수 있다.
+참고 # Lombok의 동작원리 Lombok은 어떻게 동작하는 걸까? </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-OSIV/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-OSIV/</guid>
+      <description>Spring Framework 의 OSIV 에 대해 이해해보기
+스프링에서 기본적으로 영속(준영속)상태, 트랜잭션의 범위는 아래와 같다고 한다.
+그림에서와 같이 Intercepter, Controller, View 단에서는 준영속 상태이기 때문에 영속 상태의 이점을 누리지 못한다. 영속 상태의 이점이란, 변경 감지, 지연 로딩 등의 기능이다. 즉, 쉽게 보면 Controller 에서는 변경 감지나 지연 로딩의 기능을 사용할 수 없는 것이다.
+public class OrderController { ... public String index(Long id) { Order order = orderService.getOrder(id); order.getShop(); // 지연로딩이라면 사용할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Reactive-Kafka/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Reactive-Kafka/</guid>
+      <description>Overview # 두 가지 핵심 인터페이스(패키지)
+카프카에 메시지 발행
+reactor.kafka.sender.*
+reactor.kafka.sender.KafkaSender 카프카의 메시지 컨슘
+reactor.kafka.receiver.*
+reactor.kafka.receiver.KafkaReceiver KafkaSender # KafkaSender 는 thread-safe 하다. 여러 스레드와 공유하여 처리할 수 있다.
+카프카로 메시지를 전송할 때 사용하는 KafkaProducer 하나와 연결된다.
+KafkaSender 는 sender 설정 옵션(reactor.kafka.sender.SenderOptions) 인스턴스로 만든다.
+KafkaSender 를 만든 후엔, SenderOptions 를 수정해도 KafkaSender 에 반영되지 않는다. 동시에 전송할 수 있는 최대 메시지 수(max inflight)와 같은 KafkaSender 전용 설정 옵션도 KafkaSender 인스턴스를 만들기 전에 미리 설정할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-RedisKeyValueAdapter-update/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-RedisKeyValueAdapter-update/</guid>
+      <description>update # element 가 컬렉션인 경우 # (컬렉션 요소들) 전체 삭제 후 다시 insert
+// 1 127.0.0.1:6379&amp;gt; hgetall test 1) &amp;#34;_class&amp;#34; 2) &amp;#34;~~~&amp;#34; 3) &amp;#34;ids.[0]&amp;#34; 4) &amp;#34;1&amp;#34; 3) &amp;#34;ids.[1]&amp;#34; 4) &amp;#34;2&amp;#34; // 2 127.0.0.1:6379&amp;gt; hgetall test 1) &amp;#34;_class&amp;#34; 2) &amp;#34;~~~&amp;#34; // 3 127.0.0.1:6379&amp;gt; hgetall test 1) &amp;#34;_class&amp;#34; 2) &amp;#34;~~~&amp;#34; 3) &amp;#34;ids.[0]&amp;#34; 4) &amp;#34;3&amp;#34; 그 외 # hmset, hset 커맨드로 overwrite
+참고 # public void update(PartialUpdate&amp;lt;?&amp;gt; update) { RedisPersistentEntity&amp;lt;?&amp;gt; entity = this.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Servlet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Servlet/</guid>
+      <description>Servlet # 클라이언트의 요청을 처리하고, 결과를 반환하는 (Servlet 클래스의 구현 규칙을 지킨) Java 프로그램(클래스)이다.
+서블릿은 자바로 구현된 CGI라고 불린다.
+* 실제 주석 내용
+서블릿은 웹 서버 내에서 실행되는 작은 Java 프로그램이다. 일반적으로 서블릿은 HTTP 를 통해 웹 클라이언트의 요청을 받고, 응답한다.
+* CGI(Common GateWay Interface)란?
+외부 프로그램과 웹서버 사이에서 정보를 주고받는 방법/규약을 말한다.
+Servlet (Interface) # 이 인터페이스는 서블릿을 초기화하고 요청을 서비스하고, 서블릿을 서버로부터 삭제하는 메소드를 정의하고 있다. 즉, 생명 주기 메소드들을 정의한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-ServletContext-ApplicationContext/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-ServletContext-ApplicationContext/</guid>
+      <description>ServletContextListener # ServletContext 의 변화(라이프사이클)를 감지한다.
+웹 애플리케이션의 &amp;lsquo;시작&amp;rsquo;, &amp;lsquo;종료&amp;rsquo; 시에 아래 메서드가 호출된다. contextInitialized() : 웹 애플리케이션이 시작될 때 호출 servlet, filter 의 초기화보다 먼저 실행 contextDestroyed() : 웹 애플리케이션이 종료될 때 호출 servlet, filter 는 해당 메서드 호출 전에 이미 종료된 상태 /** * Implementations of this interface receive notifications about changes to the * servlet context of the web application they are part of. To receive * notification events, the implementation class must be configured in the * deployment descriptor for the web application.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Session-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Session-1/</guid>
+      <description>서블릿 컨테이너(e.g. 톰캣) 자체적으로 세션 관리
+Session # 주요 인터페이스/클래스
+HttpSession StandardSession /** * Provides a way to identify a user across more than one page request or visit to a Web site and to store information about that user. * The session persists for a specified time period, across more than one connection or page request from the user. * A session usually corresponds to one user, who may visit a site many times.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Batch-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Batch-1/</guid>
+      <description>개요 # &amp;quot; A Job has one to many steps, each of which has exactly one ItemReader, one ItemProcessor, and one ItemWriter &amp;ldquo;
+하나의 Job 은 여러 Step 을 갖는다.
+하나의 Step 은 각각 1개의 ItemReader, ItemProcessor, ItemWriter 를 갖는다.
+Job # &amp;rdquo; A Job is an entity that encapsulates an entire batch process. &amp;ldquo;
+하나의 잡은 Batch Process 를 표현하는 수단으로 볼 수 있음
+Job은 작업이 무엇이고, 어떻게 하는지 에 대해 정의</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Batch-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Batch-2/</guid>
+      <description>애플리케이션 실행 순서 # SpringApplication ---&amp;gt; JobLauncherApplicationRunner (ApplicationRunner) ---&amp;gt; JobLauncherApplicationRunner # SpringApplication 에 의해 run() 메서드가 호출되고, execute() 메서드를 실행한다.
+protected void execute(Job job, JobParameters jobParameters) throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, JobParametersNotFoundException { JobParameters parameters = getNextJobParameters(job, jobParameters); // (1) JobExecution execution = this.jobLauncher.run(job, parameters); // (2) if (this.publisher != null) { this.publisher.publishEvent(new JobExecutionEvent(execution)); // (3) } } (1) jobParameter 를 가져온다. (2) jobLauncher.run() 을 통해 job 을 실행한다. jobLauncher.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-1/</guid>
+      <description>Spring Cloud Gateway (SCG) # 용어 # Route
+SCG의 &amp;lsquo;기본 설정 그룹&amp;rsquo; 정도로 볼 수 있을 것 같음 ID, Dest URI, 일련의 Preciates, 일련의 Filters 등이 정의
+예를 들어, 하나의 route는 predicate 가 true 일 때 매치
+Predicate
+Java8 의 Predicate Input-Type : ServerWebExchange HTTP request(header, parameter 등)로부터 해당 route를 매치시킬 것인지 아닌지 등을 판단하기 위해 사용된다. Filter
+(SpringFramework GatewayFilter) (before or after sending the downstream request)request, response 를 조작할 수 있음 동작 원리 # 어떻게 동작하는지에 대한 그림은 여기를 참고하자.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-2/</guid>
+      <description>[웨비나] API Gateway를 활용한 API 개발과 비즈니스 로직 실행 # Gateway 고려사항 # 수많은 API 요청을 처리할 수 있는 안정적인 인프라 Scale Out 가능 여부 트래픽 제어 (Rate Limit, &amp;hellip;) Gateway 를 위한 트래픽 제어 Internel Service 를 위한 트래픽 제어 모니터링 사용 현황 (호출량) 응답 시간 오류 현황 다양한 성능 정보 인증 (+ 인가) API Key 를 이용한 제어 IP ACL 를 이용한 제어 유연한 API 관리 리소스, 메서드 관리 Client ---&amp;gt; Mock API ---&amp;gt; G/W ---&amp;gt; Internel 네이버 Gateway 의 경우 아래 Endpoint 에 대한 호출이 가능하다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-3/</guid>
+      <description>spring-cloud-starter-gateway # Dependency # spring-cloud-starter spring-boot-starter-webflux netty &amp;hellip; spring-cloud-starter-loadbalancer (optional) spring-cloud-gateway-server 실질적으로 이 모듈에 Gateway와 관련된 클래스(코드)가 있다고 보면 될 것 같다. spring-cloud-gateway-server # Dependency # 기본적인 Dependency 가 모두 들어있다. (다만, optional 활성 여부를 꼭 확인할 것)
+spring-boot-starter spring-boot-starter-validation io.projectreactor.addons:reactor-extra spring-boot-starter-oauth2-client (optional) spring-boot-starter-actuator (optional) &amp;hellip; Flow # https://dlsrb6342.github.io/2019/05/14/spring-cloud-gateway-%EA%B5%AC%EC%A1%B0/ 여기의 글도 보기 좋다.
+HttpServerOperations (reactor-netty-http) ---&amp;gt; HttpWebHandlerAdapter(spring-web) ---&amp;gt; (WebHandler.handle(), DispatcherHandler.handle()) RoutePredicateHandlerMapping(spring-cloud-gateway-server) ---&amp;gt; FilteringWebHandler.handle() DispatcherHandler # public class DispatcherHandler implements WebHandler, PreFlightRequestHandler, ApplicationContextAware { @Nullable private List&amp;lt;HandlerMapping&amp;gt; handlerMappings; @Nullable private List&amp;lt;HandlerAdapter&amp;gt; handlerAdapters; @Nullable private List&amp;lt;HandlerResultHandler&amp;gt; resultHandlers; .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-4-Error-Handling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-4-Error-Handling/</guid>
+      <description>Gateway 에서 에러 발생 시, 핸들링할 수 있는 WebExceptionHandler를 구현합니다.
+구현 내용 # ErrorWebExceptionHandler 인터페이스 구현 → GlobalErrorWebExceptionHandler ErrorAttributes 인터페이스 구현 → GlobalErrorAttributes 흐름 # ExceptionHandlingWebHandler 가 FilteringWebHandler 에 Request 처리를 위임하는 방식 (참고 : WebHttpHandlerBuilder.build()) 연관 클래스 # 클래스 설명 / 역할 ExceptionHandlingWebHandler WebExceptionHandler List 포함 exceptionHandler 에러를 핸들링한다. WebExceptionHandler Contract for handling exceptions during web server exchange processing. GlobalErrorWebExceptionHandler 이 해당 WebHandler 에서 Exception 발생 시, WebExceptionHandler(GlobalErrorWebExceptionHandler) 가 처리 ErrorAttributes Provides access to error attributes which can be logged or presented to the user.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-5-RouteLocator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cloud-Gateway-5-RouteLocator/</guid>
+      <description> </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-MVC-Error/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-MVC-Error/</guid>
+      <description>Spring MVC : Error # 핵심 클래스 / 인터페이스 # class (interface) 설명 ErrorMvcAutoConfiguration (MVC) Error Controller 관련 Auto-configuration 클래스 ErrorController Error Controller 인터페이스 하위 : AbstractErrorController, BasicErrorController BasicErrorController Error Controller 구현 클래스 Spring Web(MVC)에서 Default 로 사용되는 구현체 (with DefaultErrorViewResolver) ErrorProperties (위에서 사용되는) Error property 클래스 Path, WhiteLabel, &amp;hellip; ErrorMvcAutoConfiguration # // Load before the main WebMvcAutoConfiguration so that the error View is available @AutoConfiguration(before = WebMvcAutoConfiguration.class) @ConditionalOnWebApplication(type = Type.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Security-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Security-1/</guid>
+      <description>Overview # A Review Of Filters # DelegatingFilterProxy # package org.springframework.web.filter;
+서블릿 컨테이너(Servet Conatiner) &amp;lt;-&amp;gt; 스프링 애플리케이션컨텍스트(ApplicationContext) 사이를 연결시켜주는(bridge) 역할을 한다.
+WebApplicationContext 에서 위임할 Filter(Bean)을 찾고, 해당 Filter 의 doFilter() 메서드를 호출한다. &amp;lsquo;서블릿 컨테이너&amp;rsquo; 는 &amp;lsquo;스프링에 등록된 Bean&amp;rsquo; 들을 사용(인식)하지 않는다. 따라서, (서블릿 컨테이너 표준에 맞게 등록된) DelegatingFilterProxy가 스프링에 등록된 Bean(단, Fiter 구현체)에 위임한다. &amp;ldquo;(Servlet)Filter vs Bean Filter&amp;rdquo; 의 차이에 대해 이해할 것
+public class DelegatingFilterProxy extends GenericFilterBean { .</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Security-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Security-2/</guid>
+      <description>Servlet Authentication Architecture # 클래스 설명 SecurityContextHolder Where Spring Security stores the details of who is authenticated SecurityContext It is contained in SecurityContextHolder
+It contains the Authentication of the currently authenticated user AuthenticationManager &amp;lsquo;인증&amp;rsquo;을 처리하기 위한 인터페이스
+Authentication authenticate(Authentication authentication) throws AuthenticationException; ProviderManager AuthenticationManager 구현 클래스 AuthenticationProvider (실질적인) &amp;lsquo;인증&amp;rsquo; 을 처리하는 인터페이스
+e.g. AbstractUserDetailsAuthenticationProvider : ID, Password 인증
+(ID, Password 인증은 추상메서드로 되어 있기에, 사용자가 구현) GrantedAuthority (인증 시) 부여된 권한 AbstractAuthenticationProcessingFilter A base Filter used for authentication</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-SpringBoot-JPA-Spring-Data-Jpa-Hibernate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-SpringBoot-JPA-Spring-Data-Jpa-Hibernate/</guid>
+      <description>jpa vs hibernate vs spring data jpa 글을 읽고 이해한 내용 정리해보기
+JPA (Java Persisetence API) # JPA 는 인터페이스(명세)이다. 간단하게 &amp;ldquo;관계형 데이터베이스 사용을 위한 인터페이스&amp;rdquo; 이다.
+EntityManager 가 바로 JPA 인터페이스의 실물(구현체)이다.
+EntityManager 를 살펴보면 관계형 데이터베이스 사용을 위한 기능들이 정의되어 있음을 알 수 있다.
+public interface EntityManager { /** * Make an instance managed and persistent. * ... */ public void persist(Object entity); /** * Merge the state of the given entity into the * current persistence context.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-SpringBoot-Multiple-DB-%EC%97%B0%EB%8F%99/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-SpringBoot-Multiple-DB-%EC%97%B0%EB%8F%99/</guid>
+      <description>SpringBoot 에서 여러 개의 DB 연동해보기
+개요 # 회사에서 새로운 프로젝트를 SpringBoot 환경으로 진행하게 되었다. 기존의 대부분의 프로젝트는 PHP 진영의 CodeIgniter(이하 CI) 라는 프레임워크가 사용되어왔다. SpringBoot로 컨버팅하는 작업도 일부 포함되어 있었기에, 이것저것 알아봐야하는 것들이 많았다.
+그 중에 가장 처음 직면한 문제는 DB 연동 문제였다. 우리 팀은 기본적으로 Oracle DB를 베이스로 하는데, 몇몇 프로젝트에서는 Mysql 을 사용한 프로젝트도 있었다. 문제는 이번에 작업해야 할 프로젝트가 Oracle, Mysql DB를 둘 다 연동/사용해야 했다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-SpringBoot-N&#43;1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-SpringBoot-N&#43;1/</guid>
+      <description>N+1 문제 # (쿼리를 통해 데이터를 가져올때) (연관관계에 있는)데이터를 얻기 위해 추가적인 쿼리가 발생하는 문제
+예시 : 단건 조회 # @Getter @Builder @AllArgsConstructor @NoArgsConstructor(access = AccessLevel.PROTECTED) @Entity public class Orders { @GeneratedValue(strategy = GenerationType.IDENTITY) @Id private Long id; @Column private String name; @ManyToOne(fetch = FetchType.EAGER) @JoinColumn(name = &amp;#34;customer_id&amp;#34;) private Customer customer; @OneToMany(fetch = FetchType.EAGER, mappedBy = &amp;#34;orders&amp;#34;) private List&amp;lt;OrderItem&amp;gt; orderItems; } EAGER 방식
+left join , inner join 으로 한번에 가져온다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Webflux/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Webflux/</guid>
+      <description> 아래 글을 참고한다.
+https://godekdls.github.io/Reactive%20Spring/springwebflux/ https://godekdls.github.io/Reactive%20Spring/springwebflux2/ https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-WebServer-vs-WAS-vs-Servlet-Container/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-WebServer-vs-WAS-vs-Servlet-Container/</guid>
+      <description>WebServer vs WAS(Web Application Server) vs Servlet Container # WebServer (웹 서버) # 정적인 페이지(HTML, CSS)를 제공하는 서버이다.
+클라이언트의 요청 중 자체적으로 처리할 수 없는 요청은 WAS로 넘긴다.
+웹서버와 WAS, 즉 역할을 분리함으로써 요청에 대한 부담을 나눌 수 있다.
+Apache, Nginx, IIS 등이 있다.
+WAS # 서버 사이드 언어(코드)를 통해 동적인 콘텐츠를 만드는 서버이다.
+웹 서버에서 처리할 수 없는 동적인 콘텐츠를 생성하고, 이것을 웹서버에 제공한다.
+보통 웹서버의 기능을 포함하고 있어서 웹 서버 없이도 웹 서비스를 운영할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cache/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/SPRING/SPRING-Spring-Cache/</guid>
+      <description>참고 # https://docs.spring.io/spring-framework/docs/6.0.4/reference/html/integration.html#cache https://docs.spring.io/spring-boot/docs/current/reference/html/io.html Caching (from spring-boot docs) # &amp;quot; You can also use the standard JSR-107 (JCache) annotations (such as @CacheResult) transparently. However, we strongly advise you to not mix and match the Spring Cache and JCache annotations. &amp;quot;
+Spring Cache 어노테이션과 JCache 어노테이션을 혼합하여 사용하지 않는다.
+&amp;quot; If you do not add any specific cache library, Spring Boot auto-configures a simple provider that uses concurrent maps in memory.</description>
+    </item>
+    
+  </channel>
+</rss>

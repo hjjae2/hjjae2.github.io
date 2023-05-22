@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NETWORK on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/NETWORK/</link>
+    <description>Recent content in NETWORK on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/NETWORK/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/NETWORK/NETWORK-LDAP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/NETWORK/NETWORK-LDAP/</guid>
+      <description>우선 개념만 정리, 다시 학습 필요 !!
+LDAP(Lightwieght Directory Access Protocol) # 디렉토리 서비스를 제공하기 위한 프로토콜
+네트워크상에서 조직(Organization), 개인(Private), 파일(File), 디바이스(Device) 등을 &amp;lsquo;찾아볼 수 있게 해주는&amp;rsquo; 소프트웨어 프로토콜
+LDAP 은 DAP 의 스펙을 최대한 유지 + 경량화 → 네트워크 부담을 줄이고 활용성을 높임
+데이터 형식에 있어서, 대부분 단순한 문자열을 사용 → &amp;lsquo;구현 단순화&amp;rsquo;, &amp;lsquo;성능 향상&amp;rsquo;시켰다고 한다.
+LDAP 등장하기 전, 디렉토리 서비스 표준이었던 X.500 DAP(Directory Access Protocol)이 존재했었다. 하지만 이 프로토콜은 무겁고, 제약이 많았다고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/NETWORK/NETWORK-Network_NAT/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/NETWORK/NETWORK-Network_NAT/</guid>
+      <description>NAT(Network Address Translation)는 IP, PORT 정보를 변경하는 기술이다. 패킷(IP, Port)에 변화가 생기기에 패킷에 대한 체크섬도 재계산되어야 한다고 한다.
+NAT 를 이용하면 내부의 여러 사설 IP가 외부로 나갈 때 하나의 공인 IP 주소를 통해 나갈 수 있다.
+&amp;lsquo;NAT를 사용하여 얻을 수 있는 이점&amp;rsquo; == &amp;lsquo;사설 네트워크(사설 IP)를 사용하여 얻을 수 있는 이점&amp;rsquo;
+1. IP 주소 절약
+&amp;lsquo;사설 IP 사용&amp;rsquo;의 이점인 것 같다. NAT를 통해 사설 IP, 공인 IP 를 활용할 수 있는데, 사설 IP 를 활용할 수 있다는 것은 그만큼 IP 주소를 절약할 수 있다는 것이다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/NETWORK/NETWORK-Network_Tunneling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/NETWORK/NETWORK-Network_Tunneling/</guid>
+      <description>&amp;lsquo;터널링&amp;rsquo;이란, 연결해야 할 두 지점간에 통로를 생성하는 것이다. 이 터널은 터널링을 지원하는 프로토콜을 사용하여 구현되며, 사설망과 같은 보안 기능을 제공하게 된다. 경유지(두 지점 사이의 홉)들을 통하지 않고 두 지점을 바로 연결시킨 것이다.
+참고 # VPN이란? 정의/터널링/터널링 프로토콜 등 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/NETWORK/NETWORK-OSI-7-Layer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/NETWORK/NETWORK-OSI-7-Layer/</guid>
+      <description>OSI 7 Layer 이해하기
+OSI 7 Layer # (전송 시) 7계층 -&amp;gt; 1계층 순서로 헤더를 붙인다. (캡슐화)
+(수신 시) 1계층 -&amp;gt; 7계층 순서로 헤더를 떼어낸다. (디캡슐화)
+Application Layer (7 Layer)
+응용프로그램과 관련된 계층이다. 사용자/애플리케이션이 네트워크에 접근할 수 있도록 한다. 사용자를 위한 인터페이스를 지원한다. (사용자가 직접적으로 접촉하는 유일한 계층이다.) HTTP, FTP, SMTP, DNS 등이 있다. 데이터 Format : Data + HTTP Header Presentation Layer (6 Layer)
+데이터를 어떻게 표현할지 결정한다. (전송할, 전송된) 데이터의 인코딩, 디코딩, 암호화 등이 이뤄진다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/NETWORK/NETWORK-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%84%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/NETWORK/NETWORK-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%84%9C/</guid>
+      <description>먼저 &amp;lsquo;L4/L7 로드밸런싱 쉽게 이해하기&amp;rsquo; 블로그의 글을 읽었다.
+L4/L7 로드밸런싱에 대해서 놓치기 쉬운 것(오해하기 쉬운 것)은 다음과 같다고 한다.
+상위 계층의 장비는 하위 계층의 기능을 포함한다. 다만 효율성 있게 사용하기 위해 사용하지 않을 뿐이다.
+로드밸런서 # 로드밸런서의 종류는 L2(MAC addr), L3(IP), L4(Port), L7(Application) 로드밸런서가 있다고 한다. 이들 중 L4, L7 로드밸런서가 많이 사용된다고 한다. (* L4부터 Port 를 다룰 수 있는데, 이 말은 즉슨 한 대의 서버에 여러 포트로 여러 서비스를 운영할 수 있다는 것을 의미한다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AWS on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/AWS/</link>
+    <description>Recent content in AWS on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/AWS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/01.-API-Gateway/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/01.-API-Gateway/</guid>
+      <description>What is Amazon API Gateway? # Amazon API Gateway is an AWS service for creating, publishing, maintaining, monitoring, and securing REST, HTTP, and WebSocket APIs at any scale.
+API developers can create APIs that access AWS or other web services, as well as data stored in the AWS Cloud.
+As an API Gateway API developer, you can create APIs for use in your own client applications. Or you can make your APIs available to third-party app developers.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/02.-Batch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/02.-Batch/</guid>
+      <description>Launch Template # AWS Batch only updates the launch template with a new launch template version during infrastructure updates. For more information, see Updating compute environments.
+Q1. launch template 지정 시 해당 launch template 을 (직접적으로)사용하는 것인지 테스트 필요하다. (단순히 설정 정보를 읽어오는 정도(import)로만 사용하고, 별도 launch template 이 생성되는 건지)
+A1. launch template 을 지정해도, (batch 에 의해)별도 launch template 이 생성되는 것을 확인했다.
+Launch template 버전 변경이 필요한 경우 # create-compute-environment 문서에 나와있다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/03.-Cloud-Formation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/03.-Cloud-Formation/</guid>
+      <description>What is AWS CloudFormation? # 요약: IaC를 위한 서비스다.
+AWS resources 를 관리(모델링, 셋업 등)할 수 있는 서비스이다.
+1. CloudFormation Template 을 생성한다.
+템플릿 : AWS 리소스 명시 Json, Yaml 포맷 지원 참고 2. CloudFormation 은 템플릿을 기반으로 리소스를 프로비저닝하고 구성한다.
+You create a template that describes all the AWS resources that you want (like Amazon EC2 instances or Amazon RDS DB instances), and CloudFormation takes care of provisioning and configuring those resources for you.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/04.-Elastic-Beanstalk/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/04.-Elastic-Beanstalk/</guid>
+      <description>Elastic Beanstalk 에 대한 기본 개념은 어렵지 않고 문서에 잘 설명이 되있어서 문서만 참고해도 좋을 듯 하다.
+What is AWS Elastic Beanstalk? # Elastic Beanstalk를 사용하면 애플리케이션을 실행하는 인프라에 대해 자세히 알지 못해도 AWS 클라우드에서 애플리케이션을 신속하게 배포하고 관리할 수 있습니다. Elastic Beanstalk를 사용하면 선택 또는 제어에 대한 제한 없이 관리 복잡성을 줄일 수 있습니다. 애플리케이션을 업로드하기만 하면 Elastic Beanstalk에서 용량 프로비저닝, 로드 밸런싱, 조정, 애플리케이션 상태 모니터링에 대한 세부 정보를 자동으로 처리합니다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/05.-Glue/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/05.-Glue/</guid>
+      <description>What is AWS Glue? # 완전 관리형(=서버 리스) ETL(extract, transform, load) 서비스
+(데이터를) 카테고라이징, 정리, 보강 (데이터를) 다양한 data store, data stream 간 이동 Glue 구성 요소
+Central metadata repository (= Data Catalog) ETL engine (= python, scala code 등을 자동으로 생성하는 ETL Engine) Scheduler (= 의존성을 핸들링하고, Job monitoring, retry 를 처리할 수 있는 유연한 스케줄러) Glue 특징
+semi-structured data(반구조화된 데이터)와 함께 처리되도록 설계되었다. ETL 스크립트를 사용할 수 있는 dynamic frame(동적 프레임) 이라는 컴포넌트(?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/06.-IAM/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/06.-IAM/</guid>
+      <description>IAM # AWS Identity and Access Management(IAM)는 AWS 리소스에 대한 access를 안전하게 제어할 수 있는 웹서비스이다.
+Entity(User, Group, Role)에 Policy를 적용해서 AWS 리소스(EC2, S3, RDS, &amp;hellip;) 에 대한 접근을 관리한다.
+Keyword : User, Group, Role, Policy
+Terms # IAM Resources # user, group, role, policy, identity provider objects
+IAM identities # identify(식별), group(그룹화)에 사용되는 IAM resource object
+IAM identity 에 policy(정책)을 연결(부여)할 수 있다. ex : users, groups, roles IAM Entities # authentication(인증)을 위해 사용하는 IAM resource object</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/AWS/07.-VPC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/AWS/07.-VPC/</guid>
+      <description>https://www.44bits.io/ko/post/understanding_aws_vpc 내용입니다.
+&amp;quot; Amazon Virtual Private Cloud(VPC)를 사용하면 AWS 클라우드에서 논리적으로 격리된 공간을 프로비저닝하여 고객이 정의하는 가상 네트워크에서 AWS 리소스를 시작할 수 있습니다. IP 주소 범위 선택, 서브넷 생성, 라우팅 테이블 및 네트워크 게이트웨이 구성 등 가상 네트워킹 환경을 완벽하게 제어할 수 있습니다. VPC에서 IPv4와 IPv6를 모두 사용하여 리소스와 애플리케이션에 안전하고 쉽게 액세스할 수 있습니다. – 아마존 버추얼 프라이빗 클라우드(Amazon Virtual Private Cloud) &amp;ldquo;
+AWS에서는 AWS계정을 생성할 때 리전 별로 기본 VPC를 함께 생성해준다.</description>
+    </item>
+    
+  </channel>
+</rss>

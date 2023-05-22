@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>자바 ORM 표준 JPA 프로그래밍 on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
+    <description>Recent content in 자바 ORM 표준 JPA 프로그래밍 on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/03%EC%9E%A5_%EC%98%81%EC%86%8D%EC%84%B1%EA%B4%80%EB%A6%AC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/03%EC%9E%A5_%EC%98%81%EC%86%8D%EC%84%B1%EA%B4%80%EB%A6%AC/</guid>
+      <description>EntityManagerFactory, EntityManager # (보통) EntityManagerFactory를 생성할 때, 커넥션 풀을 만든다.
+EntityManager는 EntityManagerFactory 에서 생성한다.
+EntityManager는 데이터베이스 연결이 꼭 필요한 시점(like transaction)까지 커넥션(connection, conn)을 얻지 않는다.
+영속성 컨텍스트란? # &amp;lsquo;엔티티를 영구히 저장하는 환경&amp;rsquo; 이다. (EntityManager 로) entity 를 저장, 조회하면 EntityManager 는 영속성 컨텍스트에 entity 를 보관/관리한다. EntityManager 를 생성하면 &amp;lsquo;영속성 컨텍스트&amp;rsquo; 라는 것이 (한 개) 같이 생성된다. EntityManager 를 통해 영속성 컨텍스트에 접근,관리할 수 있다.
+즉, 애플리케이션과 DB 사이에서 객체를 보관하는 가상의 데이터베이스와 같은 역할을 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/04%EC%9E%A5_%EC%97%94%ED%8B%B0%ED%8B%B0%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/04%EC%9E%A5_%EC%97%94%ED%8B%B0%ED%8B%B0%EB%A7%A4%ED%95%91/</guid>
+      <description>4장. 엔티티 매핑 # JPA 에서 지원하는 매핑 어노테이션은 크게 4가지로 분류할 수 있다.
+설명 어노테이션 객체 / 테이블 매핑 @Entity, @Table Primary 키 매핑 @Id 필드 / 컬럼 매핑 @Column 연관관계 매핑 @ManyToOne, @JoinColumn @Entity # 테이블과 매핑할 클래스에 @Entity 어노테이션을 사용한다.
+@Entity가 붙은 클래스는 JPA 가 관리하는 것이며, 엔티티라 부른다.
+주의사항
+기본 생성자(Default Constructor, @NoArgsConstructor)는 필수 final, enum, interface, inner 클래스에는 사용할 수 없다. 매핑할 필드(컬럼)에 final 값을 사용할 수 없다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/13%EC%9E%A5_%EC%9B%B9-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EA%B3%BC-%EC%98%81%EC%86%8D%EC%84%B1-%EA%B4%80%EB%A6%AC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/13%EC%9E%A5_%EC%9B%B9-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EA%B3%BC-%EC%98%81%EC%86%8D%EC%84%B1-%EA%B4%80%EB%A6%AC/</guid>
+      <description>&amp;quot; 컨테이너 환경(스프링)에서 동작하는 JPA 내부 동작 방식을 이해해보자 &amp;ldquo;
+트랜잭션 범위의 영속성 컨텍스트 # 컨테이너의 도움 없이 순수 자바 환경에서 JPA 를 사용한다면, 아래와 같은 작업을 직접 처리해야 한다.
+EntityManager 관리 트랜잭션(Transaction) 관리 컨테이너(스프링)는 위와 같은 작업을 대신해준다. 따라서, 컨테이너가 제공하는 방법/전략(영속성 컨텍스트, 트랜잭션과의 관계)을 이해할 필요가 있다.
+스프링 컨테이너 기본 전략 : 트랜잭션 범위 = 영속성 컨텍스트 범위 # OSIV : false
+트랜잭션 범위와 영속성 컨텍스트의 생존 범위가 같다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/16%EC%9E%A5_%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD-2%EC%B0%A8%EC%BA%90%EC%8B%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EC%9E%90%EB%B0%94-ORM-%ED%91%9C%EC%A4%80-JPA-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/16%EC%9E%A5_%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD-2%EC%B0%A8%EC%BA%90%EC%8B%9C/</guid>
+      <description>트랜잭션과 락 # 2차 캐시 # 1차 캐시와 2차 캐시
+영속성 컨텍스트 내부에 Entity 를 보관하는 저장소, 1차캐시가 있다.
+1차캐시를 통해 얻을 수 있는 이점은 많이 있지만 일반적으로 1차캐시의 유효 범위는 짧기 때문에 큰 이점을 보기는 힘들다.
+* 1차캐시는 트랜잭션 시작 ~ 끝에서 유효하다. OSIV 를 사용해도 클라이언트의 요청이 들어온 시점 ~ 끝날 때까지만 유효하다.
+하이버네이트를 포함하여 대부분의 JPA 구현체는 애플리케이션 범위의 캐시를 지원한다. 이것을 &amp;lsquo;공유 캐시&amp;rsquo;, &amp;lsquo;2차 캐시&amp;rsquo;라고 한다.</description>
+    </item>
+    
+  </channel>
+</rss>

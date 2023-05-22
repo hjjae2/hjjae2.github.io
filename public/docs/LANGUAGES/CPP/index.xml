@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CPP on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/LANGUAGES/CPP/</link>
+    <description>Recent content in CPP on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/LANGUAGES/CPP/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/LANGUAGES/CPP/99.-unordered_map-vs-map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/LANGUAGES/CPP/99.-unordered_map-vs-map/</guid>
+      <description>결론 # 데이터가 많다면 unordered_map 을 사용하자. 대게 unordered_map 이 우수하다. 개념 # map
+Red-Black Tree (RB Tree) 기반 key 정렬 키 값이 고르지 못할 경우, balancing 비용 커짐 O(logN) unordered_map
+Hash Table 기반 O(1) 비교 # 대소비교 비용, 해싱 비용을 비교하여 예상할 수 있다.
+Key 타입: 숫자
+성능: unordered_map &amp;gt; map
+Key 타입: 문자열
+성능: unordered_map ?? map
+문자열 비교 vs 문자열 해싱의 경우 문자열 비교의 비용이 클 수도, 작을 수도 있다.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>오브젝트 on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/BOOKS/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/</link>
+    <description>Recent content in 오브젝트 on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/BOOKS/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1장 객체, 설계</title>
+      <link>https://hjjae2.github.io/docs/BOOKS/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/1%EC%9E%A5-%EA%B0%9D%EC%B2%B4-%EC%84%A4%EA%B3%84/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/BOOKS/%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8/1%EC%9E%A5-%EA%B0%9D%EC%B2%B4-%EC%84%A4%EA%B3%84/</guid>
+      <description>1장 &amp;lsquo;객체, 설계&amp;rsquo;의 핵심 부분 정리해보기
+로버트 마틴 &amp;lsquo;클린 소프트웨어: 애자일 원칙과 패턴, 그리고 실천 방법&amp;rsquo; 에서 소프트웨어 모듈이 가져야 하는 세 가지 기능은 다음과 같다.
+실행 중에 제대로 동작한다. 변경을 위해 존재한다. 대부분의 모듈은 생명주기 동안 변경되기 때문에 간단하게 변경할 수 있어야 한다. 변경하기 어렵다면, 개선해야 한다. 코드를 읽는 사람과 의사소통한다. 개발자가 쉽게 읽고 이해할 수 있어야 한다. 읽는 사람과 의사소통할 수 없는 모듈은 개선되어야 한다. 객체 사이의 의존성을 완전히 없애는 것이 정답은 아니다.</description>
+    </item>
+    
+  </channel>
+</rss>

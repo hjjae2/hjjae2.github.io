@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OS on thisandthat</title>
+    <link>https://hjjae2.github.io/docs/OS/</link>
+    <description>Recent content in OS on thisandthat</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://hjjae2.github.io/docs/OS/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/01.-OS-Introduction/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/01.-OS-Introduction/</guid>
+      <description>OS Introduction # OS 란?
+프로그램이 동작하는 것을 쉽게 해준다. 시스템을 효율적으로, 정확하게 운영한다. &amp;lsquo;자원관리자&amp;rsquo; 이다. 물리 자원 : CPU, Dram(Memory), Disk, keyboard(KBD), Network, &amp;hellip; 가상 자원 : Process, Thread, Virtual Memory, Page, File, Directory, Driver, Protocol, &amp;hellip; * OSTEP(OS Three Easy Picese) : Virtualization, Concurrency, Persistence
+* OS 의 기본 목표 : Abstraction, Performance, Protection, Reliability, &amp;hellip;
+컴퓨터 시스템의 계층
+user1 user2 user3 ... userN -------------------------------------- | System Program &amp;amp; Application Program | | OS | -------------------------------------- -------------------------------------- | HW | -------------------------------------- 프로그램을 수행하면 아래와 같은 것들이 진행된다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/02.-Processes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/02.-Processes/</guid>
+      <description>Processes # * Program : Disk 상의 file
+* Process : Program 실행 상태
+Process 를 운영하기 위해 필요한 것
+CPU : registers (IR, PC, SP, &amp;hellip;) Memory : Address Space (stack, heap, data, text) I/O information : Opened files/devices Multiple Processes 운영 방식
+Time sharing 기법 사용
+context switch 발생 Program 실행 시 OS 의 역할
+Load (적재) Disk -&amp;gt; Memory Eagerly vs Lazily Dynamic Allocation (동적 할당) stack heap initialize parameters (argc, argv) Initialization (초기화) file descriptors(0, 1, 2) I/O Jump to main (main 함수 실행) Process 의 Lify-Cycle (상태)</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/03.-Scheduling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/03.-Scheduling/</guid>
+      <description>Scheduling # 스케줄링 이란, 시스템의 자원을 어떤 프로세스에게 할당할 것인지 선택하는 것이다.
+누가(어떤 프로세스) 자원(CPU)을 사용할지 선택하는 것이다.
+선점형 스케줄링, 비선점형 스케줄링이 있다.
+* Workload : 일의 양
+Scheduling Metric
+완료 시간 (Turnaround time)
+Turnaround time = Completion time - Arrival time Batching System 에 좋은 metric 이다. 응답 시간 (Response time)
+Response time = First run time - Arrival time I/O 에 좋은 metric 이다. (사용자는 빠른 응답시간이 중요하다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/04.-Memory-Management/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/04.-Memory-Management/</guid>
+      <description>Memory Management # Memory Virtualization Keywords
+Virtual address (Private) Address space HW help Address Space 개념의 변천사
+Early System -&amp;gt; Multiprogramming &amp;amp; Time sharing -&amp;gt; Virtual memory(Address space)
+Ealry System
+Single programming system
+물리 메모리를 직접적으로 사용한다.
+물리 메모리보다 큰 메모리가 필요하다면, Overlay 기법을 사용한다.
+* Overlay : 현재 꼭 필요한 Part 만 메모리에 올리는 것 (Part 번갈아가면서 실행)
+Multiprogramming &amp;amp; Time sharing
+컴퓨터 HW 가 좋아지면서, 한번에 여러 개의 프로그램을 올릴 수 있게 되었다 (?</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/07.-Concurrency-Thread-and-Lock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/07.-Concurrency-Thread-and-Lock/</guid>
+      <description>Concurrency : Thread and Lock # * 병행성 : 동시에 처리되는 것 처럼 보이게 하는 것
+* 병렬성 : 동시에 처리되는 것
+Keywords of concurrency
+Shared data Race condition Coarse-grained locking &amp;hellip; Fron now on &amp;hellip;
+Multi-threaded Program : multiple control flows in a program Concurrency : shared data -&amp;gt; race condition What is a Thread ?
+Computing resources for a program
+Thread는 프로세스 내에서 실행되는 흐름의 단위를 말한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/08.-Concurrency-Semaphore-and-Deadlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/08.-Concurrency-Semaphore-and-Deadlock/</guid>
+      <description>Concurrency: Semaphore and Deadlock # Producer/Consumber problem (Bounded buffer problem) # 한번에 여러 producer, consumer 가 버퍼에 접근하는 것을 막아야한다.
+Semaphore # For both a lock and a condition variable</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/10.-File-System-Basic/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/10.-File-System-Basic/</guid>
+      <description>File System Basic # Persistence
+메모리(휘발성) 상의 문제는 컴퓨터를 reboot 하면 해결된다.
+디스크(비휘발성) 상의 문제는 컴퓨터를 reboot 해도 해결되지 않는다.
+Computer system&amp;rsquo;s 4 key abstractions
+Process Virtual Memory Lock File What is a file?
+(영구히 저장되는) Bytes 들의 선형 집합(배열)이다.
+각각의 file 은 절대경로, 상대경로를 갖는다.
+Inode (OS, Low-level 단의 이름) 을 갖는다.
+Device, Pipe, Socket, some processes 는 file 로서 취급된다.
+(OS 가 관리하는 모든 장치는 file 로서 접근 가능하다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/99.-RAID/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/99.-RAID/</guid>
+      <description>Redundant Array Inexpensive(Independent) Disk # (초창기에는) &amp;ldquo;저렴한 디스크를 사용해서 구성한다는 느낌으로&amp;rdquo; &amp;lsquo;Inexepnsive&amp;rsquo; 키워드를 사용했다고 한다.
+&amp;ldquo;독립적인 저장 공간 구성한다는 느낌으로(즉, 안정성, 가용성)&amp;rdquo;,&amp;lsquo;Independent&amp;rsquo; 키워드를 사용한다고 한다.
+개요 # RAID 특징
+고가용성 (안정성) 향상 디스크 I/O 성능 향상 디스크 확장성 향상 RAID 구성은 &amp;lsquo;HW 방식&amp;rsquo;과 &amp;lsquo;SW 방식&amp;rsquo;이 있다.
+1. HW 방식 # HW 방식은 메인보드에 &amp;lsquo;RAID 컨트롤러 카드&amp;rsquo; 라는 것을 장착하여 구현한다고 한다.
+운영체제 부팅 진입 전, RAID 구성을 확인한다고 한다.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://hjjae2.github.io/docs/OS/99.-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://hjjae2.github.io/docs/OS/99.-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81/</guid>
+      <description>스케줄링 # 스케줄링이란, 시스템의 자원을 어떤 프로세스에게 할당할 것인지 선택하는 것이다.
+선점형 스케줄링, 비선점형 스케줄링이 있다.
+선점형 스케줄링 # 어떤 프로세스가 시스템의 자원을 사용하여 작업을 진행하는 도중, 해당 작업을 중지하고 시스템의 자원을 다른 프로세스에게 넘겨줄 수 있는 스케줄링이다.
+Round Robin (RR)
+FCFS 기법 + 선점형의 기법이다.
+SRT (Shortest Remaining Time)
+SJF + 선점형의 기법이다.
+MLQ
+Queue 에 자원을 점유할 프로세스들을 대기시킨다.
+여러 개의 Queue 를 갖는다. Queue 마다 우선순위가 있다.</description>
+    </item>
+    
+  </channel>
+</rss>
