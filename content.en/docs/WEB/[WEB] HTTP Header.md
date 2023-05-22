@@ -42,7 +42,7 @@ request / response 모두에서 사용되는 공통 헤더
 
 **예시**
 
-```http
+```text
 Request URL: https://developer.mozilla.org/api/v1/whoami
 Request Method: GET
 Status Code: 200 
@@ -61,7 +61,7 @@ Referrer Policy: strict-origin-when-cross-origin
 HTTP 요청 시 사용되는 헤더
 
 **예시**
-```http
+```text
 accept: */*
 accept-encoding: gzip, deflate, br
 accept-language: ko,en-US;q=0.9,en;q=0.8
@@ -90,7 +90,7 @@ HTTP 응답 시 사용되는 헤더
 
 **예시**
 
-```http
+```text
 cache-control: max-age=0, no-cache, no-store, must-revalidate, private
 content-length: 35
 content-type: application/json; charset=utf-8

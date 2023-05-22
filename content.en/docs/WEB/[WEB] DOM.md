@@ -11,7 +11,7 @@ weight: 1
 
 > DOM 이란?
 
-## **DOM(Document Object Model, 문서 객체 모델) 이란?**
+## DOM(Document Object Model, 문서 객체 모델) 이란?
 
 1. <u>XML이나 HTML과 같은 문서에 접근(조작)하기 위한 인터페이스</u>
    - 문서 내의 모든 요소(예를 들어, 태그)를 정의하고 (그 요소들에)접근하는 방법을 제공
@@ -38,7 +38,7 @@ DOM은 아래와 같이 노드 트리 형태로 나타난다고 한다.
 
 <br>
 
-## **DOM 의 종류**
+## DOM 의 종류
 
 DOM 의 종류는 아래와 같은 3 가지 모델이 있음
 
@@ -48,7 +48,7 @@ DOM 의 종류는 아래와 같은 3 가지 모델이 있음
 
 <br>
 
-## **주의할 것**
+## 주의할 것
 
 **DOM과 문서(HTML, XML)는 다르다.**<br>
    - (HTML, XML과 같은)문서에 의해 DOM이 생성되지만, 문서와 DOM이 100% 동일한 것은 아니다. 
@@ -135,7 +135,7 @@ html
 
 <br><br>
 
-## **CRP(Critical Rendering Path)**
+## CRP(Critical Rendering Path)
 
 > (DOM에 대해 간략히 살펴보았으니) 웹페이지가 어떻게 빌드되는지에 대해서 살펴본다.
 
