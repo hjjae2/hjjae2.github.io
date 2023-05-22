@@ -1,6 +1,7 @@
 @import "variables";
 
 .markdown {
+  padding: 1% 8%;
   line-height: 1.6;
 
   // remove padding at the beginning of page
@@ -36,6 +37,12 @@
   h5,
   h6 {
     font-weight: bolder;
+  }
+  
+  h1,
+  h2 {
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid hsla(210, 18%, 87%, 0.5);
   }
 
   h5 {
