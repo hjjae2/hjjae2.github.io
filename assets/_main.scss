@@ -76,6 +76,14 @@ ul.pagination {
   }
 }
 
+#header-desktop {
+  display: flex;
+}
+
+#header-mobile {
+  display: none;
+}
+
 .container {
   max-width: $container-max-width;
   margin: 0 auto;
@@ -173,7 +181,7 @@ body[dir="rtl"] .book-menu {
 }
 
 .book-header {
-  display: none;
+  display: display;
   margin-bottom: $padding-16;
 
   label {
@@ -289,6 +297,14 @@ body[dir="rtl"] .book-menu {
 }
 
 @media screen and (max-width: $mobile-breakpoint) {
+  #header-desktop {
+    display: none;
+  }
+
+  #header-mobile {
+    display: flex;
+  }
+
   #menu-control,
   #toc-control {
     display: inline;

@@ -1,4 +1,4 @@
-<div class="flex align-center justify-between">
+<div id="header-mobile" class="flex align-center justify-between">
   <label for="menu-control">
     <img src="{{ "svg/menu.svg" | relURL }}" class="book-icon" alt="Menu" />
   </label>
@@ -10,4 +10,8 @@
     <img src="{{ "svg/toc.svg" | relURL }}" class="book-icon" alt="Table of Contents" />
     {{ end }}
   </label>
+</div>
+
+<div id="header-desktop" class="flex align-center">
+  <h2><strong>{{ partial "docs/title" . }}</strong></h2>
 </div>

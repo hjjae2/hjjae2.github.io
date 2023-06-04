@@ -1,5 +1,4 @@
 ---
-title: thisandthat
 type: docs
 ---
 

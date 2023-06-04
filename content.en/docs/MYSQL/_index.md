@@ -1,5 +1,5 @@
 ---
-title: "DB"
+title: "MYSQL"
 bookFlatSection: false
 bookCollapseSection: true
 ---
