@@ -1,5 +1,5 @@
 ---
-title: "08. Opensearch"
+title: "Opensearch"
 bookFlatSection: false
 bookCollapseSection: true
 ---
