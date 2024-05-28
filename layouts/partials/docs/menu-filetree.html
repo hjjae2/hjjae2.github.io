@@ -34,7 +34,7 @@ TOTAL: {{ len (where .Site.RegularPages "Section" "==" "docs") }}
     <input type="checkbox" id="section-{{ md5 .Page }}" class="toggle" {{ if or $current $ancestor }}checked{{ end }} />
     <label for="section-{{ md5 .Page }}" class="flex justify-between">
       <a {{ if .Page.Content }}href="{{ .Page.RelPermalink }}"{{ else }}role="button"{{ end }} class="{{ if $current }}active{{ end }}">
-        📁&nbsp;{{- partial "docs/title" .Page -}}&nbsp;({{ len (where .RegularPagesRecursive "Section" "==" "docs") }})
+        🔖&nbsp;{{- partial "docs/title" .Page -}}&nbsp;({{ len (where .RegularPagesRecursive "Section" "==" "docs") }})
       </a>
     </label>
   {{ else if .Page.Params.BookHref }}
