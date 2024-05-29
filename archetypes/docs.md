@@ -6,4 +6,5 @@ bookToC: true
 bookComments: false
 bookSearchExclude: false
 bookFlatSection: true
+weight: 1
 ---
