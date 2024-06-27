@@ -258,3 +258,4 @@ http.exceptionHandling().authenticationEntryPoint(new GPAuthenticationEntryPoint
 
 1. https://docs.spring.io/spring-security/reference/servlet/architecture.html
 2. https://mangkyu.tistory.com/76
+3. https://atin.tistory.com/590 (필터 종류를 보여주는 그림이 포함되어 있다.)
