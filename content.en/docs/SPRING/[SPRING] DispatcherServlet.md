@@ -57,11 +57,13 @@ weight: 1
    최종적으로 페이지를 만들고 DispatcherServlet 에 전달한다.
 8. **DispatcherServlet -> Client (or Web Server)**<br>
    결과물을 응답한다.
+
   
 <img src="https://user-images.githubusercontent.com/35790290/109492994-2d31f600-7acf-11eb-8ace-250d73bb30d2.png" width="80%" height="80%">
 
 > 출처: https://bk-investing.tistory.com/57?category=903513
 
+\* RestController 의 경우 ViewResolver, View 과정 없이 반환된다. (아래 processDispatchResult 코드 참고)
 
 <br>
 
@@ -477,6 +479,32 @@ public class DispatcherServlet extends FrameworkServlet {
 		throw new ServletException("No adapter for handler [" + handler +
 				"]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler");
 	}
+}
+```
+
+```java
+// mv 가 null 이 아니면 render() 호출한다. render() 내에서 다이어그램의 viewResolver, view 과정이 수행된다.
+private void processDispatchResult(HttpServletRequest request, HttpServletResponse response, @Nullable HandlerExecutionChain mappedHandler, @Nullable ModelAndView mv, @Nullable Exception exception) throws Exception {
+   boolean errorView = false;
+   if (exception != null) {
+      ...
+   }
+
+   if (mv != null && !mv.wasCleared()) {
+      this.render(mv, request, response);
+      if (errorView) {
+         WebUtils.clearErrorRequestAttributes(request);
+      }
+   } else if (this.logger.isTraceEnabled()) {
+      this.logger.trace("No view rendering, null ModelAndView returned.");
+   }
+
+   if (!WebAsyncUtils.getAsyncManager(request).isConcurrentHandlingStarted()) {
+      if (mappedHandler != null) {
+         mappedHandler.triggerAfterCompletion(request, response, (Exception)null);
+      }
+
+   }
 }
 ```
 
