@@ -27,5 +27,4 @@ Client(= `3rd party` or `resource owner`)는 이미 토큰을 발행할 수 있�
 > 출처: https://blinders.tistory.com/65 [글쓰는 개발자:티스토리]
 
 # References
-* https://letsmakemyselfprogrammer.tistory.com/103
 * https://blinders.tistory.com/65

@@ -22,6 +22,8 @@ OAuth defines two client types, based on their ability to authenticate securely 
 
 The client type designation is based on the authorization server's definition of secure authentication requirements and its acceptable exposure levels of client credentials. ⭐ The authorization server SHOULD NOT make assumptions about the client type.
 
+> See also https://letsmakemyselfprogrammer.tistory.com/103
+
 This specification has been designed around the following client profiles:
 
 | Client Profile | Description                                                                                                                                                                                                                                                                                                                                                          |
