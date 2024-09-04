@@ -12,6 +12,24 @@
   </label>
 </div>
 
-<div id="header-desktop" class="flex align-center">
+<div id="header-desktop" class="align-center">
   <h1><strong>{{ partial "docs/title" . }}</strong></h1>
+
+  {{ if and .GitInfo .Site.Params.BookRepo }}
+  <div style="font-size: 0.9rem; margin-top: -1rem">
+    {{- $date := partial "docs/date" (dict "Date" .GitInfo.AuthorDate.Local "Format" .Site.Params.BookDateFormat) -}}
+    {{- $commitPath := default "commit" .Site.Params.BookCommitPath -}}
+    Last modified on
+    <a class="align-center" href="{{ .Site.Params.BookRepo }}/{{ $commitPath }}/{{ .GitInfo.Hash }}"
+       title='{{ i18n "Last modified on" }} {{ .GitInfo.AuthorName }} | {{ $date }}' target="_blank" rel="noopener">
+      <span>{{ $date }}</span>
+    </a>
+    , by
+    <a class="align-center" href="{{ .Site.Params.BookRepo }}"
+       title='{{ i18n "Last modified by" }} {{ .GitInfo.AuthorName }} | {{ $date }}' target="_blank" rel="noopener">
+      <span>{{ .GitInfo.AuthorName }}</span>
+    </a>
+  </div>
+  {{ end }}
 </div>
+

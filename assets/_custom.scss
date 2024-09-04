@@ -6,3 +6,10 @@
 #header-desktop {
     padding: 1% 8%;
 }
+
+// Extra space for big screens
+@media screen and (min-width: $container-max-width) {
+    .book-page {
+        padding-top: 0;
+    }
+}

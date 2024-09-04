@@ -7,7 +7,7 @@
   {{ template "book-section-children" (dict "Section" . "CurrentPage" $) }}
 {{ end }}
 
-TOTAL: {{ len (where .Site.RegularPages "Section" "==" "docs") }}
+Total : {{ len (where .Site.RegularPages "Section" "==" "docs") }}
 
 {{ define "book-section-children" }}{{/* (dict "Section" .Section "CurrentPage" .CurrentPage) */}}
   <ul>

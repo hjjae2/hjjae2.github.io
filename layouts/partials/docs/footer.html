@@ -1,6 +1,7 @@
 <div class="flex flex-wrap justify-between">
 
 {{ if and .GitInfo .Site.Params.BookRepo }}
+  {{ if eq .Site.Params.ShowBookDateInFooter "true" }}
   <div>
     {{- $date := partial "docs/date" (dict "Date" .GitInfo.AuthorDate.Local "Format" .Site.Params.BookDateFormat) -}}
     {{- $commitPath := default "commit" .Site.Params.BookCommitPath -}}
@@ -9,6 +10,7 @@
       <span>{{ $date }}</span>
     </a>
   </div>
+  {{ end }}
 {{ end }}
 
 {{ if and .File .Site.Params.BookRepo .Site.Params.BookEditPath }}
