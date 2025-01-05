@@ -9,45 +9,37 @@ bookFlatSection: true
 weight: 1
 ---
 
-## Redis Pipelining
+# Redis Pipelining
 
 > *" How to optimize round-trip times by batching Redis commands "*
 
-여러 명령(command)을 한번에 요청/응답하는 것
+여러 명령(commands)을 한번에 요청/응답하는 것
 
-> DB 에서는 Bulk 연산자를 지원하지만, 레디스에서는 Bulk 연산자를 지원하지 않는다. 대신 pipelin api 를 지원한다.
-
-<br>
+DB 에서는 Bulk 연산자를 지원하지만, 레디스에서는 Bulk 연산자를 지원하지 않는다. 대신 pipeline api 를 지원한다.
 
 (흔히 나오는 예시) (아래)HTTP pipelining 과 비슷한 개념이다.
 
-<img src="/images/[REDIS]%20Redis%20Pipelining_41.png" width="50%">
+![/images/redis_pipelining_example.png]
 
-<br>
+# 문제1. RTT (Round-Trip Time)
 
-### 문제1. RTT (Round-Trip Time)
+Redis는 TCP 기반 위에서 동작한다. 
 
-Redis는 고성능의 저장소이지만, TCP 기반 위에서 동작한다. 
+즉, 요청/응답을 위해 TCP 기반의 네트워크 I/O가 발생할 것이다. Redis 의 성능이 아무리 좋아도, `RTT`가 길다면 클라이언트 입장에서 처리량이 줄어들 수 밖에 없다.
 
-즉 요청/응답을 위해 (TCP 기반의)네트워크 I/O가 발생할 것이다. Redis 의 성능이 아무리 좋아도, `RTT`가 길다면 클라이언트 입장에서 (시간 당)처리량이 줄어들 수 밖에 없다.
+# 문제2. Socket I/O
 
-<br>
-
-### 문제2. Socket I/O
-
-RTT 뿐만 아니라, (파이프라이닝 없이)여러 커맨드를 요청했을 때 발생하는 socket I/O 비용도 크다. 한번에 요청하면 이 비용을 절약할 수 있다.
+RTT 뿐만 아니라, 파이프라이닝 없이 여러 커맨드를 요청했을 때 발생하는 socket I/O 비용도 크다. 한번에 요청하면 이 비용을 절약할 수 있다.
 
 > *" This involves calling the `read()` and `write()` syscall, that means going from user land to kernel land. The context switch is a huge speed penalty. <br><br> When pipelining is used, many commands are usually read with a single read() system call, and multiple replies are delivered with a single write() system call. "*
 
-<br><br>
+# [Spring Data Redis :: Pipelining](https://docs.spring.io/spring-data/data-redis/docs/current/reference/html/#pipeline)
 
-### [Spring Data Redis :: Pipelining](https://docs.spring.io/spring-data/data-redis/docs/current/reference/html/#pipeline)
-
-(Spring Data Redis의) `RedisTemplate` 은 파이프라이닝 기능을 지원하는 (몇 개의)메서드를 제공한다.
+(Spring Data Redis의) `RedisTemplate` 은 파이프라이닝 기능을 지원하는 몇 개의 메서드를 제공한다.
 
 - `execute` / `executePipelined`
 
-**execute**
+### execute
 
 파이프라이닝을 사용하되, 결과(result)를 신경쓰지 않는다면 `execute` 메서드에 pipeline 인자에 `true` 값만 주면 된다.
 
@@ -61,7 +53,7 @@ public class RedisTemplate<K, V>
 }
 ```
 
-**executePipelined**
+### executePipelined
 ```java
 public class RedisTemplate<K, V> 
         extends RedisAccessor 
@@ -108,9 +100,7 @@ public class RedisTemplate<K, V>
 
 > pipeline 을 열고, 닫는것을 제외하고는 거의 execute 와 유사하다.
 
-<br>
-
-**예시**
+### 사용 예시
 
 ```java
 List<Object> results = stringRedisTemplate.executePipelined(
@@ -128,8 +118,6 @@ List<Object> results = stringRedisTemplate.executePipelined(
 > 위 예시는 하나의 요청(커넥션)에서 bulk rPop 연산을 처리하는 예시이다.
 > 
 > `results` 에는 pop 된 아이템들이 결과물로 나온다.
-
-<br><br>
 
 ### RedisConnection.openPipeline()
 
@@ -282,18 +270,18 @@ public class LettuceConnection extends AbstractRedisConnection {
 1. 파이프라인 안에서 실행한 명령어들에 대한 결과(results)가 반환된다.
    - 파이프라이닝 상태가 아니었다면, 빈 컬렉션(empty collection)이 반환된다.
 
-<br><br>
+# 특징
 
-### 추가
-
-**1. command 의 순서가 변경되지 않는다.**
+1. command 의 순서가 변경되지 않는다.
 
 Redis pipelining 은 단순히 요청을 한번에 보내는 것일 뿐 요청(커맨드)의 순서에 영향을 주지 않는다. <br>
 공식 문서에서 이것과 관련된 내용은 못찾았다. 다만, [여기](https://stackoverflow.com/questions/17634826/redis-pipelined-order-of-execution)를 포함해 다른 글들을 참고할 수 있을 것 같다.
 
-<br><br>
+# 항상 파이프라이닝을 적용하면 될까?
 
-### 출처
+보통의 경우 파이프라이닝 적용을 통해 성능의 이점을 취할 수 있다. 다만, 여러 개의 명령어를 처리해야 하는 만큼 하나의 커넥션을 점유해 사용하는 시간이 길어질 수 있다. 이로 인해, 커넥션 경합 현상이 발생할 수 있다.
+
+# 출처
 
 - [Redis pipelining](https://redis.io/topics/pipelining)
 - [Spring Data Redis](https://docs.spring.io/spring-data/data-redis/docs/current/reference/html/#pipeline)
